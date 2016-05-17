@@ -5,85 +5,56 @@
  */
 package com.boatinc.persona;
 
-import com.boatinc.documents.Document;
+import com.boatinc.eines.Eina;
+import com.boatinc.exceptions.DataException;
+import java.util.Date;
 
 /**
  *
- * @author Arsenik
+ * @author Joanmi
  */
-public abstract class Persona {
+public class Persona {
     private String nom;
     private String cognom;
-    private Document document;
-    private String numeroDocument;
-    private String adreça;
-    private int telefon;
-    private String email;
+    private Date fecha;
+    
+    public Persona(String nom, String cognom, String fecha){
+        this.nom=nom;
+        this.cognom=cognom;
+        try{
+            this.fecha=Eina.creaDate(fecha);
+        }catch(DataException e){
+            System.out.println(e.getMessage());
+        }
+        
+    }
 
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public String getCognom() {
         return cognom;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public void setCognom(String cognom) {
         this.cognom = cognom;
     }
 
-    public Document getDocument() {
-        return document;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public void setDocument(Document document) {
-        this.document = document;
-    }
-
-    public String getNumeroDocument() {
-        return numeroDocument;
-    }
-
-    public void setNumeroDocument(String numeroDocument) {
-        this.numeroDocument = numeroDocument;
-    }
-
-    public String getAdreça() {
-        return adreça;
-    }
-
-    public void setAdreça(String adreça) {
-        this.adreça = adreça;
-    }
-
-    public int getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(int telefon) {
-        this.telefon = telefon;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Persona(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email) {
-        this.nom = nom;
-        this.cognom = cognom;
-        this.document = document;
-        this.numeroDocument = numeroDocument;
-        this.adreça = adreça;
-        this.telefon = telefon;
-        this.email = email;
-    }
-    
+    @Override
+    public String toString() {
+        return "Persona{" + "nom=" + nom + ", cognom=" + cognom + ", fecha=" + fecha + '}';
+    }  
 }
