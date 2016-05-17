@@ -8,7 +8,6 @@ package com.boatinc.persona;
 import com.boatinc.eines.Eina;
 import com.boatinc.exceptions.DataException;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,45 +16,80 @@ import javax.swing.JOptionPane;
 public class Persona {
     private String nom;
     private String cognom;
-    private Date fecha;
+    private Document document;
+    private String numeroDocument;
+    private String adreça;
+    private int telefon;
+    private String email;
     
-    public Persona(String nom, String cognom, String fecha){
+    public Persona(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email){
         this.nom=nom;
         this.cognom=cognom;
-        try{
-            this.fecha=Eina.creaDate(fecha);
-        }catch(DataException e){
-            System.err.println(e.getMessage());
-        }
-        
+        this.document=document;
+        this.numeroDocument=numeroDocument;
+        this.adreça=adreça;
+        this.telefon=telefon;
+        this.email=email;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public String getCognom() {
-        return cognom;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getCognom() {
+        return cognom;
     }
 
     public void setCognom(String cognom) {
         this.cognom = cognom;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    public String getNumeroDocument() {
+        return numeroDocument;
+    }
+
+    public void setNumeroDocument(String numeroDocument) {
+        this.numeroDocument = numeroDocument;
+    }
+
+    public String getAdreça() {
+        return adreça;
+    }
+
+    public void setAdreça(String adreça) {
+        this.adreça = adreça;
+    }
+
+    public int getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(int telefon) {
+        this.telefon = telefon;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "Persona{" + "nom=" + nom + ", cognom=" + cognom + ", fecha=" + fecha + '}';
-    }  
+        return "Persona{" + "nom=" + nom + ", cognom=" + cognom + ", document=" + document + ", numeroDocument=" + numeroDocument + ", adre\u00e7a=" + adreça + ", telefon=" + telefon + ", email=" + email + '}';
+    }
 }

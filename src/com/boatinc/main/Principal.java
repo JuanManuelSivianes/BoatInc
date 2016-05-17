@@ -5,7 +5,8 @@
  */
 package com.boatinc.main;
 
-import com.boatinc.persona.Persona;
+import com.boatinc.persona.Document;
+import com.boatinc.persona.*;
 
 /**
  *
@@ -17,11 +18,10 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
-        Persona pep = new Persona("Pep", "Cifre", "127404/1874");
+
+        Patro paco = new Patro("Paco","Anchoa",Document.DNI,"11111111E","C/ mar nº 2",902202122,"paco@gmail.com","Capitan mercante",120f);
         
-        System.err.println(pep);
-            
+        System.err.println(paco);
     }
     
 }
