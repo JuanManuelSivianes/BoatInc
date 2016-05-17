@@ -21,7 +21,7 @@ public class Eina {
             any=Integer.parseInt(fechaString.substring(6,10));
             
             if(dia>31 || mes>12 || any<1500){
-                throw new DataException("numero incongruents");
+                throw new DataException("Numero incongruent");
             }
             
             GregorianCalendar dataGregorian = new GregorianCalendar(any,mes-1,dia);
