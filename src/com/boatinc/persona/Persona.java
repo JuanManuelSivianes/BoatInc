@@ -8,6 +8,7 @@ package com.boatinc.persona;
 import com.boatinc.eines.Eina;
 import com.boatinc.exceptions.DataException;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Persona {
         try{
             this.fecha=Eina.creaDate(fecha);
         }catch(DataException e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         
     }
