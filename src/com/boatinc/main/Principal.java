@@ -5,6 +5,8 @@
  */
 package com.boatinc.main;
 
+import static com.boatinc.operacio.Estat.PENDENT;
+import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
 import com.boatinc.persona.pagament.CompteCorrent;
@@ -30,8 +32,7 @@ public class Principal {
         
         System.err.println(tarj1);
         System.err.println(compte);
-              
-        
+  
     }
     
 }
