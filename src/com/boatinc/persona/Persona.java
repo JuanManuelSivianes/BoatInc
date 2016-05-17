@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.boatin.exceptions;
+package com.boatinc.persona;
 
 /**
  *
  * @author Joanmi
  */
-public class DataException extends Exception{
-    public DataException(){
-        
-    }
+public class Persona {
     
-    public DataException(String text){
-        super(text);
-    }
 }

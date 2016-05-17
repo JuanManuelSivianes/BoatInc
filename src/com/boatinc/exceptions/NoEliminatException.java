@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.boatin.exceptions;
+package com.boatinc.exceptions;
 
 /**
  *
  * @author Joanmi
  */
-public class NoTrovatException extends Exception{
-    public NoTrovatException(){
+public class NoEliminatException extends Exception{
+    public NoEliminatException(){
         
     }
     
-    public NoTrovatException(String text){
+    public NoEliminatException(String text){
         super(text);
     }
     

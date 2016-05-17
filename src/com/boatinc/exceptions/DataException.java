@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.boatin.exceptions;
+package com.boatinc.exceptions;
 
 /**
  *
  * @author Joanmi
  */
-public class NoAfegitException extends Exception{
-    public NoAfegitException(){
+public class DataException extends Exception{
+    public DataException(){
         
     }
     
-    public NoAfegitException(String text){
+    public DataException(String text){
         super(text);
     }
-    
 }

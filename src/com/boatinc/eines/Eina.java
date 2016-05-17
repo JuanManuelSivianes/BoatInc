@@ -1,6 +1,6 @@
 package com.boatinc.eines;
 
-import com.boatin.exceptions.DataException;
+import com.boatinc.exceptions.DataException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
