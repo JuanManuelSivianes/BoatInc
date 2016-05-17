@@ -16,6 +16,7 @@ public class BoatInc {
      */
     public static void main(String[] args) {
         System.out.println("Funciona esto?");
+        System.out.println("Perfect");
     }
     
 }
