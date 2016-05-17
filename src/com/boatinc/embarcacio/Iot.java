@@ -44,7 +44,10 @@ public class Iot extends Embarcacio {
     public void setEmbarcacioAuxiliar(boolean embarcacioAuxiliar) {
         this.embarcacioAuxiliar = embarcacioAuxiliar;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Iot{" + "numeroCamarots=" + numeroCamarots + ", potencia=" + potencia + ", embarcacioAuxiliar=" + embarcacioAuxiliar + '}';
+    }
     
 }

@@ -125,7 +125,10 @@ public class Embarcacio {
     public void setHistoricReparacions(HashMap<Integer, Reparacio> historicReparacions) {
         this.historicReparacions = historicReparacions;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + '}';
+    }
     
 }

@@ -44,6 +44,10 @@ public class Veler extends Embarcacio {
     public void setNumeroCabines(int numeroCabines) {
         this.numeroCabines = numeroCabines;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Veler{" + "numeroCascs=" + numeroCascs + ", numeroPals=" + numeroPals + ", numeroCabines=" + numeroCabines + '}';
+    }
     
 }
