@@ -5,6 +5,8 @@
  */
 package com.boatinc.main;
 
+import com.boatinc.persona.Persona;
+
 /**
  *
  * @author Arsenik
@@ -15,6 +17,10 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
+        Persona pep = new Persona("Pep", "Cifre", "127404/1874");
+        
+        System.err.println(pep);
             
     }
     
