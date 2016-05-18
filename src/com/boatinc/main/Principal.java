@@ -45,12 +45,12 @@ public class Principal {
 
         Comentari coment = new Comentari("18/11/2016", jose, "He apretao to");
         Comentari coment2 = new Comentari("18/11/2016", jose, "He apretao to2");
-        
+
         System.out.println(uno.getComentarisReparacio());
         uno.afegirComentari(coment);
         uno.afegirComentari(coment2);
         System.out.println(uno.getComentarisReparacio());
-        
+
         uno.eliminarComentari(2);
         System.out.println(uno.getComentarisReparacio());
     }
