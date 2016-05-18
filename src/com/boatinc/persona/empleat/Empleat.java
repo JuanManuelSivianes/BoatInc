@@ -23,11 +23,12 @@ public class Empleat extends Persona {
     public Empleat(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException {
         super(nom, cognom, document, numeroDocument, adreça, telefon, email);
         this.sou = sou;
+        dataAlta = Eina.creaDate(dataContracte);
 
         if (dataAlta == null) {
-            throw new DataException("DATA FAIL");
+            throw new DataException("DATA FAIL"+nom);
         }
-        dataAlta = Eina.creaDate(dataContracte);
+        
     }
 
     public Date getDataAlta() {
