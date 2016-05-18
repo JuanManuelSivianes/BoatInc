@@ -28,7 +28,6 @@ public class Empleat extends Persona {
         if (dataAlta == null) {
             throw new DataException("DATA FAIL"+nom);
         }
-        
     }
 
     public Date getDataAlta() {
