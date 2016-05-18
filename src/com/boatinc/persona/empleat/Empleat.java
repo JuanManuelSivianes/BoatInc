@@ -52,7 +52,7 @@ public class Empleat extends Persona {
 
     @Override
     public String toString() {
-        return "Empleat{" + "dataAlta=" + dataAlta + ", sou=" + sou + '}';
+        return "Empleat{" +super.toString()+ "dataAlta=" + dataAlta + ", sou=" + sou + '}';
     }
 
 }
