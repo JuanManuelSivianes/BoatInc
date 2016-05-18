@@ -5,14 +5,16 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.operacio.Reparacio;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  *
  * @author Arsenik
  */
-public class Embarcacio {
+public class Embarcacio implements Informacio{
     private int numeroSerie;
     private String matricula;
     private String marca;
@@ -23,7 +25,7 @@ public class Embarcacio {
     private String tipusEmbarcacio;
     private Proposit proposit;
     private float preuVenda;
-    private HashMap<Integer,Reparacio> historicReparacions;
+    private HashSet<Reparacio> historicReparacions;
 
     public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda) {
         this.numeroSerie = numeroSerie;
@@ -36,7 +38,7 @@ public class Embarcacio {
         this.proposit = proposit;
         this.preuVenda = preuVenda;
         tipusEmbarcacio = this.getClass().getName();
-        historicReparacions = new HashMap<Integer, Reparacio>();
+        historicReparacions = new HashSet<>();
     }
 
     public int getNumeroSerie() {
@@ -119,17 +121,34 @@ public class Embarcacio {
         this.preuVenda = preuVenda;
     }
 
-    public HashMap<Integer, Reparacio> getHistoricReparacions() {
+    public HashSet<Reparacio> getHistoricReparacions() {
         return historicReparacions;
     }
 
-    public void setHistoricReparacions(HashMap<Integer, Reparacio> historicReparacions) {
+    public void setHistoricReparacions(HashSet<Reparacio> historicReparacions) {
         this.historicReparacions = historicReparacions;
     }
+
+    
 
     @Override
     public String toString() {
         return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + '}';
     }
+
+    @Override
+    public String infoGeneral() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String infoDetallada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    public void afegirReparacio(Reparacio reparacio) throws NoAfegitException{
+        if(historicReparacions.add(reparacio)==false){
+            throw new NoAfegitException();
+        }
+    }
 }
