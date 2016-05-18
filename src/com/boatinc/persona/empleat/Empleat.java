@@ -15,18 +15,18 @@ import java.util.Date;
  *
  * @author Joanmi
  */
-public class Empleat extends Persona{
+public class Empleat extends Persona {
+
     private Date dataAlta;
     private float sou;
-    
-    public Empleat (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte){
-        super(nom,cognom,document,numeroDocument,adreça,telefon,email);
-        this.sou=sou;
-                
-        try{
-            dataAlta=Eina.creaDate(dataContracte);
-        }catch(DataException e){
-            System.err.println(e.getMessage());
+
+    public Empleat(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException {
+        super(nom, cognom, document, numeroDocument, adreça, telefon, email);
+        this.sou = sou;
+        dataAlta = Eina.creaDate(dataContracte);
+
+        if (dataAlta == null) {
+            throw new DataException("DATA FAIL"+nom);
         }
     }
 
@@ -46,14 +46,13 @@ public class Empleat extends Persona{
         this.sou = sou;
     }
 
-    public String tornaNomina(){
+    public String tornaNomina() {
         return "hola";
     }
-    
+
     @Override
     public String toString() {
-        return "Empleat{" + "dataAlta=" + dataAlta + ", sou=" + sou + '}';
+        return "Empleat{" +super.toString()+ "dataAlta=" + dataAlta + ", sou=" + sou + '}';
     }
-    
-    
+
 }

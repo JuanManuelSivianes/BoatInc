@@ -5,10 +5,6 @@
  */
 package com.boatinc.persona;
 
-import com.boatinc.eines.Eina;
-import com.boatinc.exceptions.DataException;
-import java.util.Date;
-
 /**
  *
  * @author Joanmi

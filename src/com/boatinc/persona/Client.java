@@ -5,33 +5,44 @@
  */
 package com.boatinc.persona;
 
+import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.persona.pagament.TipusPagament;
-import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  *
  * @author Joanmi
  */
 public class Client extends Persona{
-    private HashMap<Integer,TipusPagament> formesPagament;
+    private HashSet<TipusPagament> formesPagament;
     
     public Client (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email){
         super(nom,cognom,document,numeroDocument,adreça,telefon,email);
-        formesPagament = new HashMap();
+        formesPagament = new HashSet<>();
     }
 
-    public void afegirFormaPagament(TipusPagament metodePagament){
-        formesPagament.put(metodePagament.getIdentificador(), metodePagament);
+    public HashSet<TipusPagament> getFormesPagament() {
+        return formesPagament;
+    }
+
+
+    public void afegirFormaPagament(TipusPagament metodePagament) throws NoAfegitException{
+        if(formesPagament.add(metodePagament)==false){
+            throw new NoAfegitException("El client ja te aquest metode de pagament.");
+        }
     }
     
-    public void eliminarFormaPagament(int identificador){
-        formesPagament.remove(identificador);
+    public void eliminarFormaPagament(int identificador) throws NoEliminatException{
+        if(formesPagament.remove(identificador)==false){
+            throw new NoEliminatException("L'identificador passat no coincideix amb cap mètode de pagament.");
+        }
     }
     
     
     @Override
     public String toString() {
-        return "Client{" + "formesPagament=" + formesPagament + '}';
+        return "Client{" +super.toString()+ "formesPagament=" + formesPagament + '}';
     }
 
 }
