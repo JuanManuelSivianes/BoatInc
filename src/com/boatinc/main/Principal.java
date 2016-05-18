@@ -8,6 +8,8 @@ package com.boatinc.main;
 import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Reparacio;
@@ -41,24 +43,27 @@ public class Principal {
 
         Embarcacio concordia = new Embarcacio(00001, "BNX105", "opel", "Corsa", 10, 50, 20, Proposit.REPARACIO, 23.215f);
         Reparador jose;
+        Reparador paco;
         try {
-            jose = new Reparador("Joseca", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
+            jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
+            paco = new Reparador("paco", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
             Reparacio uno = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
-            Comentari coment = new Comentari("18/11/2016", jose, "He apretao to");
-            Comentari coment2 = new Comentari("18/11/2016", jose, "He apretao to2");
-            System.out.println(uno.getComentarisReparacio());
-            uno.afegirComentari(coment);
-            uno.afegirComentari(coment2);
-            System.out.println(uno.getComentarisReparacio());
 
-            uno.eliminarComentari(2);
-            System.out.println(uno.getComentarisReparacio());
-        } catch (DataException ex) {
+            Comentari coment = new Comentari("18/11/2016", jose, "He apretao to");
+            Comentari coment2 = new Comentari("18/11/2016", jose, "He apretao to");
+
+            uno.afegirEmpleat(jose);
+            uno.afegirEmpleat(paco);
+            
+            System.out.println(uno.getEmpleats());
+            
+            
+
+            uno.eliminarEmpleat(jose);
+
+        } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
-
     }
 
 }

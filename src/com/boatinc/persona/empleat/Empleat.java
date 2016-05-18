@@ -26,7 +26,7 @@ public class Empleat extends Persona {
         dataAlta = Eina.creaDate(dataContracte);
 
         if (dataAlta == null) {
-            throw new DataException("DATA FAIL");
+            throw new DataException("DATA FAIL"+nom);
         }
     }
 

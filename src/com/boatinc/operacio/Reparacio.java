@@ -8,9 +8,10 @@ package com.boatinc.operacio;
 import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Reparador;
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -47,14 +48,11 @@ public class Reparacio extends Operacio {
         this.descripcioAveria = descripcioAveria;
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
+        this.empleats = new ArrayList<>();
     }
 
     public ArrayList<Reparador> getEmpleats() {
         return empleats;
-    }
-
-    public void setEmpleats(ArrayList<Reparador> empleats) {
-        this.empleats = empleats;
     }
 
     public String getLloc() {
@@ -102,35 +100,36 @@ public class Reparacio extends Operacio {
         return "Reparacio{" + "empleats=" + empleats + ", comentarisReparacio=" + comentarisReparacio + ", lloc=" + lloc + ", dataInici=" + dataInici + ", dataPrevista=" + dataPrevista + ", descripcioAveria=" + descripcioAveria + ", preuTotal=" + preuTotal + '}';
     }
 
-    //Habria que lanzar una excepcion de que el empleado ya esta y no se ha podido añadir.
-    public boolean afegirEmpleat(Reparador reparador) {
+    //FUNCIONA.
+    public void afegirEmpleat(Reparador reparador) throws NoAfegitException {
         if (empleats.contains(reparador)) {
-            return false;
+            throw new NoAfegitException("Aquest reparador ja esta a la llista.");
         } else {
             empleats.add(reparador);
-            return true;
         }
     }
 
-    public boolean eliminarEmpleat(Reparador reparador) {
-        if (empleats.contains(reparador)) {
-            empleats.remove(reparador);
-            return true;
+    //FUNCIONA.
+    public void eliminarEmpleat(Reparador reparador) throws NoEliminatException {
+        if (empleats.remove(reparador) == false) {
+            throw new NoEliminatException("No s'ha pogut eliminar l'empleat.");
+        }
+    }
+
+    //FUNCIONA.
+    public void afegirComentari(Comentari comentari) throws NoAfegitException {
+        if (comentarisReparacio.contains(comentari)) {
+            throw new NoAfegitException("Ja existeix aquest comentari.");
         } else {
-            return false;
+            comentarisReparacio.add(comentari);
         }
-    }
-
-    //Añadir Exceptions.
-    public void afegirComentari(Comentari comentari) {
-        comentarisReparacio.add(comentari);
     }
 
     //FUNCIONA.
     public void eliminarComentari(int identificador) {
         Iterator<Comentari> it = comentarisReparacio.iterator();
         while (it.hasNext()) {
-            if(it.next().getIdentificador() == identificador){
+            if (it.next().getIdentificador() == identificador) {
                 it.remove();
             }
         }
