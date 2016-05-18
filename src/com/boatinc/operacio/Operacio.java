@@ -6,7 +6,8 @@
 package com.boatinc.operacio;
 
 import com.boatinc.embarcacio.Embarcacio;
-import com.sun.security.ntlm.Client;
+import com.boatinc.persona.Client;
+
 
 /**
  *
@@ -19,8 +20,8 @@ public abstract class Operacio {
     private Embarcacio embarcacio;
     private Estat estat;
     
-    public Operacio(int identificador, Client client, Embarcacio embarcacio, Estat estat) {
-        this.identificador = identificador;
+    public Operacio(Client client, Embarcacio embarcacio, Estat estat) {
+        this.identificador = contador;
         this.client = client;
         this.embarcacio = embarcacio;
         this.estat = estat;

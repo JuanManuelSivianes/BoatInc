@@ -5,7 +5,12 @@
  */
 package com.boatinc.operacio;
 
+import com.boatinc.eines.Eina;
+import com.boatinc.exceptions.DataException;
+import com.boatinc.persona.empleat.Reparador;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,8 +23,13 @@ public class Comentari {
     private Reparador reparador;
     private String comentari;
 
-    public Comentari(Date dataComentari, Reparador reparador, String comentari) {
-        this.dataComentari = dataComentari;
+    public Comentari(String dataComentari, Reparador reparador, String comentari) {
+        this.identificador = contador;
+        try {
+            this.dataComentari = Eina.creaDate(dataComentari);
+        } catch (DataException ex) {
+            Logger.getLogger(Comentari.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.reparador = reparador;
         this.comentari = comentari;
         contador++;
@@ -63,6 +73,11 @@ public class Comentari {
 
     public void setComentari(String comentari) {
         this.comentari = comentari;
+    }
+
+    @Override
+    public String toString() {
+        return "Comentari{" + "identificador=" + identificador + ", dataComentari=" + dataComentari + ", reparador=" + reparador + ", comentari=" + comentari + '}';
     }
     
     

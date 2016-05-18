@@ -5,6 +5,7 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.operacio.Reparacio;
 import java.util.HashMap;
 
 /**
@@ -35,7 +36,7 @@ public class Embarcacio {
         this.proposit = proposit;
         this.preuVenda = preuVenda;
         tipusEmbarcacio = this.getClass().getName();
-        historicReparacions = new HashMap<Integer, Object>();
+        historicReparacions = new HashMap<Integer, Reparacio>();
     }
 
     public int getNumeroSerie() {

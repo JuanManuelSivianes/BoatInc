@@ -5,11 +5,17 @@
  */
 package com.boatinc.operacio;
 
+import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
-import com.sun.security.ntlm.Client;
+import com.boatinc.exceptions.DataException;
+import com.boatinc.persona.Client;
+import com.boatinc.persona.empleat.Reparador;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,13 +31,22 @@ public class Reparacio extends Operacio {
     private String descripcioAveria;
     private float preuTotal;
 
-    public Reparacio(String lloc, Date dataInici, Date dataPrevista, String descripcioAveria, float preuTotal, int identificador, Client client, Embarcacio embarcacio, Estat estat) {
-        super(identificador, client, embarcacio, estat);
+    public Reparacio(String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) {
+        super(client, embarcacio, estat);
         this.lloc = lloc;
-        this.dataInici = dataInici;
-        this.dataPrevista = dataPrevista;
+        try {
+            this.dataInici = Eina.creaDate(dataInici);
+        } catch (DataException ex) {
+            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            this.dataPrevista = Eina.creaDate(dataPrevista);
+        } catch (DataException ex) {
+            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.descripcioAveria = descripcioAveria;
         this.preuTotal = preuTotal;
+        this.comentarisReparacio = new ArrayList<>();
     }
 
     public ArrayList<Reparador> getEmpleats() {
@@ -111,13 +126,12 @@ public class Reparacio extends Operacio {
         comentarisReparacio.add(comentari);
     }
 
-    //Comprobar funcionamiento.
+    //FUNCIONA.
     public void eliminarComentari(int identificador) {
         Iterator<Comentari> it = comentarisReparacio.iterator();
         while (it.hasNext()) {
-            Comentari i = it.next();
-            if(comentarisReparacio.contains(i.getIdentificador()==identificador)){
-                comentarisReparacio.remove(i);
+            if(it.next().getIdentificador() == identificador){
+                it.remove();
             }
         }
     }
