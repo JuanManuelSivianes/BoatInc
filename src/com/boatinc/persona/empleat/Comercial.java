@@ -5,6 +5,7 @@
  */
 package com.boatinc.persona.empleat;
 
+import com.boatinc.exceptions.DataException;
 import com.boatinc.operacio.Operacio;
 import com.boatinc.persona.Document;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class Comercial extends Empleat{
     private int percentComissio;
     private HashMap<Integer, Operacio> historicOperacions;
     
-    public Comercial (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, int percentComissio){
+    public Comercial (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, int percentComissio) throws DataException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         this.comissio=0;
         this.percentComissio=percentComissio;

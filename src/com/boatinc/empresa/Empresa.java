@@ -5,6 +5,11 @@
  */
 package com.boatinc.empresa;
 
+import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.operacio.Operacio;
+import com.boatinc.persona.Client;
+import com.boatinc.persona.Patro;
+import com.boatinc.persona.empleat.Empleat;
 import java.util.HashMap;
 
 /**

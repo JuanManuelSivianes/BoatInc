@@ -5,6 +5,7 @@
  */
 package com.boatinc.persona.empleat;
 
+import com.boatinc.exceptions.DataException;
 import com.boatinc.persona.Document;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class Reparador extends Empleat{
     private ArrayList<Habilitat> habilitats;
     
-    public Reparador(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte){
+    public Reparador(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         habilitats = new ArrayList<>();
     }
