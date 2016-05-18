@@ -6,6 +6,7 @@
 package com.boatinc.embarcacio;
 
 import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -148,7 +149,13 @@ public class Embarcacio implements Informacio{
     
     public void afegirReparacio(Reparacio reparacio) throws NoAfegitException{
         if(historicReparacions.add(reparacio)==false){
-            throw new NoAfegitException();
+            throw new NoAfegitException("No sa pogut afegir la reparacio");
+        }
+    }
+    
+    public void eliminarReparacio(Reparacio reparacio) throws NoEliminatException{
+        if(historicReparacions.remove(reparacio)==false){
+            throw new NoEliminatException("No sa pogut eliminar la reparacio");
         }
     }
 }
