@@ -39,7 +39,7 @@ public class Reparador extends Empleat{
     
     @Override
     public String toString() {
-        return "Reparador{" + "habilitats=" + habilitats + '}';
+        return "Reparador{" +super.toString()+ "habilitats=" + habilitats + '}';
     }
     
     
