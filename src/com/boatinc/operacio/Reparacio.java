@@ -134,4 +134,13 @@ public class Reparacio extends Operacio {
             }
         }
     }
+
+    //FUNCIONA.
+    public String retornaEmpleats() {
+        String llistatEmpleats = "";
+        for (Reparador i : empleats) {
+            llistatEmpleats = llistatEmpleats+i.getNom()+", ";
+        }
+        return llistatEmpleats;
+    }
 }

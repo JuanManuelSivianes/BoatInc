@@ -77,7 +77,7 @@ public class Comentari {
 
     @Override
     public String toString() {
-        return "Comentari{" + "identificador=" + identificador + ", dataComentari=" + dataComentari + ", reparador=" + reparador + ", comentari=" + comentari + '}';
+        return "Comentari{" + "identificador=" + identificador + ", dataComentari=" + dataComentari + ", reparador=" + reparador.getNom() + ", comentari=" + comentari + '}';
     }
     
     

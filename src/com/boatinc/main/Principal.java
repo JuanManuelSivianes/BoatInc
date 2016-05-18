@@ -16,8 +16,6 @@ import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
 import com.boatinc.persona.empleat.Reparador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,38 +28,22 @@ public class Principal {
      */
     public static void main(String[] args) {
 
-        /*Patro paco = new Patro("Paco","Anchoa",Document.DNI,"11111111E","C/ mar nº 2",902202122,"paco@gmail.com","Capitan mercante",120f);
-        
-        System.err.println(paco);
-        
-        TargetaCredit tarj1 = new TargetaCredit(123121321231231L, 10, 2004, 221);
-        CompteCorrent compte = new CompteCorrent("4564564564es564546212154");
-        
-        System.err.println(tarj1);
-        System.err.println(compte);*/
-        Client toni = new Client("Paco", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso");
-
-        Embarcacio concordia = new Embarcacio(00001, "BNX105", "opel", "Corsa", 10, 50, 20, Proposit.REPARACIO, 23.215f);
-        Reparador jose;
-        Reparador paco;
         try {
-            jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
-            paco = new Reparador("paco", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
-            Reparacio uno = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
+            Client toni = new Client("Toni", "Dalmau", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com");
 
-            Comentari coment = new Comentari("18/11/2016", jose, "He apretao to");
-            Comentari coment2 = new Comentari("18/11/2016", jose, "He apretao to");
+            Embarcacio concordia = new Embarcacio(00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 180.251f);
 
-            uno.afegirEmpleat(jose);
-            uno.afegirEmpleat(paco);
+            Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
+
+            Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
+
+            Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
+
+            reparacioVeler.afegirEmpleat(jose);
+            reparacioVeler.afegirComentari(comentariU);
             
-            System.out.println(uno.getEmpleats());
-            
-            
-
-            uno.eliminarEmpleat(jose);
-
-        } catch (DataException | NoAfegitException | NoEliminatException ex) {
+            System.out.println(reparacioVeler);
+        } catch (DataException | NoAfegitException ex) {
             System.out.println(ex.getMessage());
         }
     }
