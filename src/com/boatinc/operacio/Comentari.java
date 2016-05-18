@@ -9,27 +9,22 @@ import com.boatinc.eines.Eina;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.persona.empleat.Reparador;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Arsenik
  */
 public class Comentari {
+
     private int identificador;
     private static int contador = 1;
     private Date dataComentari;
     private Reparador reparador;
     private String comentari;
 
-    public Comentari(String dataComentari, Reparador reparador, String comentari) {
+    public Comentari(String dataComentari, Reparador reparador, String comentari) throws DataException {
         this.identificador = contador;
-        try {
-            this.dataComentari = Eina.creaDate(dataComentari);
-        } catch (DataException ex) {
-            Logger.getLogger(Comentari.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataComentari = Eina.creaDate(dataComentari);
         this.reparador = reparador;
         this.comentari = comentari;
         contador++;
@@ -79,6 +74,5 @@ public class Comentari {
     public String toString() {
         return "Comentari{" + "identificador=" + identificador + ", dataComentari=" + dataComentari + ", reparador=" + reparador.getNom() + ", comentari=" + comentari + '}';
     }
-    
-    
+
 }

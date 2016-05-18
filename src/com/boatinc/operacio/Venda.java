@@ -11,8 +11,6 @@ import com.boatinc.exceptions.DataException;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Comercial;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,13 +21,9 @@ public class Venda extends Operacio{
     private Date dataVenta;
     private float preu;
 
-    public Venda(Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) {
+    public Venda(Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException {
         super(client, embarcacio, estat);
-        try {
-            this.dataVenta = Eina.creaDate(dataVenta);
-        } catch (DataException ex) {
-            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataVenta = Eina.creaDate(dataVenta);
         this.comercial=comercial;
         this.preu=preu;
     }

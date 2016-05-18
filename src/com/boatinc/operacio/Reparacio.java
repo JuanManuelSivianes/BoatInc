@@ -15,8 +15,6 @@ import com.boatinc.persona.empleat.Reparador;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,19 +30,11 @@ public class Reparacio extends Operacio {
     private String descripcioAveria;
     private float preuTotal;
 
-    public Reparacio(String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) {
+    public Reparacio(String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) throws DataException {
         super(client, embarcacio, estat);
         this.lloc = lloc;
-        try {
-            this.dataInici = Eina.creaDate(dataInici);
-        } catch (DataException ex) {
-            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            this.dataPrevista = Eina.creaDate(dataPrevista);
-        } catch (DataException ex) {
-            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataInici = Eina.creaDate(dataInici);
+        this.dataPrevista = Eina.creaDate(dataPrevista);
         this.descripcioAveria = descripcioAveria;
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();

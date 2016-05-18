@@ -11,8 +11,6 @@ import com.boatinc.exceptions.DataException;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,18 +24,10 @@ public class Lloguer extends Operacio {
     private boolean disponibilitat;
     private float preuTotal;
 
-    public Lloguer(Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) {
+    public Lloguer(Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) throws DataException {
         super(client, embarcacio, estat);
-        try {
-            this.dataInicial = Eina.creaDate(dataInicial);
-        } catch (DataException ex) {
-            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            this.dataFinal = Eina.creaDate(dataFinal);
-        } catch (DataException ex) {
-            Logger.getLogger(Reparacio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.dataInicial = Eina.creaDate(dataInicial);
+        this.dataFinal = Eina.creaDate(dataFinal);
     }
 
     public Date getDataInicial() {

@@ -39,13 +39,10 @@ public class Principal {
 
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
 
-            reparacioVeler.afegirEmpleat(jose);
-            reparacioVeler.afegirComentari(comentariU);
-            
-            System.out.println(reparacioVeler);
-        } catch (DataException | NoAfegitException ex) {
+            reparacioVeler.eliminarEmpleat(jose);
+        } catch (DataException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
-        }
     }
 
+}
 }
