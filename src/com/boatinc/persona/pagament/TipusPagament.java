@@ -45,8 +45,6 @@ public abstract class TipusPagament {
         return true;
     }
 
-    
-    
     @Override
     public String toString() {
         return "TipusPagament{" + "identificador=" + identificador + '}';

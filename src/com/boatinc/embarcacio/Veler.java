@@ -50,4 +50,10 @@ public class Veler extends Embarcacio {
         return "Veler{" + "numeroCascs=" + numeroCascs + ", numeroPals=" + numeroPals + ", numeroCabines=" + numeroCabines + '}';
     }
     
+    @Override
+    public String infoDetallada() {
+        super.infoGeneral();
+        return super.infoGeneral() + " " + "Veler{" + "\"numeroCascs\"" + ": " + numeroCascs + "," + " \"numeroPals\"" + ": " + numeroPals + "," + " \"numeroCabines\"" + ": " + "\"" +numeroCabines + "\"" + '}';
+    }
+    
 }

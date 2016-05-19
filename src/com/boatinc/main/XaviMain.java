@@ -50,7 +50,8 @@ public class XaviMain {
             System.out.println(iot1.getHistoricReparacions());
             System.out.println(reparacio1.getIdentificador());
             iot1.eliminarReparacio(reparacio1);
-            System.out.println(iot1.infoGeneral());
+            //System.out.println(iot1.infoGeneral());
+            System.out.println(iot1.infoDetallada());
         }catch(NoAfegitException | DataException | NoEliminatException ex){
             System.out.println(ex.getMessage());
         }

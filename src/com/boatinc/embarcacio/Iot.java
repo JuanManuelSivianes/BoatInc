@@ -50,4 +50,10 @@ public class Iot extends Embarcacio {
         return "Iot{" + "numeroCamarots=" + numeroCamarots + ", potencia=" + potencia + ", embarcacioAuxiliar=" + embarcacioAuxiliar + '}';
     }
     
+    @Override
+    public String infoDetallada() {
+        super.infoGeneral();
+        return super.infoGeneral() + " " + "Iot{" + "\"numeroCamarots\"" + ": " + numeroCamarots + "," + " \"potencia\"" + ": " + potencia + "," + " \"embarcacioAuxiliar\"" + ": " + "\"" +embarcacioAuxiliar + "\"" + '}';
+    }
+    
 }
