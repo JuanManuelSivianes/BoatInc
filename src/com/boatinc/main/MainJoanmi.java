@@ -5,12 +5,17 @@
  */
 package com.boatinc.main;
 
+import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.Patro;
+import com.boatinc.persona.empleat.Comercial;
 import com.boatinc.persona.empleat.Habilitat;
 import com.boatinc.persona.empleat.Reparador;
 import com.boatinc.persona.pagament.CompteCorrent;
@@ -36,6 +41,15 @@ public class MainJoanmi {
             Patro patro2 = new Patro("Raul", "Valls", Document.NIE, "X3245124C", "C/ Tord, nº4, escalera 2, Inca", 900114455, "raul@msn.es", "Patró embarcació bàsica", 120f);
             Patro patro3 = new Patro("Lucia", "Ferrer Sanchez", Document.DNI, "9545512422G", "C/ Faissan, nº2, 3c, Soller", 906314575, "lucia@gmail.com", "Patró embarcació de recreo", 170f);
             
+            Comercial comercial1 = new Comercial("David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 600f, "02/04/1999", 7);
+            
+            
+            Embarcacio embarcacio1 = new Embarcacio(00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 180251f);
+            
+            
+            Venda venda1 = new Venda(client1, embarcacio1, Estat.FINALITZADA, comercial1, "20/04/2016", embarcacio1.getPreuVenda());
+            Venda venda2 = new Venda(client1, embarcacio1, Estat.FINALITZADA, comercial1, "20/04/2016", embarcacio1.getPreuVenda());
+                    
             
             
             
@@ -47,12 +61,25 @@ public class MainJoanmi {
             System.out.println(pep.getHabilitats());
             pep.afegirHabilitat(Habilitat.MECANICA);
             System.out.println(pep.getHabilitats());
-            pep.eliminarHabilitat(Habilitat.FIBRA_DE_VIDRE);
+            
             
             client1.afegirFormaPagament(tar);
             client1.afegirFormaPagament(com);
             
-            System.err.println(client1.getFormesPagament());
+            System.out.println(client1.getFormesPagament());
+            
+            client1.eliminarFormaPagament(com.getIdentificador());
+            
+            System.out.println(client1.getFormesPagament());
+            
+            comercial1.afegirOperacio(venda1);
+            System.out.println(comercial1.getHistoricOperacions());
+            System.out.println(comercial1.getComissio());
+            comercial1.eliminarOperacio(venda1.getIdentificador());
+            System.out.println(comercial1.getComissio());
+
+            
+
             
 
             
