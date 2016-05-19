@@ -14,14 +14,14 @@ public class Eina {
         Date fecha;
         
         if(fechaString.length()!=10){
-            throw new DataException("El format de la data no es correcte!");
+            throw new DataException("La data no es correcte, el format ha de ser dd/MM/aaaa");
         }else{
             dia=Integer.parseInt(fechaString.substring(0,2));
             mes=Integer.parseInt(fechaString.substring(3,5));
             any=Integer.parseInt(fechaString.substring(6,10));
             
             if(dia>31 || mes>12 || any<1500){
-                throw new DataException("Numero incongruent");
+                throw new DataException("La data inserida no es vàlida.");
             }
             
             GregorianCalendar dataGregorian = new GregorianCalendar(any,mes-1,dia);

@@ -60,6 +60,6 @@ public class Comercial extends Empleat{
     
     @Override
     public String toString() {
-        return "Comercial{" + "comissio=" + comissio + ", percentComissio=" + percentComissio + ", historicOperacions=" + historicOperacions + '}';
+        return "Comercial{" + super.toString()+" comissio=" + comissio + ", percentComissio=" + percentComissio + ", historicOperacions=" + historicOperacions + '}';
     }
 }

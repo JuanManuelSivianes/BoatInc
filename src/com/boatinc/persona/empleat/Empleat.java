@@ -24,18 +24,14 @@ public class Empleat extends Persona {
         super(nom, cognom, document, numeroDocument, adreça, telefon, email);
         this.sou = sou;
         dataAlta = Eina.creaDate(dataContracte);
-
-        if (dataAlta == null) {
-            throw new DataException("DATA FAIL"+nom);
-        }
     }
 
     public Date getDataAlta() {
         return dataAlta;
     }
 
-    public void setDataAlta(Date dataAlta) {
-        this.dataAlta = dataAlta;
+    public void setDataAlta(String dataAlta) throws DataException {
+        this.dataAlta = Eina.creaDate(dataAlta);
     }
 
     public float getSou() {
@@ -52,7 +48,7 @@ public class Empleat extends Persona {
 
     @Override
     public String toString() {
-        return "Empleat{" +super.toString()+ "dataAlta=" + dataAlta + ", sou=" + sou + '}';
+        return "Empleat{" +super.toString()+" dataAlta=" + dataAlta + ", sou=" + sou + '}';
     }
 
 }

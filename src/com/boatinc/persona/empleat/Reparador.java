@@ -6,6 +6,8 @@
 package com.boatinc.persona.empleat;
 
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.persona.Document;
 import java.util.ArrayList;
 
@@ -21,26 +23,28 @@ public class Reparador extends Empleat{
         habilitats = new ArrayList<>();
     }
 
+    public ArrayList<Habilitat> getHabilitats() {
+        return habilitats;
+    }
+
     
-    
-    
-    public void afegirHabilitat(Habilitat habilitat){
+    public void afegirHabilitat(Habilitat habilitat) throws NoAfegitException{
+        for(Habilitat x: habilitats){
+            if(x.equals(habilitat)){
+                throw new NoAfegitException("Aquest reparador ja conté la habilitat: "+x);
+            }
+        }
         habilitats.add(habilitat);
     }
     
-    public void eliminarHabilitat(Habilitat habilitat){
-        habilitats.remove(habilitat);
+    public void eliminarHabilitat(Habilitat habilitat) throws NoEliminatException{
+        if(habilitats.remove(habilitat)==false){
+            throw new NoEliminatException("No s'ha eliminat la habilitat perque no la té.");
+        }
     }
-    
-    
-    
-    
-    
-    
+
     @Override
     public String toString() {
-        return "Reparador{" +super.toString()+ "habilitats=" + habilitats + '}';
-    }
-    
-    
+        return "Reparador{" +super.toString()+" habilitats=" + habilitats + '}';
+    } 
 }
