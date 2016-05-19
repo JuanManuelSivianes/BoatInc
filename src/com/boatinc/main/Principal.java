@@ -39,16 +39,24 @@ public class Principal {
 
             Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
 
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.LLOGUER, 23.215f);
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
-            // Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
+            Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
-
-            Venda venta = new Venda(toni, concordia, Estat.INICIADA, paco, "18/11/2016", 23.215f);
-            System.out.println(venta);
-        } catch (DataException | NoAfegitException ex) {
+            
+            reparacioVeler.afegirComentari(comentariU);
+            System.out.println(reparacioVeler.getComentarisReparacio());
+            
+            reparacioVeler.eliminarComentari(1);
+            //System.out.println(reparacioVeler.getComentarisReparacio());
+            
+            reparacioVeler.afegirEmpleat(jose);
+            System.out.println(reparacioVeler.getEmpleats());
+            reparacioVeler.afegirEmpleat(jose);
+            
+        } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
         }
 
