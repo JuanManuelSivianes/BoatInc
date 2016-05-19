@@ -9,6 +9,7 @@ import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.persona.pagament.TipusPagament;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  *
@@ -34,7 +35,15 @@ public class Client extends Persona{
     }
     
     public void eliminarFormaPagament(int identificador) throws NoEliminatException{
-        if(formesPagament.remove(identificador)==false){
+        boolean correcte=false;
+        Iterator<TipusPagament> i = formesPagament.iterator();
+        while(i.hasNext()){
+            if(i.next().getIdentificador()==identificador){
+                i.remove();
+                correcte=true;
+            }
+        }
+        if(correcte!=true){
             throw new NoEliminatException("L'identificador passat no coincideix amb cap mètode de pagament.");
         }
     }

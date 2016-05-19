@@ -14,8 +14,8 @@ public class Iot extends Embarcacio {
     private int potencia;
     private boolean embarcacioAuxiliar;
 
-    public Iot(int numeroCamarots, int potencia, boolean embarcacioAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda) {
-        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda);
+    public Iot(int numeroCamarots, int potencia, boolean embarcacioAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
+        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
         this.numeroCamarots = numeroCamarots;
         this.potencia = potencia;
         this.embarcacioAuxiliar = embarcacioAuxiliar;

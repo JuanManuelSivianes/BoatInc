@@ -14,8 +14,8 @@ public class Veler extends Embarcacio {
     private int numeroPals;
     private int numeroCabines;
 
-    public Veler(int numeroCascs, int numeroPals, int numeroCabines, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda) {
-        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda);
+    public Veler(int numeroCascs, int numeroPals, int numeroCabines, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
+        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
         this.numeroCascs = numeroCascs;
         this.numeroPals = numeroPals;
         this.numeroCabines = numeroCabines;

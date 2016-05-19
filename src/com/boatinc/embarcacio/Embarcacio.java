@@ -15,7 +15,7 @@ import java.util.HashSet;
  *
  * @author Arsenik
  */
-public class Embarcacio implements Informacio{
+public abstract class Embarcacio implements Informacio{
     private int numeroSerie;
     private String matricula;
     private String marca;
@@ -27,8 +27,9 @@ public class Embarcacio implements Informacio{
     private Proposit proposit;
     private float preuVenda;
     private HashSet<Reparacio> historicReparacions;
+    private boolean disponibilitat;
 
-    public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda) {
+    public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
         this.numeroSerie = numeroSerie;
         this.matricula = matricula;
         this.marca = marca;
@@ -40,6 +41,7 @@ public class Embarcacio implements Informacio{
         this.preuVenda = preuVenda;
         tipusEmbarcacio = this.getClass().getName();
         historicReparacions = new HashSet<>();
+        this.disponibilitat = disponibilitat;
     }
 
     public int getNumeroSerie() {
@@ -130,16 +132,23 @@ public class Embarcacio implements Informacio{
         this.historicReparacions = historicReparacions;
     }
 
-    
+    public boolean isDisponibilitat() {
+        return disponibilitat;
+    }
 
-    @Override
-    public String toString() {
-        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + '}';
+    public void setDisponibilitat(boolean disponibilitat) {
+        this.disponibilitat = disponibilitat;
     }
 
     @Override
+    public String toString() {
+        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
+    }
+    
+
+    @Override
     public String infoGeneral() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preuVenda + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
     }
 
     @Override

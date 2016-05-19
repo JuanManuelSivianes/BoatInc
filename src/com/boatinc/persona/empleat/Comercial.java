@@ -6,7 +6,9 @@
 package com.boatinc.persona.empleat;
 
 import com.boatinc.exceptions.DataException;
-import com.boatinc.operacio.Operacio;
+import com.boatinc.exceptions.NoAfegitException;
+import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Document;
 import java.util.HashMap;
 
@@ -17,7 +19,7 @@ import java.util.HashMap;
 public class Comercial extends Empleat{
     private double comissio;
     private int percentComissio;
-    private HashMap<Integer, Operacio> historicOperacions;
+    private HashMap<Integer, Venda> historicOperacions;
     
     public Comercial (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, int percentComissio) throws DataException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
@@ -33,6 +35,14 @@ public class Comercial extends Empleat{
     public void setComissio(double comissio) {
         this.comissio = comissio;
     }
+    
+    public void sumaComissio(double comissioAfegida){
+        setComissio(this.comissio+(comissioAfegida*this.percentComissio/100));
+    }
+    
+    public void restaComissio(double restaComisio){
+        setComissio(this.comissio-(restaComisio*this.percentComissio/100));
+    }
 
     public int getPercentComissio() {
         return percentComissio;
@@ -42,20 +52,25 @@ public class Comercial extends Empleat{
         this.percentComissio = percentComissio;
     }
 
-    public HashMap<Integer, Operacio> getHistoricOperacions() {
+    public HashMap<Integer, Venda> getHistoricOperacions() {
         return historicOperacions;
     }
 
-    public void setHistoricOperacions(HashMap<Integer, Operacio> historicOperacions) {
-        this.historicOperacions = historicOperacions;
-    }
-
-    public void afegirOperacio(Operacio operacio){
-        historicOperacions.put(operacio.getIdentificador(), operacio);
+    public void afegirOperacio(Venda operacioVenda) throws NoAfegitException{
+        if(historicOperacions.containsKey(operacioVenda.getIdentificador())){
+            throw new NoAfegitException("Aquesta operació de Venda ja esta inserida al comercial "+this.getNom());
+        }
+        historicOperacions.put(operacioVenda.getIdentificador(), operacioVenda);
+        sumaComissio(operacioVenda.getPreu());
     }
     
-    public void eliminarOperacio(int identificador){
-        historicOperacions.remove(identificador);
+    public void eliminarOperacio(int identificador) throws NoEliminatException{
+        if(historicOperacions.containsKey(identificador)){
+            this.restaComissio(historicOperacions.get(identificador).getPreu());
+            historicOperacions.remove(identificador); 
+        }else{
+            throw new NoEliminatException("El comercial "+this.getNom()+", no té aquesta operació al seu històric de vendes.");
+        }
     }
     
     @Override
