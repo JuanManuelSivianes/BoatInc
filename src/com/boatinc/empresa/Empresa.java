@@ -6,11 +6,8 @@
 package com.boatinc.empresa;
 
 import com.boatinc.embarcacio.Embarcacio;
-import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
-import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Operacio;
-import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import com.boatinc.persona.empleat.Empleat;
