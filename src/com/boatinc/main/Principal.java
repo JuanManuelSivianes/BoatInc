@@ -5,23 +5,19 @@
  */
 package com.boatinc.main;
 
-import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.embarcacio.Veler;
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
-import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Reparacio;
-import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
 import com.boatinc.persona.empleat.Comercial;
 import com.boatinc.persona.empleat.Reparador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,7 +35,7 @@ public class Principal {
 
             Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
 
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,false);
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
@@ -50,6 +46,13 @@ public class Principal {
             System.out.println(reparacioVeler.getComentarisReparacio());
             
             reparacioVeler.eliminarComentari(1);
+            
+            Empresa marineland = new Empresa();
+            
+            marineland.afegirOperacions(reparacioVeler);
+            
+            System.out.println(marineland.getLlistaOperacions());
+            marineland.afegirOperacions(reparacioVeler);
             
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
