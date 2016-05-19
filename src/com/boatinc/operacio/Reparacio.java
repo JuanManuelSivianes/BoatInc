@@ -40,7 +40,7 @@ public class Reparacio extends Operacio {
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
         this.empleats = new ArrayList<>();
-        if (super.getEmbarcacio().getProposit() != Proposit.REPARACIO) {
+        if (super.getEmbarcacio().getProposit() != Proposit.REPARACIO || super.getEmbarcacio().isDisponibilitat()==false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
         }
     }

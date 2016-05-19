@@ -39,7 +39,7 @@ public class Principal {
 
             Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
 
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f);
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,false);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
@@ -50,11 +50,6 @@ public class Principal {
             System.out.println(reparacioVeler.getComentarisReparacio());
             
             reparacioVeler.eliminarComentari(1);
-            //System.out.println(reparacioVeler.getComentarisReparacio());
-            
-            reparacioVeler.afegirEmpleat(jose);
-            System.out.println(reparacioVeler.getEmpleats());
-            reparacioVeler.afegirEmpleat(jose);
             
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
