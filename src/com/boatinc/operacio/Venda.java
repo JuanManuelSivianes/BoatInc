@@ -7,7 +7,9 @@ package com.boatinc.operacio;
 
 import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Comercial;
 import java.util.Date;
@@ -21,11 +23,14 @@ public class Venda extends Operacio{
     private Date dataVenta;
     private float preu;
 
-    public Venda(Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException {
+    public Venda(Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException, NoAfegitException {
         super(client, embarcacio, estat);
         this.dataVenta = Eina.creaDate(dataVenta);
         this.comercial=comercial;
         this.preu=preu;
+        if(super.getEmbarcacio().getProposit()!=Proposit.VENTA){
+            throw new NoAfegitException("Aquest vaixell no esta disponible per venta.");
+        }
     }
 
     public Comercial getComercial() {
@@ -50,6 +55,11 @@ public class Venda extends Operacio{
 
     public void setPreu(float preu) {
         this.preu = preu;
+    }
+
+    @Override
+    public String toString() {
+        return "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + ", preu=" + preu + '}';
     }
     
     
