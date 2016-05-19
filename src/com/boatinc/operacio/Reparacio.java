@@ -7,6 +7,7 @@ package com.boatinc.operacio;
 
 import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
@@ -30,7 +31,7 @@ public class Reparacio extends Operacio {
     private String descripcioAveria;
     private float preuTotal;
 
-    public Reparacio(String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) throws DataException {
+    public Reparacio(String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) throws DataException, NoAfegitException {
         super(client, embarcacio, estat);
         this.lloc = lloc;
         this.dataInici = Eina.creaDate(dataInici);
@@ -39,6 +40,9 @@ public class Reparacio extends Operacio {
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
         this.empleats = new ArrayList<>();
+        if(super.getEmbarcacio().getProposit()!=Proposit.REPARACIO){
+            throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
+        }
     }
 
     public ArrayList<Reparador> getEmpleats() {

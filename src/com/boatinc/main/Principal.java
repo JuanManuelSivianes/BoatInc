@@ -7,15 +7,21 @@ package com.boatinc.main;
 
 import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.embarcacio.Proposit;
+import com.boatinc.embarcacio.Veler;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Reparacio;
+import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
+import com.boatinc.persona.empleat.Comercial;
 import com.boatinc.persona.empleat.Reparador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,18 +37,20 @@ public class Principal {
         try {
             Client toni = new Client("Toni", "Dalmau", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com");
 
-            Embarcacio concordia = new Embarcacio(00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 180.251f);
+            Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
+
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.LLOGUER, 23.215f);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
-            Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
-
+            // Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
 
-            reparacioVeler.eliminarEmpleat(jose);
-        } catch (DataException | NoEliminatException ex) {
+            Venda venta = new Venda(toni, concordia, Estat.INICIADA, paco, "18/11/2016", 23.215f);
+            System.out.println(venta);
+        } catch (DataException | NoAfegitException ex) {
             System.out.println(ex.getMessage());
-    }
+        }
 
-}
+    }
 }

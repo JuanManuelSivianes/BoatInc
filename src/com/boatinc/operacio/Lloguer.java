@@ -7,7 +7,9 @@ package com.boatinc.operacio;
 
 import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import java.util.Date;
@@ -24,10 +26,13 @@ public class Lloguer extends Operacio {
     private boolean disponibilitat;
     private float preuTotal;
 
-    public Lloguer(Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) throws DataException {
+    public Lloguer(Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) throws DataException, NoAfegitException {
         super(client, embarcacio, estat);
         this.dataInicial = Eina.creaDate(dataInicial);
         this.dataFinal = Eina.creaDate(dataFinal);
+        if(super.getEmbarcacio().getProposit()!=Proposit.LLOGUER || disponibilitat == false){
+            throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
+        }
     }
 
     public Date getDataInicial() {
@@ -77,4 +82,10 @@ public class Lloguer extends Operacio {
     public void setPreuTotal(float preuTotal) {
         this.preuTotal = preuTotal;
     }
+
+    @Override
+    public String toString() {
+        return "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", preu=" + preu + ", patro=" + patro + ", disponibilitat=" + disponibilitat + ", preuTotal=" + preuTotal + '}';
+    }
+    
 }
