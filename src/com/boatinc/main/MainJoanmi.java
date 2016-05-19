@@ -6,6 +6,7 @@
 package com.boatinc.main;
 
 import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Iot;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
@@ -44,11 +45,11 @@ public class MainJoanmi {
             Comercial comercial1 = new Comercial("David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 600f, "02/04/1999", 7);
             
             
-            Embarcacio embarcacio1 = new Embarcacio(00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 180251f);
+            Iot iot1 = new Iot(4, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
             
             
-            Venda venda1 = new Venda(client1, embarcacio1, Estat.FINALITZADA, comercial1, "20/04/2016", embarcacio1.getPreuVenda());
-            Venda venda2 = new Venda(client1, embarcacio1, Estat.FINALITZADA, comercial1, "20/04/2016", embarcacio1.getPreuVenda());
+            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
+            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
                     
             
             
