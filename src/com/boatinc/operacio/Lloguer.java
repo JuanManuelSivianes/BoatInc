@@ -23,14 +23,13 @@ public class Lloguer extends Operacio {
     private Date dataFinal;
     private float preu;
     private Patro patro;
-    private boolean disponibilitat;
     private float preuTotal;
 
     public Lloguer(Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) throws DataException, NoAfegitException {
         super(client, embarcacio, estat);
         this.dataInicial = Eina.creaDate(dataInicial);
         this.dataFinal = Eina.creaDate(dataFinal);
-        if(super.getEmbarcacio().getProposit()!=Proposit.LLOGUER || disponibilitat == false){
+        if(super.getEmbarcacio().getProposit()!=Proposit.LLOGUER || super.getEmbarcacio().isDisponibilitat()==false){
             throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
         }
     }
@@ -67,14 +66,6 @@ public class Lloguer extends Operacio {
         this.patro = patro;
     }
 
-    public boolean isDisponibilitat() {
-        return disponibilitat;
-    }
-
-    public void setDisponibilitat(boolean disponibilitat) {
-        this.disponibilitat = disponibilitat;
-    }
-
     public float getPreuTotal() {
         return preuTotal;
     }
@@ -85,7 +76,7 @@ public class Lloguer extends Operacio {
 
     @Override
     public String toString() {
-        return "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", preu=" + preu + ", patro=" + patro + ", disponibilitat=" + disponibilitat + ", preuTotal=" + preuTotal + '}';
+        return "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", preu=" + preu + ", patro=" + patro + ", preuTotal=" + preuTotal + '}';
     }
     
 }
