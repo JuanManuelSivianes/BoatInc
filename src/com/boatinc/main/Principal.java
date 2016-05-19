@@ -39,21 +39,21 @@ public class Principal {
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
-            Reparacio reparacioVeler = new Reparacio("Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
+            Empresa marineland = new Empresa();
+            
+            Reparacio reparacioVeler = new Reparacio(marineland,"Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
             
             reparacioVeler.afegirComentari(comentariU);
             System.out.println(reparacioVeler.getComentarisReparacio());
             
             reparacioVeler.eliminarComentari(1);
-            
-            Empresa marineland = new Empresa();
-            
-            marineland.afegirOperacions(reparacioVeler);
+            System.out.println(reparacioVeler.getEmpleats());
+            reparacioVeler.afegirEmpleat(jose);
+            System.out.println("Lista de trabajadores" + reparacioVeler.getEmpleats());
+            System.out.println(marineland.getLlistaOperacions());
             
             System.out.println(marineland.getLlistaOperacions());
-            marineland.afegirOperacions(reparacioVeler);
-            
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
         }

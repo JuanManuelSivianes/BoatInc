@@ -24,7 +24,7 @@ public class Venda extends Operacio{
     private Date dataVenta;
     private float preu;
 
-    public Venda(Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException, NoAfegitException {
+    public Venda(Empresa empresa,Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException, NoAfegitException {
         super(client, embarcacio, estat);
         this.dataVenta = Eina.creaDate(dataVenta);
         this.comercial=comercial;
@@ -32,6 +32,7 @@ public class Venda extends Operacio{
         if(super.getEmbarcacio().getProposit()!=Proposit.VENTA || super.getEmbarcacio().isDisponibilitat()==false){
             throw new NoAfegitException("Aquest vaixell no esta disponible per venta.");
         }
+        empresa.afegirOperacions(this);
     }
 
     public Comercial getComercial() {
