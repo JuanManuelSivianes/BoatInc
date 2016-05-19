@@ -58,8 +58,5 @@ public class TargetaCredit extends TipusPagament{
     @Override
     public String toString() {
         return "TargetaCredit{" +"Identificador: "+this.getIdentificador()+", numero=" + numero + ", mes=" + mes + ", any=" + any + ", codiVerificacio=" + codiVerificacio + '}';
-    }
-    
-    
-    
+    }  
 }
