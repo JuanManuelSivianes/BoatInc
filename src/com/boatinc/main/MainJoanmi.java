@@ -49,10 +49,10 @@ public class MainJoanmi {
             System.out.println(pep.getHabilitats());
             pep.eliminarHabilitat(Habilitat.FIBRA_DE_VIDRE);
             
-            toni.afegirFormaPagament(tar);
-            toni.afegirFormaPagament(com);
+            client1.afegirFormaPagament(tar);
+            client1.afegirFormaPagament(com);
             
-            System.err.println(toni.getFormesPagament());
+            System.err.println(client1.getFormesPagament());
             
 
             
