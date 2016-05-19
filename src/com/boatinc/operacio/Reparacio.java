@@ -40,7 +40,7 @@ public class Reparacio extends Operacio {
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
         this.empleats = new ArrayList<>();
-        if(super.getEmbarcacio().getProposit()!=Proposit.REPARACIO){
+        if (super.getEmbarcacio().getProposit() != Proposit.REPARACIO || super.getEmbarcacio().isDisponibilitat()==false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
         }
     }
@@ -95,6 +95,10 @@ public class Reparacio extends Operacio {
     }
 
     //FUNCIONA.
+    /*
+    Si el reparador esta en la lista, lanza una excepcion y no lo añade.
+    Si no lo esta, lo añade a la lista.
+     */
     public void afegirEmpleat(Reparador reparador) throws NoAfegitException {
         if (empleats.contains(reparador)) {
             throw new NoAfegitException("Aquest reparador ja esta a la llista.");
@@ -104,13 +108,23 @@ public class Reparacio extends Operacio {
     }
 
     //FUNCIONA.
+    /*
+    Si el reparador esta en la lista, lo elimina de esta.
+    Si no lo esta, o la lista esta vacia, lanza una excepcion y no lo elimina.
+     */
     public void eliminarEmpleat(Reparador reparador) throws NoEliminatException {
-        if (empleats.remove(reparador) == false) {
+        if (empleats.contains(reparador)) {
+            empleats.remove(reparador);
+        } else {
             throw new NoEliminatException("No s'ha pogut eliminar l'empleat.");
         }
     }
 
     //FUNCIONA.
+    /*
+    Si el comentario esta en la lista, lanza una excepcion y no lo añade.
+    Si no lo esta, lo añade a la lista.
+     */
     public void afegirComentari(Comentari comentari) throws NoAfegitException {
         if (comentarisReparacio.contains(comentari)) {
             throw new NoAfegitException("Ja existeix aquest comentari.");
@@ -120,20 +134,29 @@ public class Reparacio extends Operacio {
     }
 
     //FUNCIONA.
-    public void eliminarComentari(int identificador) {
+    /*
+    Busca el ID del comentario, si esta en la lista, lo elimina.
+    Si no esta en la lista, lanza una excepcion y no lo elimina.
+     */
+    public void eliminarComentari(int identificador) throws NoEliminatException {
         Iterator<Comentari> it = comentarisReparacio.iterator();
         while (it.hasNext()) {
             if (it.next().getIdentificador() == identificador) {
                 it.remove();
+            } else {
+                throw new NoEliminatException("No s'ha pogut eliminar el comentari.");
             }
         }
     }
 
     //FUNCIONA.
+    /*
+    Recorre la lista de empleados de la repacion y devuelve un string concatenado.
+     */
     public String retornaEmpleats() {
         String llistatEmpleats = "";
         for (Reparador i : empleats) {
-            llistatEmpleats = llistatEmpleats+i.getNom()+", ";
+            llistatEmpleats = llistatEmpleats + i.getNom() + ", ";
         }
         return llistatEmpleats;
     }

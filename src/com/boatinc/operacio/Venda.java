@@ -28,7 +28,7 @@ public class Venda extends Operacio{
         this.dataVenta = Eina.creaDate(dataVenta);
         this.comercial=comercial;
         this.preu=preu;
-        if(super.getEmbarcacio().getProposit()!=Proposit.VENTA){
+        if(super.getEmbarcacio().getProposit()!=Proposit.VENTA || super.getEmbarcacio().isDisponibilitat()==false){
             throw new NoAfegitException("Aquest vaixell no esta disponible per venta.");
         }
     }
