@@ -14,12 +14,12 @@ public class Motor extends Embarcacio {
     private int capacitatDeposit;
     private boolean motorAuxiliar;
 
-    public Motor(int potencia, int capacitatDeposit, boolean motorAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda) {
-        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda);
+    public Motor(int potencia, int capacitatDeposit, boolean motorAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
+        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
         this.potencia = potencia;
         this.capacitatDeposit = capacitatDeposit;
         this.motorAuxiliar = motorAuxiliar;
-    }
+    } 
 
     public int getPotencia() {
         return potencia;
