@@ -148,7 +148,7 @@ public abstract class Embarcacio implements Informacio{
 
     @Override
     public String infoGeneral() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preuVenda + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
     }
 
     @Override
