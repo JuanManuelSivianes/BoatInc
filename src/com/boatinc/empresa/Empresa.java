@@ -5,17 +5,21 @@
  */
 package com.boatinc.empresa;
 
+import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.embarcacio.Proposit;
+import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Operacio;
 import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import com.boatinc.persona.empleat.Empleat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -163,7 +167,7 @@ public class Empresa {
     public ArrayList<String> tornaModelsVentaPreu(float preuMinim, float preuMaxim){
         ArrayList<String> modelsTipusPreu = new ArrayList<>();
         for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
-            if((x.getValue().getProposit().equals(Proposit.VENTA)) && (x.getValue().getPreu()>preuMinim) && (x.getValue().getPreu()<preuMaxim)){
+            if((x.getValue().getProposit().equals(Proposit.VENTA)) && (x.getValue().getPreu()>=preuMinim) && (x.getValue().getPreu()<=preuMaxim)){
                 modelsTipusPreu.add(x.getValue().getModel());
             }
         }
@@ -173,7 +177,7 @@ public class Empresa {
     public ArrayList<Reparacio> tornaReparacionsEstat(Estat estat){
         ArrayList<Reparacio> llistaReparacions = new ArrayList<>();
         for(Entry<Integer,Operacio> x: llistaOperacions.entrySet()){
-            if(x.getValue().getClass().getName().substring(21).equals("Reparacio") && x.getValue().getEstat().equals(estat)){
+            if(x.getValue().getTipusOperacio().equals("Reparacio") && x.getValue().getEstat().equals(estat)){
                 llistaReparacions.add((Reparacio)x.getValue());
             }
         }
@@ -184,6 +188,34 @@ public class Empresa {
         return embarcacio.getHistoricReparacions();
     }
     
-  
-    
+    public HashMap<Integer,Embarcacio> tornaLloguersDisponibles(String dataPrimera, String dataFinal) throws DataException{
+        HashMap<Integer,Embarcacio> llistaEmbarcacionsDisponibles = new HashMap<>();
+        ArrayList<Lloguer> llistaLloguers = new ArrayList<>();
+        ArrayList<Embarcacio> llistaEmbarcacionsOcupades = new ArrayList<>();
+        Date fechaPrimera;
+        Date fechaFinal;
+        fechaPrimera=Eina.creaDate(dataPrimera);
+        fechaFinal=Eina.creaDate(dataFinal);
+        
+        
+        for(Entry<Integer,Operacio> x: llistaOperacions.entrySet()){
+            if(x.getValue().getTipusOperacio().equals("Lloguer")){
+                llistaLloguers.add((Lloguer)x.getValue());
+            }
+        }
+        
+        for(Lloguer x: llistaLloguers){
+            if((fechaPrimera.before(x.getDataFinal())) && (fechaFinal.after(x.getDataInicial()))){
+                llistaEmbarcacionsOcupades.add(x.getEmbarcacio());
+            }
+        }
+        
+        for(Entry<Integer,Embarcacio> x: llistaEmbarcacions.entrySet()){
+            if(llistaEmbarcacionsOcupades.contains(x.getValue())==false){
+                llistaEmbarcacionsDisponibles.put(x.getValue().getNumeroSerie(), x.getValue());
+            }
+        }
+        
+        return llistaEmbarcacionsDisponibles;
+    }
 }

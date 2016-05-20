@@ -38,7 +38,7 @@ public abstract class Embarcacio implements Informacio{
         this.calat = calat;
         this.proposit = proposit;
         this.preu = preuVenda;
-        tipusEmbarcacio = this.getClass().getName().substring(23);
+        this.tipusEmbarcacio = this.getClass().getName().substring(23);
         historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
     }
