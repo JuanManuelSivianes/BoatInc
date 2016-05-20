@@ -7,6 +7,7 @@ package com.boatinc.main;
 
 import com.boatinc.embarcacio.Iot;
 import com.boatinc.embarcacio.Proposit;
+import com.boatinc.embarcacio.Veler;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
@@ -71,13 +72,13 @@ public class MainJoanmi {
             Reparador reparador5 = new Reparador("Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FONTANERIA,Habilitat.MECANICA);
             
             Iot iot1 = new Iot(4, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
-            
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
             
 //            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
 //            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
                     
             
-            System.out.println(reparador1.getHabilitats());
+            System.out.println(concordia.getTipusEmbarcacio());
 
 
             
