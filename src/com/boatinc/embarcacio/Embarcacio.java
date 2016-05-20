@@ -9,7 +9,6 @@ import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  *
