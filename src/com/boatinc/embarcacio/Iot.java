@@ -64,6 +64,5 @@ public class Iot extends Embarcacio {
     public String infoDetallada() {
         super.infoGeneral();
         return super.infoGeneral() + " " + "Iot{" + "\"numeroCamarots\"" + ": " + numeroCamarots + "," + " \"potencia\"" + ": " + potencia + "," + " \"embarcacioAuxiliar\"" + ": " + "\"" +embarcacioAuxiliar + "\"" + '}';
-    }
-    
+    } 
 }
