@@ -37,6 +37,9 @@ public class Reparacio extends Operacio {
         this.lloc = lloc;
         this.dataInici = Eina.creaDate(dataInici);
         this.dataPrevista = Eina.creaDate(dataPrevista);
+        if(this.dataInici.after(this.dataPrevista)){
+            throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
+        }
         this.descripcioAveria = descripcioAveria;
         this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
