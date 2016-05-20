@@ -5,7 +5,6 @@
  */
 package com.boatinc.main;
 
-import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.embarcacio.Iot;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
