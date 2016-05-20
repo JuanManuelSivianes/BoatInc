@@ -32,6 +32,9 @@ public class Lloguer extends Operacio {
         if(super.getEmbarcacio().getProposit()!=Proposit.LLOGUER || super.getEmbarcacio().isDisponibilitat()==false){
             throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
         }
+        if(this.dataInicial.after(this.dataFinal)){
+            throw new DataException("La data d'inici d'un lloguer no pot ser posterior a la data final.");
+        }
         
         this.preuTotal=embarcacio.getPreu();
     }

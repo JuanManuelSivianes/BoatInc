@@ -195,6 +195,10 @@ public class Empresa {
         fechaPrimera=Eina.creaDate(dataPrimera);
         fechaFinal=Eina.creaDate(dataFinal);
         
+        if(fechaPrimera.after(fechaFinal)){
+            throw new DataException("La primera data no pot ser posterior a la data final.");
+        }
+        
         
         for(Entry<Integer,Operacio> x: llistaOperacions.entrySet()){
             if(x.getValue().getTipusOperacio().equals("Lloguer")){
