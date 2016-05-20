@@ -23,13 +23,14 @@ public class Empresa {
     private HashMap<String,Client> llistaClients;
     private HashMap<String,Empleat> llistaEmpleat;
     private HashMap<String,Patro> llistaPatrons;
-    private HashMap<Integer,Operacio> llistaOperacions = new HashMap<>();
+    private HashMap<Integer,Operacio> llistaOperacions;
 
     public Empresa() {
-        /*this.llistaEmbarcacions = llistaEmbarcacions;
-        this.llistaClients = llistaClients;
-        this.llistaEmpleat = llistaEmpleat;
-        this.llistaPatrons = llistaPatrons;*/
+        this.llistaEmbarcacions = new HashMap<>();
+        this.llistaClients = new HashMap<>();
+        this.llistaEmpleat = new HashMap<>();
+        this.llistaPatrons = new HashMap<>();
+        this.llistaOperacions = new HashMap<>();
     }
     
     public HashMap<Integer, Embarcacio> getLlistaEmbarcacions() {
