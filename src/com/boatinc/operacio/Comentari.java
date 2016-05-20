@@ -34,16 +34,8 @@ public class Comentari {
         return identificador;
     }
 
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
-    }
-
     public static int getContador() {
         return contador;
-    }
-
-    public static void setContador(int contador) {
-        Comentari.contador = contador;
     }
 
     public Date getDataComentari() {
