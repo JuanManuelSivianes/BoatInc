@@ -6,13 +6,20 @@
 package com.boatinc.empresa;
 
 import com.boatinc.embarcacio.Embarcacio;
+import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Operacio;
+import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import com.boatinc.persona.empleat.Empleat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -133,5 +140,50 @@ public class Empresa {
         }
     }
     
+    public ArrayList<String> tornaModelsVenta(){
+        ArrayList<String> modelsVenta = new ArrayList<>();
+        for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
+            if(x.getValue().getProposit().equals(Proposit.VENTA)){
+                modelsVenta.add(x.getValue().getModel());
+            }
+        }
+        return modelsVenta;
+    }
+    
+    public ArrayList<String> tornaModelsVentaTipus(String tipusEmbarcacio){
+        ArrayList<String> modelsTipus = new ArrayList<>();
+        for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
+            if(x.getValue().getTipusEmbarcacio().equals(tipusEmbarcacio) && x.getValue().getProposit().equals(Proposit.VENTA)){
+                modelsTipus.add(x.getValue().getModel());
+            }
+        }
+        return modelsTipus;                
+    }
+    
+    public ArrayList<String> tornaModelsVentaPreu(float preuMinim, float preuMaxim){
+        ArrayList<String> modelsTipusPreu = new ArrayList<>();
+        for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
+            if((x.getValue().getProposit().equals(Proposit.VENTA)) && (x.getValue().getPreu()>preuMinim) && (x.getValue().getPreu()<preuMaxim)){
+                modelsTipusPreu.add(x.getValue().getModel());
+            }
+        }
+        return modelsTipusPreu;        
+    }
+    
+    public ArrayList<Reparacio> tornaReparacionsEstat(Estat estat){
+        ArrayList<Reparacio> llistaReparacions = new ArrayList<>();
+        for(Entry<Integer,Operacio> x: llistaOperacions.entrySet()){
+            if(x.getValue().getClass().getName().substring(21).equals("Reparacio") && x.getValue().getEstat().equals(estat)){
+                llistaReparacions.add((Reparacio)x.getValue());
+            }
+        }
+        return llistaReparacions;
+    }
+    
+    public HashMap<Integer,Reparacio> tornaHistoricReparacions(Embarcacio embarcacio){
+        return embarcacio.getHistoricReparacions();
+    }
+    
+  
     
 }
