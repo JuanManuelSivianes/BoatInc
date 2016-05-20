@@ -71,7 +71,7 @@ public class MainJoanmi {
             Reparador reparador4 = new Reparador("Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA,Habilitat.FONTANERIA);
             Reparador reparador5 = new Reparador("Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FONTANERIA,Habilitat.MECANICA);
             
-            Iot iot1 = new Iot(4, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
+            Iot iot1 = new Iot(4,25, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
             Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
             
 //            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());

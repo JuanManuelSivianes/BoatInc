@@ -30,10 +30,9 @@ public class Reparacio extends Operacio {
     private Date dataInici;
     private Date dataPrevista;
     private String descripcioAveria;
-    private float preuTotal;
 
-    public Reparacio(Empresa empresa,String lloc, String dataInici, String dataPrevista, String descripcioAveria, float preuTotal, Client client, Embarcacio embarcacio, Estat estat) throws DataException, NoAfegitException {
-        super(client, embarcacio, estat);
+    public Reparacio(Empresa empresa,String lloc, String dataInici, String dataPrevista, String descripcioAveria, Client client, Embarcacio embarcacio, Estat estat, float preu) throws DataException, NoAfegitException {
+        super(client, embarcacio, estat, preu);
         this.lloc = lloc;
         this.dataInici = Eina.creaDate(dataInici);
         this.dataPrevista = Eina.creaDate(dataPrevista);
@@ -41,7 +40,6 @@ public class Reparacio extends Operacio {
             throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
         }
         this.descripcioAveria = descripcioAveria;
-        this.preuTotal = preuTotal;
         this.comentarisReparacio = new ArrayList<>();
         this.empleats = new ArrayList<>();
         if (super.getEmbarcacio().getProposit() != Proposit.REPARACIO || super.getEmbarcacio().isDisponibilitat()==false) {
@@ -78,14 +76,6 @@ public class Reparacio extends Operacio {
         this.descripcioAveria = descripcioAveria;
     }
 
-    public float getPreuTotal() {
-        return preuTotal;
-    }
-
-    public void setPreuTotal(float preuTotal) {
-        this.preuTotal = preuTotal;
-    }
-
     public ArrayList<Comentari> getComentarisReparacio() {
         return comentarisReparacio;
     }
@@ -94,10 +84,14 @@ public class Reparacio extends Operacio {
         this.comentarisReparacio = comentarisReparacio;
     }
 
+    
     @Override
     public String toString() {
-        return "Reparacio{" + "empleats=" + empleats + ", comentarisReparacio=" + comentarisReparacio + ", lloc=" + lloc + ", dataInici=" + dataInici + ", dataPrevista=" + dataPrevista + ", descripcioAveria=" + descripcioAveria + ", preuTotal=" + preuTotal + '}';
+        return "Reparacio{" + "empleats=" + empleats + ", comentarisReparacio=" + comentarisReparacio + ", lloc=" + lloc + ", dataInici=" + dataInici + ", dataPrevista=" + dataPrevista + ", descripcioAveria=" + descripcioAveria + '}';
     }
+
+    
+    
 
     //FUNCIONA.
     /*

@@ -24,7 +24,7 @@ public abstract class Embarcacio implements Informacio{
     private int calat;
     private String tipusEmbarcacio;
     private Proposit proposit;
-    private float preuVenda;
+    private float preu;
     private HashMap<Integer, Reparacio> historicReparacions;
     private boolean disponibilitat;
 
@@ -37,7 +37,7 @@ public abstract class Embarcacio implements Informacio{
         this.eslora = eslora;
         this.calat = calat;
         this.proposit = proposit;
-        this.preuVenda = preuVenda;
+        this.preu = preuVenda;
         tipusEmbarcacio = this.getClass().getName().substring(23);
         historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
@@ -111,12 +111,12 @@ public abstract class Embarcacio implements Informacio{
         this.proposit = proposit;
     }
 
-    public float getPreuVenda() {
-        return preuVenda;
+    public float getPreu() {
+        return preu;
     }
 
-    public void setPreuVenda(float preuVenda) {
-        this.preuVenda = preuVenda;
+    public void setPreu(float preu) {
+        this.preu = preu;
     }
 
     public HashMap<Integer, Reparacio> getHistoricReparacions() {
@@ -133,13 +133,13 @@ public abstract class Embarcacio implements Informacio{
 
     @Override
     public String toString() {
-        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
+        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preu + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
     }
     
 
     @Override
     public String infoGeneral() {
-        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preuVenda + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
+        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preu + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
     }
 
     @Override
