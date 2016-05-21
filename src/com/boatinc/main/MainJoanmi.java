@@ -75,7 +75,7 @@ public class MainJoanmi {
 //            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
                     
             
-            System.out.println(concordia.getTipusEmbarcacio());
+            System.out.println(client1);
 
 
             
