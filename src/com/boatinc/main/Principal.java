@@ -45,6 +45,7 @@ public class Principal {
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
             
             reparacioVeler.afegirComentari(comentariU);
+            
             System.out.println(reparacioVeler.getComentarisReparacio());
             
             reparacioVeler.eliminarComentari(1);
