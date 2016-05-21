@@ -31,18 +31,18 @@ public class Reparacio extends Operacio {
     private Date dataPrevista;
     private String descripcioAveria;
 
-    public Reparacio(Empresa empresa,String lloc, String dataInici, String dataPrevista, String descripcioAveria, Client client, Embarcacio embarcacio, Estat estat, float preu) throws DataException, NoAfegitException {
+    public Reparacio(Empresa empresa, String lloc, String dataInici, String dataPrevista, String descripcioAveria, Client client, Embarcacio embarcacio, Estat estat, float preu) throws DataException, NoAfegitException {
         super(client, embarcacio, estat, preu);
         this.lloc = lloc;
         this.dataInici = Eina.creaDate(dataInici);
         this.dataPrevista = Eina.creaDate(dataPrevista);
-        if(this.dataInici.after(this.dataPrevista)){
+        if (this.dataInici.after(this.dataPrevista)) {
             throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
         }
         this.descripcioAveria = descripcioAveria;
         this.comentarisReparacio = new ArrayList<>();
         this.empleats = new ArrayList<>();
-        if (super.getEmbarcacio().getProposit() != Proposit.REPARACIO || super.getEmbarcacio().isDisponibilitat()==false) {
+        if (embarcacio.getProposit() != Proposit.REPARACIO || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
         }
         empresa.afegirOperacions(this);
@@ -80,20 +80,13 @@ public class Reparacio extends Operacio {
         return comentarisReparacio;
     }
 
-    public void setComentarisReparacio(ArrayList<Comentari> comentarisReparacio) {
-        this.comentarisReparacio = comentarisReparacio;
-    }
-
-    
     @Override
     public String toString() {
-        return "Reparacio{" + "empleats=" + empleats + ", comentarisReparacio=" + comentarisReparacio + ", lloc=" + lloc + ", dataInici=" + dataInici + ", dataPrevista=" + dataPrevista + ", descripcioAveria=" + descripcioAveria + '}';
+        return super.toString() + "Reparacio{" + "empleats=" + retornaEmpleats() + "comentarisReparacio=" + comentarisReparacio + ", lloc=" + lloc + ", dataInici=" + dataInici + ", dataPrevista=" + dataPrevista + ", descripcioAveria=" + descripcioAveria + '}';
     }
 
-    
-    
-
     //FUNCIONA.
+
     /*
     Si el reparador esta en la lista, lanza una excepcion y no lo añade.
     Si no lo esta, lo añade a la lista.

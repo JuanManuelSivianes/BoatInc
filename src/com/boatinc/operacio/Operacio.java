@@ -36,24 +36,12 @@ public abstract class Operacio {
         return identificador;
     }
 
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
-    }
-
     public float getPreu() {
         return preu;
     }
 
     public void setPreu(float preu) {
         this.preu = preu;
-    }
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Operacio.contador = contador;
     }
 
     public Client getClient() {

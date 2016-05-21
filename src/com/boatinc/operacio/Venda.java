@@ -19,15 +19,16 @@ import java.util.Date;
  *
  * @author Arsenik
  */
-public class Venda extends Operacio{
+public class Venda extends Operacio {
+
     private Comercial comercial;
     private Date dataVenta;
 
-    public Venda(Empresa empresa,Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException, NoAfegitException {
+    public Venda(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, Comercial comercial, String dataVenta, float preu) throws DataException, NoAfegitException {
         super(client, embarcacio, estat, preu);
         this.dataVenta = Eina.creaDate(dataVenta);
-        this.comercial=comercial;
-        if(super.getEmbarcacio().getProposit()!=Proposit.VENTA || super.getEmbarcacio().isDisponibilitat()==false){
+        this.comercial = comercial;
+        if (embarcacio.getProposit() != Proposit.VENTA || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per venta.");
         }
         embarcacio.setDisponibilitat(false);
@@ -52,9 +53,7 @@ public class Venda extends Operacio{
 
     @Override
     public String toString() {
-        return "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + '}';
+        return super.toString() + "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + '}';
     }
-    
-    
-    
+
 }

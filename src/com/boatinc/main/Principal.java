@@ -13,6 +13,7 @@ import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
@@ -35,27 +36,38 @@ public class Principal {
 
             Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
 
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f, true);
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.LLOGUER, 23.215f, true);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
             Empresa marineland = new Empresa();
 
-            Reparacio reparacioVeler = new Reparacio(marineland, "Taller", "18/05/2016", "18/05/2016", "Manguitos", toni, concordia, Estat.INICIADA, 23.215f);
+            //Reparacio reparacioVeler = new Reparacio(marineland, "Taller", "18/05/2016", "18/05/2016", "Manguitos", toni, concordia, Estat.INICIADA, 23.215f);
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
 
-            reparacioVeler.afegirComentari(comentariU);
+            //reparacioVeler.afegirComentari(comentariU);
 
-            System.out.println(reparacioVeler.getComentarisReparacio());
+            //System.out.println(reparacioVeler.getComentarisReparacio());
 
-            reparacioVeler.eliminarComentari(1);
-            System.out.println(reparacioVeler.getEmpleats());
-            reparacioVeler.afegirEmpleat(jose);
-            System.out.println("Lista de trabajadores" + reparacioVeler.getEmpleats());
-            System.out.println(marineland.getLlistaOperacions());
+            //reparacioVeler.eliminarComentari(1);
+            //System.out.println(reparacioVeler.getEmpleats());
+            //reparacioVeler.afegirEmpleat(jose);
+            //System.out.println("Lista de trabajadores" + reparacioVeler.getEmpleats());
+            System.out.println("OPERACIONES EMPRESA: "+marineland.getLlistaOperacions());
+            
+            //System.out.println(reparacioVeler);
 
-            System.out.println(marineland.getLlistaOperacions());
-        } catch (DataException | NoAfegitException | NoEliminatException ex) {
+            System.out.println("----");
+
+            //System.out.println(reparacioVeler.getTipusOperacio());
+            Patro patro1 = new Patro("Josep", "Ferriol Crestatx", Document.DNI, "3344665547C", "C/ Colomi, planta baixa, Puigpunyent", 902202122, "josepet@gmail.com", "Patró de Iot", 200f);
+
+            Lloguer alquilerVelero = new Lloguer(marineland, toni, concordia, Estat.INICIADA, "18/05/2016", "29/05/2016", patro1, 23.215f);
+
+            System.out.println(alquilerVelero);
+            System.out.println("OPERACIONES EMPRESA: "+marineland.getLlistaOperacions());
+            
+        } catch (DataException | NoAfegitException ex) {
             System.out.println(ex.getMessage());
         }
 

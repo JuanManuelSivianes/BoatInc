@@ -34,10 +34,6 @@ public class Comentari {
         return identificador;
     }
 
-    public static int getContador() {
-        return contador;
-    }
-
     public Date getDataComentari() {
         return dataComentari;
     }
