@@ -35,25 +35,25 @@ public class Principal {
 
             Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
 
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
+            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f, true);
 
             Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
 
             Empresa marineland = new Empresa();
-            
-            Reparacio reparacioVeler = new Reparacio(marineland,"Taller", "18/05/2016", "18/05/2016", "Manguitos", 23.215f, toni, concordia, Estat.INICIADA);
+
+            Reparacio reparacioVeler = new Reparacio(marineland, "Taller", "18/05/2016", "18/05/2016", "Manguitos", toni, concordia, Estat.INICIADA, 23.215f);
             Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
-            
+
             reparacioVeler.afegirComentari(comentariU);
-            
+
             System.out.println(reparacioVeler.getComentarisReparacio());
-            
+
             reparacioVeler.eliminarComentari(1);
             System.out.println(reparacioVeler.getEmpleats());
             reparacioVeler.afegirEmpleat(jose);
             System.out.println("Lista de trabajadores" + reparacioVeler.getEmpleats());
             System.out.println(marineland.getLlistaOperacions());
-            
+
             System.out.println(marineland.getLlistaOperacions());
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
