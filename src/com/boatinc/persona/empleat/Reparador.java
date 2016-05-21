@@ -18,9 +18,12 @@ import java.util.ArrayList;
 public class Reparador extends Empleat{
     private ArrayList<Habilitat> habilitats;
     
-    public Reparador(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException{
+    public Reparador(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, Habilitat...habilitatsParam) throws DataException, NoAfegitException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         habilitats = new ArrayList<>();
+        for(Habilitat x: habilitatsParam){
+            this.afegirHabilitat(x);
+        }
     }
 
     public ArrayList<Habilitat> getHabilitats() {

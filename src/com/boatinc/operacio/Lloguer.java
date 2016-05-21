@@ -22,18 +22,26 @@ import java.util.Date;
 public class Lloguer extends Operacio {
     private Date dataInicial;
     private Date dataFinal;
-    private float preu;
     private Patro patro;
     private float preuTotal;
 
-    public Lloguer(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal) throws DataException, NoAfegitException {
-        super(client, embarcacio, estat);
+    public Lloguer(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal, float preu) throws DataException, NoAfegitException {
+        super(client, embarcacio, estat, preu);
         this.dataInicial = Eina.creaDate(dataInicial);
         this.dataFinal = Eina.creaDate(dataFinal);
         if(super.getEmbarcacio().getProposit()!=Proposit.LLOGUER || super.getEmbarcacio().isDisponibilitat()==false){
             throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
         }
-        empresa.afegirOperacions(this);
+        if(this.dataInicial.after(this.dataFinal)){
+            throw new DataException("La data d'inici d'un lloguer no pot ser posterior a la data final.");
+        }
+        
+        this.preuTotal=embarcacio.getPreu();
+    }
+    public Lloguer(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal,Patro patro, float preu) throws DataException, NoAfegitException {
+        this(empresa,client,embarcacio,estat,dataInicial,dataFinal,preu);
+        this.patro=patro;
+        this.preuTotal=embarcacio.getPreu()+patro.getCost();
     }
 
     public Date getDataInicial() {
@@ -50,14 +58,6 @@ public class Lloguer extends Operacio {
 
     public void setDataFinal(Date dataFinal) {
         this.dataFinal = dataFinal;
-    }
-
-    public float getPreu() {
-        return preu;
-    }
-
-    public void setPreu(float preu) {
-        this.preu = preu;
     }
 
     public Patro getPatro() {
@@ -78,7 +78,7 @@ public class Lloguer extends Operacio {
 
     @Override
     public String toString() {
-        return "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", preu=" + preu + ", patro=" + patro + ", preuTotal=" + preuTotal + '}';
+        return "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", patro=" + patro + ", preuTotal=" + preuTotal + '}';
     }
     
 }

@@ -8,7 +8,7 @@ package com.boatinc.embarcacio;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
@@ -24,8 +24,8 @@ public abstract class Embarcacio implements Informacio{
     private int calat;
     private String tipusEmbarcacio;
     private Proposit proposit;
-    private float preuVenda;
-    private HashSet<Reparacio> historicReparacions;
+    private float preu;
+    private HashMap<Integer, Reparacio> historicReparacions;
     private boolean disponibilitat;
 
     public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
@@ -37,9 +37,9 @@ public abstract class Embarcacio implements Informacio{
         this.eslora = eslora;
         this.calat = calat;
         this.proposit = proposit;
-        this.preuVenda = preuVenda;
-        tipusEmbarcacio = this.getClass().getName();
-        historicReparacions = new HashSet<>();
+        this.preu = preuVenda;
+        this.tipusEmbarcacio = this.getClass().getName().substring(23);
+        historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
     }
 
@@ -103,10 +103,6 @@ public abstract class Embarcacio implements Informacio{
         return tipusEmbarcacio;
     }
 
-    public void setTipusEmbarcacio(String tipusEmbarcacio) {
-        this.tipusEmbarcacio = tipusEmbarcacio;
-    }
-
     public Proposit getProposit() {
         return proposit;
     }
@@ -115,20 +111,16 @@ public abstract class Embarcacio implements Informacio{
         this.proposit = proposit;
     }
 
-    public float getPreuVenda() {
-        return preuVenda;
+    public float getPreu() {
+        return preu;
     }
 
-    public void setPreuVenda(float preuVenda) {
-        this.preuVenda = preuVenda;
+    public void setPreu(float preu) {
+        this.preu = preu;
     }
 
-    public HashSet<Reparacio> getHistoricReparacions() {
+    public HashMap<Integer, Reparacio> getHistoricReparacions() {
         return historicReparacions;
-    }
-
-    public void setHistoricReparacions(HashSet<Reparacio> historicReparacions) {
-        this.historicReparacions = historicReparacions;
     }
 
     public boolean isDisponibilitat() {
@@ -141,13 +133,13 @@ public abstract class Embarcacio implements Informacio{
 
     @Override
     public String toString() {
-        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preuVenda + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
+        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preu + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
     }
     
 
     @Override
     public String infoGeneral() {
-        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preuVenda + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
+        return "Embarcacio{" + "\"numeroSerie\"" + ": " + numeroSerie + "," + " \"matricula\"" + ": " + "\"" + matricula + "\"" + "," + " \"marca\"" + ": " + "\"" + marca + "\"" + "," + " \"model\"" + ": " + "\"" + model + "\"" + "," + " \"manga\"" + ": " + manga + "," + " \"eslora\"" + ": " + eslora + "," + " \"calat\"" + ": " + calat + "," + " \"tipusEmbarcacio\"" + ": " + "\"" + tipusEmbarcacio + "\"" + "," + " \"proposit\"" + ": " + "\"" + proposit + "\"" + "," + " \"preuVenda\"" + ": " + preu + "," + " \"historicReparacions\"" + ": " + "\"" + historicReparacions + "\"" + "," + " \"disponibilitat\"" + ": " + "\"" + disponibilitat + "\"" + '}';
     }
 
     @Override
@@ -156,14 +148,18 @@ public abstract class Embarcacio implements Informacio{
     }
     
     public void afegirReparacio(Reparacio reparacio) throws NoAfegitException{
-        if(historicReparacions.add(reparacio)==false){
-            throw new NoAfegitException("No sa pogut afegir la reparacio");
+        if(historicReparacions.containsKey(reparacio.getIdentificador())){
+            throw new NoAfegitException("Aquesta embaracació ja té aquesta reparació dins el seur històric.");
+        }else{
+            historicReparacions.put(reparacio.getIdentificador(), reparacio);
         }
     }
     
     public void eliminarReparacio(Reparacio reparacio) throws NoEliminatException{
-        if(historicReparacions.remove(reparacio)==false){
-            throw new NoEliminatException("No sa pogut eliminar la reparacio");
+        if(historicReparacions.containsKey(reparacio.getIdentificador())){
+            historicReparacions.remove(reparacio.getIdentificador());
+        }else{
+            throw new NoEliminatException("No s'ha pogut eliminar la reparació del històric perque l'embaració no conté aquesta reparació.");
         }
     }
 }

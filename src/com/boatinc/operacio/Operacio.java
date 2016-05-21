@@ -19,12 +19,16 @@ public abstract class Operacio {
     private Client client;
     private Embarcacio embarcacio;
     private Estat estat;
+    private float preu;
+    private String tipusOperacio;
     
-    public Operacio(Client client, Embarcacio embarcacio, Estat estat) {
+    public Operacio(Client client, Embarcacio embarcacio, Estat estat, float preu) {
         this.identificador = contador;
         this.client = client;
         this.embarcacio = embarcacio;
         this.estat = estat;
+        this.preu=preu;
+        this.tipusOperacio=this.getClass().getName().substring(21);
         contador++;
     }
     
@@ -34,6 +38,14 @@ public abstract class Operacio {
 
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
+    }
+
+    public float getPreu() {
+        return preu;
+    }
+
+    public void setPreu(float preu) {
+        this.preu = preu;
     }
 
     public static int getContador() {
@@ -68,9 +80,16 @@ public abstract class Operacio {
         this.estat = estat;
     }
 
+    public String getTipusOperacio() {
+        return tipusOperacio;
+    }
+
+    public void setTipusOperacio(String tipusOperacio) {
+        this.tipusOperacio = tipusOperacio;
+    }
+
     @Override
     public String toString() {
-        return "Operacio{" + "identificador=" + identificador + ", client=" + client + ", embarcacio=" + embarcacio + ", estat=" + estat + '}';
+        return "Operacio{" + "identificador=" + identificador + ", client=" + client + ", embarcacio=" + embarcacio + ", estat=" + estat + ", preu=" + preu + ", tipusOperacio=" + tipusOperacio + '}';
     }
-    
 }
