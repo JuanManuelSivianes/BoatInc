@@ -48,7 +48,7 @@ public class Empleat extends Persona {
 
     @Override
     public String toString() {
-        return "|ID Empleat: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
+        return super.toString();
     }
 
 }

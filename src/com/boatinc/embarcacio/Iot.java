@@ -57,7 +57,7 @@ public class Iot extends Embarcacio {
 
     @Override
     public String toString() {
-        return "Iot{" + "numeroCamarots=" + numeroCamarots + ", potencia=" + potencia + ", embarcacioAuxiliar=" + embarcacioAuxiliar + '}';
+        return super.toString();
     }
     
     @Override

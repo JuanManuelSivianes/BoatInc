@@ -133,7 +133,7 @@ public abstract class Embarcacio implements Informacio{
 
     @Override
     public String toString() {
-        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preu + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
+        return "| Numero Serie: "+numeroSerie+", Tipus d'embarcacio: "+tipusEmbarcacio+", Proposit: "+proposit+" |";
     }
     
 

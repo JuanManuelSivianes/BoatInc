@@ -80,6 +80,6 @@ public class Comercial extends Empleat{
     
     @Override
     public String toString() {
-        return "|ID Empleat: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
+        return super.toString();
     }
 }

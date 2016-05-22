@@ -47,7 +47,7 @@ public class Veler extends Embarcacio {
 
     @Override
     public String toString() {
-        return "Veler{" + "numeroCascs=" + numeroCascs + ", numeroPals=" + numeroPals + ", numeroCabines=" + numeroCabines + '}';
+        return super.toString();
     }
     
     @Override

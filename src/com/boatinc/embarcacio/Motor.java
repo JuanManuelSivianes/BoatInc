@@ -47,7 +47,7 @@ public class Motor extends Embarcacio {
 
     @Override
     public String toString() {
-        return "Motor{" + "potencia=" + potencia + ", capacitatDeposit=" + capacitatDeposit + ", motorAuxiliar=" + motorAuxiliar + '}';
+        return super.toString();
     }
     
     @Override

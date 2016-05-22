@@ -83,4 +83,11 @@ public class Persona {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "| Identificador: "+document+": "+numeroDocument+", Nom: "+nom+", Cognoms: "+cognom+" |";
+    }
+    
+    
 }
