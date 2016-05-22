@@ -5,6 +5,8 @@
  */
 package com.boatinc.main;
 
+import com.boatinc.embarcacio.Iot;
+import com.boatinc.embarcacio.Motor;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.embarcacio.Veler;
 import com.boatinc.empresa.Empresa;
@@ -18,7 +20,10 @@ import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.*;
 import com.boatinc.persona.empleat.Comercial;
+import static com.boatinc.persona.empleat.Habilitat.*;
 import com.boatinc.persona.empleat.Reparador;
+import com.boatinc.persona.pagament.CompteCorrent;
+import com.boatinc.persona.pagament.TargetaCredit;
 
 /**
  *
@@ -32,41 +37,36 @@ public class Principal {
     public static void main(String[] args) {
 
         try {
-            Client toni = new Client("Toni", "Dalmau", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com");
-
-            Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111E", "C/ mar nº 2", 44, "tonidalmau@gmail.com", 23.215f, "18/11/2016", 10);
-
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.LLOGUER, 23.215f, true);
-
-            Reparador jose = new Reparador("Jose", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
-
-            Empresa marineland = new Empresa();
-
-            //Reparacio reparacioVeler = new Reparacio(marineland, "Taller", "18/05/2016", "18/05/2016", "Manguitos", toni, concordia, Estat.INICIADA, 23.215f);
-            Comentari comentariU = new Comentari("18/11/2016", jose, "He apretao to");
-
-            //reparacioVeler.afegirComentari(comentariU);
-
-            //System.out.println(reparacioVeler.getComentarisReparacio());
-
-            //reparacioVeler.eliminarComentari(1);
-            //System.out.println(reparacioVeler.getEmpleats());
-            //reparacioVeler.afegirEmpleat(jose);
-            //System.out.println("Lista de trabajadores" + reparacioVeler.getEmpleats());
-            System.out.println("OPERACIONES EMPRESA: "+marineland.getLlistaOperacions());
+            /*EMPRESA*/
+            Empresa boatsINC = new Empresa();
             
-            //System.out.println(reparacioVeler);
+            /*CLIENTE*/
+            TargetaCredit tarjeta1 = new TargetaCredit(01, 02, 2018, 123);
+            CompteCorrent compte1 = new CompteCorrent("123456789");
+            Client toni = new Client("Toni", "Dalmau", Document.DNI, "11111111A", "C/ mar nº 1", 600000001, "tonidalmau@gmail.com", tarjeta1, compte1);
 
-            System.out.println("----");
+            /*COMERCIALS*/
+            Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "pacojemez@gmail.com", 1000f, "01/01/2016", 10);
 
-            //System.out.println(reparacioVeler.getTipusOperacio());
-            Patro patro1 = new Patro("Josep", "Ferriol Crestatx", Document.DNI, "3344665547C", "C/ Colomi, planta baixa, Puigpunyent", 902202122, "josepet@gmail.com", "Patró de Iot", 200f);
-
-            Lloguer alquilerVelero = new Lloguer(marineland, toni, concordia, Estat.INICIADA, "18/05/2016", "29/05/2016", patro1, 23.215f);
-
-            System.out.println(alquilerVelero);
-            System.out.println("OPERACIONES EMPRESA: "+marineland.getLlistaOperacions());
+            /*REPARADORS*/
+            Reparador jose = new Reparador("Jose", "delafuente", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "josedelafuente@gmail.com", 600f, "02/05/2016", FUSTERIA,VELES);
+            Reparador juan = new Reparador("Juan", "perico", Document.DNI, "11111111D", "C/ mar nº 4", 600000004, "juanperico@gmail.com", 900f, "05/05/2014", FONTANERIA,ELECTRICITAT,FIBRA_DE_VIDRE);
             
+            /*PATRONS*/
+            Patro bernat = new Patro("Bernat", "Sabater", Document.DNI, "11111111D", "C/ mar nº 5", 600000005, "bernatsabater@gmail.com", "Patron de 1ª", 250f);
+            
+            /*EMBARCACIONS DISPONIBLES*/
+            Veler veler1 = new Veler(2, 4, 1, 000001, "AAA01", "Concordia", "AIR", 10, 20, 5, Proposit.LLOGUER, 50000, true);
+            Iot iot1 = new Iot(2, 100, 200, true, 000002, "AAA02", "Suiter", "LUXUS", 20, 10, 20, Proposit.REPARACIO, 80000, true);
+            Motor motor1 = new Motor(350, 2, true, 000003, "AAA03", "BMW", "A450", 10, 2, 3, Proposit.VENTA, 30000, true);
+            
+            /*EMBARCACIONS NO DISPONIBLES*/
+            Veler veler2 = new Veler(2, 4, 1, 000001, "AAA04", "Concordia", "AIR2", 10, 20, 5, Proposit.LLOGUER, 50000, false);
+            Iot iot2 = new Iot(2, 100, 200, true, 000002, "AAA05", "Suiter", "LUXUS2", 20, 10, 20, Proposit.REPARACIO, 80000, false);
+            Motor motor2 = new Motor(350, 2, true, 000003, "AAA06", "BMW", "A4502", 10, 2, 3, Proposit.VENTA, 30000, false);
+            
+            
+
         } catch (DataException | NoEliminatException | NoAfegitException ex) {
             System.out.println(ex.getMessage());
         }
