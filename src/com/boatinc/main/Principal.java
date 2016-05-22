@@ -67,7 +67,7 @@ public class Principal {
             System.out.println(alquilerVelero);
             System.out.println("OPERACIONES EMPRESA: "+marineland.getLlistaOperacions());
             
-        } catch (DataException | NoAfegitException ex) {
+        } catch (DataException | NoEliminatException | NoAfegitException ex) {
             System.out.println(ex.getMessage());
         }
 
