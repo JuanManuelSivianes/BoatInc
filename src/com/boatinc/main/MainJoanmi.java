@@ -242,13 +242,62 @@ public class MainJoanmi {
             
             System.out.println("\n\n -- PROVES METODES --");    
             System.out.println("L'històric d'operacions del comercial es buida: "+comercial1.getHistoricOperacions());
-            System.out.println("\nAfegim una operació al comercial:");
+            System.out.println("\nAfegim dues operacions al comercial:");
             comercial1.afegirOperacio(venda1);
-            System.out.println(venda1);
-                              
-            System.out.println("L'històric d'operacions del comercial ara té una operacio: "+comercial1.getHistoricOperacions());
+            comercial1.afegirOperacio(venda2);
+            System.out.println("L'històric d'operacions del comercial ara té dues operacions: "+comercial1.getHistoricOperacions());
+            
+            System.out.println("\nAra eliminam l'operacio amb l'identificador 2");
+            comercial1.eliminarOperacio(2);
+            System.out.println("Mostram la llista de comercial i s'ha eliminat correctament: "+comercial1.getHistoricOperacions());
+            
+            System.out.println("\nSi volem eliminar una operacio que no esta a la llista ens tornarà un NoEliminatException, i si volem afegir una operació que ja hi es ens tornarà un NoAfegitException.");
+            try{
+                comercial1.eliminarOperacio(2);
+            }catch(NoEliminatException e){
+                System.out.println(e.getMessage());
+            }
+            
+            try{
+                comercial1.afegirOperacio(venda1);
+            }catch(NoAfegitException e){
+                System.out.println(e.getMessage());
+            }
             
             
+            Reparador reparador1 = new Reparador("Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
+            System.out.println("\n\n##############################" + "\n## PROVES CLASSE REPARADOR  ##" + "\n##############################\n");
+            
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> reparador1.getHabilitats(): "+reparador1.getHabilitats());
+            
+            
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("No té setters pero si te mètodes per afegir o eliminar habilitats.");
+            
+            System.out.println("\n\n -- PROVES METODES --"); 
+            System.out.println("Llista d'habilitats del reparador1: "+reparador1.getHabilitats());
+            System.out.println("\nAfegim una altra habilitat amb reparador1.afegirHabilitat(Habilitat.VELES)");
+            reparador1.afegirHabilitat(Habilitat.VELES);
+            System.out.println("S'ha afegit correctament: "+reparador1.getHabilitats());
+            
+            System.out.println("\nEliminam una habilitat amb reparador1.eliminarHabilitat(Habilitat.VELES)");
+            reparador1.eliminarHabilitat(Habilitat.VELES);
+            System.out.println("S'ha eliminat correctament: "+reparador1.getHabilitats());
+            
+            System.out.println("\nEn cas que volguem afegir una habilitat que ja te a la llista, o volem eliminar una habilitat que no té ens tornarà un NoAfegitException o un NoEliminatException.");
+  
+            try{
+                reparador1.afegirHabilitat(Habilitat.ELECTRICITAT);
+            }catch(NoAfegitException e){
+                System.out.println(e.getMessage());
+            }
+            try{
+                reparador1.eliminarHabilitat(Habilitat.VELES);
+            }catch(NoEliminatException e){
+                System.out.println(e.getMessage());
+            }
+
         } catch (NoAfegitException | NoEliminatException | DataException ex) {
             System.out.println(ex.getMessage());
         }

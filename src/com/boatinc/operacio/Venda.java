@@ -53,7 +53,7 @@ public class Venda extends Operacio {
 
     @Override
     public String toString() {
-        return "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + '}';
+        return "ID Operacio: "+getIdentificador()+", Comercial: "+ comercial.getNom()+" "+comercial.getCognom() + ", Data de venda: " + dataVenta+".";
     }
 
 }

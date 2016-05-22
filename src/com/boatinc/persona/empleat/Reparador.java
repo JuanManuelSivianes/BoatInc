@@ -42,17 +42,12 @@ public class Reparador extends Empleat{
     
     public void eliminarHabilitat(Habilitat habilitat) throws NoEliminatException{
         if(habilitats.remove(habilitat)==false){
-            throw new NoEliminatException("No s'ha eliminat la habilitat perque no la té.");
+            throw new NoEliminatException("No s'ha eliminat la habilitat "+habilitat+" perque el reparador "+getNom()+" no la té.");
         }
-    }
-    
-    @Override
-    public String tornaNomina(){
-        return super.tornaNomina()+"";
     }
 
     @Override
     public String toString() {
-        return "Reparador{" +super.toString()+" habilitats=" + habilitats + '}';
+        return "|ID Empleat: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
     } 
 }

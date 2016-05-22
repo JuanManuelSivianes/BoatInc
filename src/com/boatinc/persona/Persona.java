@@ -83,9 +83,4 @@ public class Persona {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Override
-    public String toString() {
-        return "Persona{" + "nom=" + nom + ", cognom=" + cognom + ", document=" + document + ", numeroDocument=" + numeroDocument + ", adre\u00e7a=" + adreça + ", telefon=" + telefon + ", email=" + email + '}';
-    }
 }

@@ -37,6 +37,6 @@ public class Patro extends Persona{
 
     @Override
     public String toString() {
-        return "Patro{" +super.toString()+ "titulacio=" + titulacio + ", cost=" + cost + '}';
+        return "|ID Patró: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
     }
 }
