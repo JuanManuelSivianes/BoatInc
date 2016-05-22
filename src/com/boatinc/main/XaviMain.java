@@ -34,15 +34,16 @@ public class XaviMain {
             Empleat empleat1 = new Empleat("Pep", "Serra", Document.DNI, "74125896v", "C/ Major", 632478942, "pep@email.com", 1200, "14/07/1990");
             
             Client client1 = new Client("Xavier", "Valens", Document.DNI, "98745632x", "Carrer sol", 123456789, "xavier@email.com");
-            
-            Iot iot1 = new Iot(4, 250, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.REPARACIO, 20000, true);
+            System.out.println("2");
+            Iot iot1 = new Iot(4, 250, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
             Iot iot2 = new Iot(4, 300, 400, true, 4321, "7799x", "Volvo", "v34", 2, 15, 1, Proposit.REPARACIO, 40000, true);
-            Iot iot3 = new Iot(4, 400, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.REPARACIO, 60000, true);
+            Iot iot3 = new Iot(4, 400, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 60000, true);
             
+            System.out.println("3");
             Empresa empresa1 = new Empresa();
             
-            Reparacio reparacio1 = new Reparacio(empresa1, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot1, Estat.PENDENT, 1000);  
-            Reparacio reparacio2 = new Reparacio(empresa1, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client1, iot1, Estat.PENDENT, 2000);
+            Reparacio reparacio1 = new Reparacio(empresa1, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.PENDENT, 1000);  
+            Reparacio reparacio2 = new Reparacio(empresa1, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client1, iot2, Estat.PENDENT, 2000);
             
             Reparador jose = new Reparador("Joseca", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 44, "jsoso", 23.215f, "18/11/2016");
             
