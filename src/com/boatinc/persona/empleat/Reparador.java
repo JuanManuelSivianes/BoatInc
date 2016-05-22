@@ -45,6 +45,11 @@ public class Reparador extends Empleat{
             throw new NoEliminatException("No s'ha eliminat la habilitat perque no la té.");
         }
     }
+    
+    @Override
+    public String tornaNomina(){
+        return super.tornaNomina()+"";
+    }
 
     @Override
     public String toString() {

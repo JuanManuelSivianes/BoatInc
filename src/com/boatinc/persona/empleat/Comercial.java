@@ -25,7 +25,7 @@ public class Comercial extends Empleat{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         this.comissio=0;
         this.percentComissio=percentComissio;
-        this.historicOperacions = new HashMap();  
+        this.historicOperacions = new HashMap<>();  
     }
 
     public double getComissio() {
@@ -74,7 +74,12 @@ public class Comercial extends Empleat{
     }
     
     @Override
+    public String tornaNomina(){
+        return super.tornaNomina()+"";
+    }
+    
+    @Override
     public String toString() {
-        return "Comercial{" + super.toString()+" comissio=" + comissio + ", percentComissio=" + percentComissio + ", historicOperacions=" + historicOperacions + '}';
+        return "Comercial{" +super.getNom()+" comissio=" + comissio + ", percentComissio=" + percentComissio +'}';
     }
 }

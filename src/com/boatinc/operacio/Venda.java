@@ -53,7 +53,7 @@ public class Venda extends Operacio {
 
     @Override
     public String toString() {
-        return super.toString() + "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + '}';
+        return "Venda{" + "comercial=" + comercial + ", dataVenta=" + dataVenta + '}';
     }
 
 }
