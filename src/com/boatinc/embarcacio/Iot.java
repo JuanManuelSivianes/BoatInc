@@ -5,6 +5,9 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.empresa.Empresa;
+import com.boatinc.exceptions.NoAfegitException;
+
 /**
  *
  * @author Xavier
@@ -15,8 +18,8 @@ public class Iot extends Embarcacio {
     private int autonomia;
     private boolean embarcacioAuxiliar;
 
-    public Iot(int numeroCamarots, int potencia, int autonomia, boolean embarcacioAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
-        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
+    public Iot(Empresa empresa, int numeroCamarots, int potencia, int autonomia, boolean embarcacioAuxiliar, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) throws NoAfegitException {
+        super(empresa, numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
         this.numeroCamarots = numeroCamarots;
         this.potencia = potencia;
         this.autonomia=autonomia;
@@ -57,7 +60,7 @@ public class Iot extends Embarcacio {
 
     @Override
     public String toString() {
-        return "Iot{" + "numeroCamarots=" + numeroCamarots + ", potencia=" + potencia + ", embarcacioAuxiliar=" + embarcacioAuxiliar + '}';
+        return super.toString();
     }
     
     @Override

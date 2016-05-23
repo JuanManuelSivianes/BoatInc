@@ -1,5 +1,6 @@
 package com.boatinc.eines;
 
+import com.boatinc.embarcacio.Informacio;
 import com.boatinc.exceptions.DataException;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -28,6 +29,14 @@ public class Eina {
             fecha = dataGregorian.getTime();
             
             return fecha;
+        }
+    }
+    
+    public static void mostraJSON(Informacio embarcacio, boolean detallada){
+        if(detallada){
+            System.out.println(embarcacio.infoDetallada());
+        }else{
+            System.out.println(embarcacio.infoGeneral());
         }
     }
 }

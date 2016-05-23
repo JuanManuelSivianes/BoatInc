@@ -6,7 +6,9 @@
 package com.boatinc.persona.empleat;
 
 import com.boatinc.eines.Eina;
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
+import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.Persona;
 import java.util.Date;
@@ -20,10 +22,11 @@ public class Empleat extends Persona {
     private Date dataAlta;
     private float sou;
 
-    public Empleat(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException {
+    public Empleat(Empresa empresa, String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte) throws DataException, NoAfegitException {
         super(nom, cognom, document, numeroDocument, adreça, telefon, email);
         this.sou = sou;
         dataAlta = Eina.creaDate(dataContracte);
+        empresa.afegirEmpleat(this);
     }
 
     public Date getDataAlta() {
@@ -43,12 +46,12 @@ public class Empleat extends Persona {
     }
 
     public String tornaNomina() {
-        return "hola";
+        return "{\"Nom\": \""+getNom()+"\", \"Cognom\": \""+getCognom()+"\", \"document\": \""+getDocument()+"\", \"Numero Document\": \""+getNumeroDocument()+"\", \"Adreça\": \""+getAdreça()+"\", \"Telefon\": "+getTelefon()+", \"Email\": \""+getEmail()+"\", \"Data d'Alta\": \""+dataAlta+"\", \"Sou\": "+sou+"}";
     }
 
     @Override
     public String toString() {
-        return "|ID Empleat: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
+        return super.toString();
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.boatinc.persona.empleat;
 
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
@@ -21,8 +22,8 @@ public class Comercial extends Empleat{
     private int percentComissio;
     private HashMap<Integer, Venda> historicOperacions;
     
-    public Comercial (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, int percentComissio) throws DataException{
-        super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
+    public Comercial (Empresa empresa, String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, int percentComissio) throws DataException, NoAfegitException{
+        super(empresa,nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         this.comissio=0;
         this.percentComissio=percentComissio;
         this.historicOperacions = new HashMap<>();  
@@ -75,11 +76,11 @@ public class Comercial extends Empleat{
     
     @Override
     public String tornaNomina(){
-        return super.tornaNomina()+"";
+        return super.tornaNomina().substring(0, super.tornaNomina().length()-1)+", \"Percent Comissió\": "+percentComissio+", \"Comissió\": "+comissio+"}";
     }
     
     @Override
     public String toString() {
-        return "|ID Empleat: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
+        return super.toString();
     }
 }

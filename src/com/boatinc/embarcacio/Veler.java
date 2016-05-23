@@ -5,6 +5,9 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.empresa.Empresa;
+import com.boatinc.exceptions.NoAfegitException;
+
 /**
  *
  * @author Xavier
@@ -14,8 +17,8 @@ public class Veler extends Embarcacio {
     private int numeroPals;
     private int numeroCabines;
 
-    public Veler(int numeroCascs, int numeroPals, int numeroCabines, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
-        super(numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
+    public Veler(Empresa empresa, int numeroCascs, int numeroPals, int numeroCabines, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) throws NoAfegitException {
+        super(empresa,numeroSerie, matricula, marca, model, manga, eslora, calat, proposit, preuVenda, disponibilitat);
         this.numeroCascs = numeroCascs;
         this.numeroPals = numeroPals;
         this.numeroCabines = numeroCabines;
@@ -47,7 +50,7 @@ public class Veler extends Embarcacio {
 
     @Override
     public String toString() {
-        return "Veler{" + "numeroCascs=" + numeroCascs + ", numeroPals=" + numeroPals + ", numeroCabines=" + numeroCabines + '}';
+        return super.toString();
     }
     
     @Override

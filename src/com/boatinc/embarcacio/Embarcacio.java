@@ -5,16 +5,18 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author Arsenik
  */
-public abstract class Embarcacio implements Informacio{
+public abstract class Embarcacio implements Informacio, Serializable{
     private int numeroSerie;
     private String matricula;
     private String marca;
@@ -28,7 +30,7 @@ public abstract class Embarcacio implements Informacio{
     private HashMap<Integer, Reparacio> historicReparacions;
     private boolean disponibilitat;
 
-    public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
+    public Embarcacio(Empresa empresa, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) throws NoAfegitException {
         this.numeroSerie = numeroSerie;
         this.matricula = matricula;
         this.marca = marca;
@@ -41,6 +43,7 @@ public abstract class Embarcacio implements Informacio{
         this.tipusEmbarcacio = this.getClass().getName().substring(23);
         historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
+        empresa.afegirEmbarcacio(this);
     }
 
     public int getNumeroSerie() {
@@ -133,7 +136,7 @@ public abstract class Embarcacio implements Informacio{
 
     @Override
     public String toString() {
-        return "Embarcacio{" + "numeroSerie=" + numeroSerie + ", matricula=" + matricula + ", marca=" + marca + ", model=" + model + ", manga=" + manga + ", eslora=" + eslora + ", calat=" + calat + ", tipusEmbarcacio=" + tipusEmbarcacio + ", proposit=" + proposit + ", preuVenda=" + preu + ", historicReparacions=" + historicReparacions + ", disponibilitat=" + disponibilitat + '}';
+        return "| Numero Serie: "+numeroSerie+", Tipus d'embarcacio: "+tipusEmbarcacio+", Proposit: "+proposit+" |";
     }
     
 

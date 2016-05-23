@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.boatinc.main;
+package com.boatinc.proves;
 
-import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Iot;
+import com.boatinc.embarcacio.Motor;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.embarcacio.Veler;
 import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.exceptions.NoTrovatException;
 import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Client;
@@ -24,19 +20,51 @@ import com.boatinc.persona.empleat.Habilitat;
 import com.boatinc.persona.empleat.Reparador;
 import com.boatinc.persona.pagament.CompteCorrent;
 import com.boatinc.persona.pagament.TargetaCredit;
+import com.boatinc.persona.pagament.TipusPagament;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Joanmi
- */
-public class MainJoanmi {
+public class Main {
     public static void main(String[] args) {
+        Empresa mare = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
+
         
+//        inicialitzacio(mare);
+//        
+//        try {
+//            desaDades("src/dadesOB.dat", mare);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+        
+
+        mare=(Empresa)recuperaDades("src/dadesOB.dat");
         try{
-            Empresa empresa = new Empresa("ASDASD", "ASDASD2", "ASDASD", 65454);
-            
+            System.out.println(mare.getLlistaClients());
+            System.out.println(mare.getLlistaEmpleat());
+            System.out.println(mare.getLlistaPatrons());
+            System.out.println(mare.getLlistaEmbarcacions());
+            System.out.println(mare.tornaModelsVenta());
+            System.out.println(mare.tornaModelsVentaTipus("Iot"));
+            System.out.println(mare.tornaModelsVentaPreu(100, 200));  
+        }catch(NoTrovatException e){
+            System.out.println(e.getMessage());
+        }
+
+
+
+    }
+    
+    public static void inicialitzacio(Empresa empresa){
+        try{
             TargetaCredit tarj1 = new TargetaCredit(1111000022224444L, 10, 18, 221);
             TargetaCredit tarj2 = new TargetaCredit(3333444422221111L, 8, 17, 114);
             TargetaCredit tarj3 = new TargetaCredit(3333111177776666L, 4, 18, 334);
@@ -49,8 +77,7 @@ public class MainJoanmi {
             CompteCorrent com4 = new CompteCorrent("ES1066661111361111111111");
             CompteCorrent com5 = new CompteCorrent("ES1288881111783333333333");
             CompteCorrent com6 = new CompteCorrent("ES1425401111201542178452");
-            
-            
+                      
             Client client1 = new Client(empresa, "Toni", "Pons Van", Document.DNI, "11111111E", "C/ mar nº2, Alcudia", 600252421, "toni@gmail.com",tarj1,tarj2,com1);
             Client client2 = new Client(empresa, "Manel", "Ferrer Mir", Document.DNI, "22222222G", "C/ tucan nº7, Sa Pobla", 600224455, "manel@gmail.com",tarj3);
             Client client3 = new Client(empresa, "Ana", "Johansen", Document.NIE, "X1234567P", "C/ perla nº 1, 2c, Manacor", 600111111, "ana@gmail.com",com2);
@@ -58,11 +85,10 @@ public class MainJoanmi {
             Client client5 = new Client(empresa, "Rafel", "Pol Vich", Document.DNI, "23847521G", "C/ mussol, planta baixa, Soller", 600334488, "rafel@yahoo.es",tarj5);
             Client client6 = new Client(empresa, "Pau", "Fernández Mas", Document.DNI, "66771144V", "C/ General Luque, nº23, 4b, Palma", 612784595, "pau@msn.es",com5);
             Client client7 = new Client(empresa, "Joan Miquel", "Fernández Cifre", Document.DNI, "21487652E", "C/ Joan Mas nº1, Vilafranca", 575232565, "joanmiquel@hotmail.com",com6);
-            
-                     
+                    
             Patro patro1 = new Patro(empresa, "Josep", "Ferriol Crestatx", Document.DNI, "3344665547C", "C/ Colomi, planta baixa, Puigpunyent", 902202122, "josepet@gmail.com", "Patró de Iot", 200f);
             Patro patro2 = new Patro(empresa, "Raul", "Valls", Document.NIE, "X3245124C", "C/ Tord, nº4, escalera 2, Inca", 900114455, "raul@msn.es", "Patró embarcació bàsica", 120f);
-            Patro patro3 = new Patro(empresa, "Lucia", "Ferrer Sanchez", Document.DNI, "9545512422G", "C/ Faissan, nº2, 3c, Soller", 906314575, "lucia@gmail.com", "Patró embarcació de recreo", 170f);
+            Patro patro3 = new Patro(empresa, "Lucia", "Ferrer Sanchez", Document.DNI, "95412422G", "C/ Faissan, nº2, 3c, Soller", 906314575, "lucia@gmail.com", "Patró embarcació de recreo", 170f);
             
             Empleat empleat1 = new Empleat(empresa, "Carlos", "Punset", Document.DNI, "78943526F", "C/ Pascual, nº 2, 4b, Inca", 642554411, "Carlos@gmail.com", 1240f, "20/04/2000");
             Empleat empleat2 = new Empleat(empresa, "Elena", "Pascual", Document.DNI, "22465714J", "C/ Mondragó, atic, Inca", 640224488, "Elena@gmail.com", 1024f, "12/01/2002");
@@ -77,21 +103,164 @@ public class MainJoanmi {
             Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA,Habilitat.FONTANERIA);
             Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FONTANERIA,Habilitat.MECANICA);
             
-            Iot iot1 = new Iot(empresa,4,25, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
-            Veler concordia = new Veler(empresa,5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
+            Iot iot1 = new Iot(empresa, 4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
+            Iot iot2 = new Iot(empresa, 4, 800, 400, true, 4321, "7799x", "Bavaria", "v34", 2, 15, 1, Proposit.REPARACIO, 100000, true);
+            Iot iot3 = new Iot(empresa, 4, 700, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 150000, true);
             
-//            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
-//            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
-
-
+            Veler veler1 = new Veler(empresa, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+            Veler veler2 = new Veler(empresa, 4, 1, 4, 1414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.REPARACIO, 100000, true);
+            Veler veler3 = new Veler(empresa, 2, 1, 4, 2424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
             
-
-        }catch(NoAfegitException | DataException e){
-            System.err.println(e.getMessage());
+            Motor motor1 = new Motor(empresa, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+            Motor motor2 = new Motor(empresa, 400, 300, true, 1111, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.REPARACIO, 30000, true);
+            Motor motor3 = new Motor(empresa, 300, 200, true, 2222, "2234w", "Zodiac", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
+            
+        }catch(NoAfegitException | DataException ex){
+            System.out.println(ex.getMessage());
         }
+    }
+    
+    public static void desaDades(String desti, Object objecte) throws FileNotFoundException, IOException {
+        try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(desti)))){
+            out.writeObject(objecte);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static Object recuperaDades(String origen){
+        Object nou = new Object();
+	try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(origen)))){
+            nou=in.readObject();
+        }catch(ClassNotFoundException |IOException e){
+            System.out.println(e.getMessage());
+        }
+	return nou;
+    }
+    
+    public static void provesEmbarcacio() throws NoAfegitException{
+        Empresa empresa1 = new Empresa("DevelopersNautics", "", "", 677888888);
+        System.out.println("############################" + "\n## PROVES CLASSE EMBARCACIO  ##" + "\n############################\n");
         
-//        provesPersona();
+        System.out.println("En aquest cas agafarem un iot ja que no podem crear una embarcació perque la classe es abstracta i farem ús dels metodes de embarcacio: \n");
+        Iot iot1 = new Iot(empresa1,4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
         
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> iot1.getNumeroSerie(): "+iot1.getNumeroSerie());
+        System.out.println("-> iot1.getMatricula(): "+iot1.getMatricula());
+        System.out.println("-> iot1.getMarca(): "+iot1.getMarca());
+        System.out.println("-> iot1.getModel(): "+iot1.getModel());
+        System.out.println("-> iot1.getManga(): "+iot1.getManga());
+        System.out.println("-> patro1.getEmail(): "+iot1.getEslora());
+        System.out.println("-> iot1.getCalat(): "+iot1.getCalat());
+        System.out.println("-> iot1.getTipusEmbarcacio(): "+iot1.getTipusEmbarcacio());
+        System.out.println("-> iot1.getProposit(): "+iot1.getProposit());
+        System.out.println("-> iot1.getPreu(): "+iot1.getPreu());
+        System.out.println("-> iot1.getHistoricReparacions(): "+iot1.getHistoricReparacions());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Numero de serie de l'embarcacio: "+iot1.getNumeroSerie()+"\nEl canviam per \"7777\" amb iot1.setNumeroSerie(7777);");
+        iot1.setNumeroSerie(7777);
+        System.out.println("Numero de serie després del canvi: "+iot1.getNumeroSerie());
+        
+        System.out.println("\nMatricula de l'embarcacio: "+iot1.getMatricula()+"\nLa canviam per \"4411r\" amb iot1.setMatricula(\"4411r\");");
+        iot1.setMatricula("4411r");
+        System.out.println("Matricula de l'embarcacio després del canvi: "+iot1.getMatricula());
+        
+        System.out.println("\nMarca de l'embarcacio: "+iot1.getMarca()+"\nLa canviam per \"Bavaria\" amb iot1.setMarca(\"Bavaria\");");
+        iot1.setMarca("Bavaria");
+        System.out.println("Marca de l'embarcacio després del canvi: "+iot1.getMarca());
+        
+        System.out.println("\nModel de l'embarcacio: "+iot1.getModel()+"\nLa canviam per \"v34\" amb iot1.setModel(\"v34\");");
+        iot1.setModel("v34");
+        System.out.println("Model de l'embarcacio després del canvi: "+iot1.getModel());
+        
+        System.out.println("\nManga de l'embarcacio: "+iot1.getManga()+"\nLa canviam per \"3\" amb iot1.setManga(3);");
+        iot1.setModel("v34");
+        System.out.println("Manga de l'embarcacio després del canvi: "+iot1.getManga());
+        
+        System.out.println("\nEslora de l'embarcacio: "+iot1.getEslora()+"\nLa canviam per \"15\" amb iot1.setEslora(15);");
+        iot1.setEslora(15);
+        System.out.println("Eslora de l'embarcacio després del canvi: "+iot1.getEslora());
+        
+        System.out.println("\nCalat de l'embarcacio: "+iot1.getCalat()+"\nEl canviam per \"2\" amb iot1.setCalat(2);");
+        iot1.setCalat(2);
+        System.out.println("Calat de l'embarcacio després del canvi: "+iot1.getCalat());
+        
+        System.out.println("\nProposit de l'embarcacio: "+iot1.getProposit()+"\nEl canviam per \"VENTA\" amb iot1.setProposit(Proposit.VENTA);");
+        iot1.setProposit(Proposit.VENTA);
+        System.out.println("Proposit de l'embarcacio després del canvi: "+iot1.getProposit());
+        
+        System.out.println("\nPreu de l'embarcacio: "+iot1.getPreu()+"\nEl canviam per \"300000\" amb iot1.setPreu(300000);");
+        iot1.setPreu(300000);
+        System.out.println("Preu de l'embarcacio després del canvi: "+iot1.getPreu());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE IOT  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Iot:");
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> iot1.getNumeroCamarots(): "+iot1.getNumeroCamarots());
+        System.out.println("-> iot1.getPotencia(): "+iot1.getPotencia());
+        System.out.println("-> iot1.getAutonomia(): "+iot1.getAutonomia());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Numero de camarots de l'embaracio: "+iot1.getNumeroCamarots()+"\nEl canviam per \"2\" amb iot1.setNumeroCamarots(2);");
+        iot1.setNumeroCamarots(2);
+        System.out.println("Numero de camarots després del canvi: "+iot1.getNumeroCamarots());
+        
+        System.out.println("Potencia de l'embaracio: "+iot1.getPotencia()+"\nLa canviam per \"1200\" amb iot1.setPotencia(1200);");
+        iot1.setPotencia(1200);
+        System.out.println("Potencia després del canvi: "+iot1.getPotencia());
+        
+        System.out.println("Autonomia de l'embaracio: "+iot1.getAutonomia()+"\nLa canviam per \"300\" amb iot1.setAutonomia(300);");
+        iot1.setAutonomia(300);
+        System.out.println("Autonomia després del canvi: "+iot1.getAutonomia());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
+        Veler veler1 = new Veler(empresa1,2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> veler1.getNumeroCascs(): "+veler1.getNumeroCascs());
+        System.out.println("-> veler1.getNumeroPals(): "+veler1.getNumeroPals());
+        System.out.println("-> veler1.getNumeroCabines(): "+veler1.getNumeroCabines());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Numero de cascs de l'embaracio: "+veler1.getNumeroCascs()+"\nEl canviam per \"4\" amb veler1.setNumeroCascs(4);");
+        veler1.setNumeroCascs(4);
+        System.out.println("Numero de cascs després del canvi: "+veler1.getNumeroCascs());
+        
+        System.out.println("Numero de pals de l'embaracio: "+veler1.getNumeroPals()+"\nEl canviam per \"2\" amb veler1.setNumeroPals(2);");
+        veler1.setNumeroPals(2);
+        System.out.println("Numero de pals després del canvi: "+veler1.getNumeroPals());
+        
+        System.out.println("Numero de cabines de l'embaracio: "+veler1.getNumeroCabines()+"\nEl canviam per \"4\" amb veler1.setNumeroCabines(4);");
+        veler1.setNumeroCabines(4);
+        System.out.println("Numero de cabines després del canvi: "+veler1.getNumeroCabines());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE MOTOR  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Motor:");
+        Motor motor1 = new Motor(empresa1,150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> motor1.getPotencia(): "+motor1.getPotencia());
+        System.out.println("-> motor1.getCapacitatDeposit(): "+motor1.getCapacitatDeposit());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Potencia de l'embaracio: "+motor1.getPotencia()+"\nLa canviam per \"200\" amb motor1.setPotencia(200);");
+        motor1.setPotencia(200);
+        System.out.println("Potencia després del canvi: "+motor1.getPotencia());
+        
+        System.out.println("Capacitat del deposit de l'embaracio: "+motor1.getCapacitatDeposit()+"\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
+        motor1.setCapacitatDeposit(150);
+        System.out.println("Capacitat del deposit després del canvi: "+motor1.getCapacitatDeposit());
     }
     
     public static void provesPersona() throws NoAfegitException{
@@ -306,5 +475,4 @@ public class MainJoanmi {
             System.out.println(ex.getMessage());
         }
     }
-    
 }

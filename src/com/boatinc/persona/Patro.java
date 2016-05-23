@@ -5,6 +5,9 @@
  */
 package com.boatinc.persona;
 
+import com.boatinc.empresa.Empresa;
+import com.boatinc.exceptions.NoAfegitException;
+
 /**
  *
  * @author Joanmi
@@ -13,10 +16,11 @@ public class Patro extends Persona{
     private String titulacio;
     private float cost;
     
-    public Patro(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, String titulacio, float cost){
+    public Patro(Empresa empresa, String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, String titulacio, float cost) throws NoAfegitException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email);
         this.titulacio=titulacio;
         this.cost=cost;
+        empresa.afegirPatro(this);
     }
 
     public String getTitulacio() {
@@ -37,6 +41,6 @@ public class Patro extends Persona{
 
     @Override
     public String toString() {
-        return "|ID Patró: "+super.getDocument()+": "+super.getNumeroDocument()+", Nom: "+super.getNom()+", Cognoms: "+super.getCognom()+"|";
+        return super.toString();
     }
 }

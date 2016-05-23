@@ -5,11 +5,13 @@
  */
 package com.boatinc.persona;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Joanmi
  */
-public class Persona {
+public class Persona implements Serializable{
     private String nom;
     private String cognom;
     private Document document;
@@ -83,4 +85,11 @@ public class Persona {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "| Identificador: "+document+": "+numeroDocument+", Nom: "+nom+", Cognoms: "+cognom+" |";
+    }
+    
+    
 }
