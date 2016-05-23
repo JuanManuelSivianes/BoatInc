@@ -75,7 +75,7 @@ public class Comercial extends Empleat{
     
     @Override
     public String tornaNomina(){
-        return super.tornaNomina()+"";
+        return super.tornaNomina().substring(0, super.tornaNomina().length()-1)+", \"Percent Comissió\": "+percentComissio+", \"Comissió\": "+comissio+"}";
     }
     
     @Override

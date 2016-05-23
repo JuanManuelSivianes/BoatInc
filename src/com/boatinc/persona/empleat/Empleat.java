@@ -43,7 +43,7 @@ public class Empleat extends Persona {
     }
 
     public String tornaNomina() {
-        return "hola";
+        return "{\"Nom\": \""+getNom()+"\", \"Cognom\": \""+getCognom()+"\", \"document\": \""+getDocument()+"\", \"Numero Document\": \""+getNumeroDocument()+"\", \"Adreça\": \""+getAdreça()+"\", \"Telefon\": "+getTelefon()+", \"Email\": \""+getEmail()+"\", \"Data d'Alta\": \""+dataAlta+"\", \"Sou\": "+sou+"}";
     }
 
     @Override
