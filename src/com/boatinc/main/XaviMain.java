@@ -33,13 +33,15 @@ public class XaviMain {
      */
     public static void main(String[] args) {      
         try{
-            Empleat empleat1 = new Empleat("Pep", "Serra", Document.DNI, "74125896v", "C/ Major", 632478942, "pep@email.com", 1200, "14/07/1990");
-            Empleat empleat2 = new Empleat("Joan", "Soler", Document.DNI, "89125864x", "C/ Menor", 688478111, "joan@email.com", 1400, "20/06/1989");
-            Empleat empleat3 = new Empleat("Toni", "Fiol", Document.DNI, "47125897z", "C/ Jaume", 677478222, "toni@email.com", 1300, "24/04/1987");
+            Empresa empresa1 = new Empresa("DevelopersNautics", "", "", 677888888);
             
-            Client client1 = new Client("Xavier", "Valens", Document.DNI, "98745632x", "Carrer sol", 123456789, "xavier@email.com");
-            Client client2 = new Client("Alfonso", "Perez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "alfonsoperez@gmail.com");
-            Client client3 = new Client("Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com");
+            Empleat empleat1 = new Empleat(empresa1, "Pep", "Serra", Document.DNI, "74125896v", "C/ Major", 632478942, "pep@email.com", 1200, "14/07/1990");
+            Empleat empleat2 = new Empleat(empresa1, "Joan", "Soler", Document.DNI, "89125864x", "C/ Menor", 688478111, "joan@email.com", 1400, "20/06/1989");
+            Empleat empleat3 = new Empleat(empresa1, "Toni", "Fiol", Document.DNI, "47125897z", "C/ Jaume", 677478222, "toni@email.com", 1300, "24/04/1987");
+            
+            Client client1 = new Client(empresa1, "Xavier", "Valens", Document.DNI, "98745632x", "Carrer sol", 123456789, "xavier@email.com");
+            Client client2 = new Client(empresa1, "Alfonso", "Perez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "alfonsoperez@gmail.com");
+            Client client3 = new Client(empresa1, "Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com");
             
             System.out.println("2");
             Iot iot1 = new Iot(4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
@@ -55,14 +57,13 @@ public class XaviMain {
             Motor motor3 = new Motor(300, 200, true, 2222, "2234w", "Zodiac", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
             
             System.out.println("3");
-            Empresa empresa1 = new Empresa();
             
             Reparacio reparacio1 = new Reparacio(empresa1, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.PENDENT, 1000);  
             Reparacio reparacio2 = new Reparacio(empresa1, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client1, iot2, Estat.PENDENT, 2000);
             
-            Reparador jose = new Reparador("Joseca", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 677999442, "jsoso@email.com", 23.215f, "18/11/2016");
-            Reparador reparador1 = new Reparador("Pepe", "Perez", Document.DNI, "77777777M", "C/ Roca nº 4", 633444222, "pepe@email.com", 23.215f, "20/10/2010");
-            Reparador reparador2 = new Reparador("Paco", "Gomez", Document.DNI, "44444444C", "C/ Mallorca nº 1", 611111777, "paco@email.com", 23.215f, "04/03/2007");
+            Reparador jose = new Reparador(empresa1, "Joseca", "Anchoa", Document.DNI, "11111111E", "C/ mar nº 2", 677999442, "jsoso@email.com", 23.215f, "18/11/2016");
+            Reparador reparador1 = new Reparador(empresa1, "Pepe", "Perez", Document.DNI, "77777777M", "C/ Roca nº 4", 633444222, "pepe@email.com", 23.215f, "20/10/2010");
+            Reparador reparador2 = new Reparador(empresa1, "Paco", "Gomez", Document.DNI, "44444444C", "C/ Mallorca nº 1", 611111777, "paco@email.com", 23.215f, "04/03/2007");
             
             Comentari comentari1 = new Comentari("18/05/2016", jose, "Motor romput");
             Comentari comentari2 = new Comentari("19/05/2016", jose, "Va be");
