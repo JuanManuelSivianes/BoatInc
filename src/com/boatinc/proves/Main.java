@@ -8,6 +8,7 @@ import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.operacio.Estat;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Document;
 import com.boatinc.persona.Patro;
@@ -17,6 +18,7 @@ import com.boatinc.persona.empleat.Habilitat;
 import com.boatinc.persona.empleat.Reparador;
 import com.boatinc.persona.pagament.CompteCorrent;
 import com.boatinc.persona.pagament.TargetaCredit;
+import com.boatinc.persona.pagament.TipusPagament;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -42,10 +44,14 @@ public class Main {
 //        }
         
 
-            mare=(Empresa)recuperaDades("src/dadesOB.dat");
-            System.out.println(mare.getLlistaClients());
-            System.out.println(mare.getLlistaEmpleat());
-            System.out.println(mare.getLlistaPatrons());
+        mare=(Empresa)recuperaDades("src/dadesOB.dat");
+        System.out.println(mare.getLlistaClients());
+        System.out.println(mare.getLlistaEmpleat());
+        System.out.println(mare.getLlistaPatrons());
+        System.out.println(mare.getLlistaEmbarcacions());
+        System.out.println(mare.tornaModelsVenta());
+        System.out.println(mare.tornaModelsVentaTipus("Iot"));
+        System.out.println(mare.tornaModelsVentaPreu(100, 200000));
 
 
     }
