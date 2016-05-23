@@ -5,6 +5,7 @@
  */
 package com.boatinc.embarcacio;
 
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
@@ -29,7 +30,7 @@ public abstract class Embarcacio implements Informacio, Serializable{
     private HashMap<Integer, Reparacio> historicReparacions;
     private boolean disponibilitat;
 
-    public Embarcacio(int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) {
+    public Embarcacio(Empresa empresa, int numeroSerie, String matricula, String marca, String model, int manga, int eslora, int calat, Proposit proposit, float preuVenda, boolean disponibilitat) throws NoAfegitException {
         this.numeroSerie = numeroSerie;
         this.matricula = matricula;
         this.marca = marca;
@@ -42,6 +43,7 @@ public abstract class Embarcacio implements Informacio, Serializable{
         this.tipusEmbarcacio = this.getClass().getName().substring(23);
         historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
+        empresa.afegirEmbarcacio(this);
     }
 
     public int getNumeroSerie() {
