@@ -5,6 +5,7 @@
  */
 package com.boatinc.persona;
 
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.persona.pagament.TipusPagament;
@@ -17,12 +18,13 @@ import java.util.HashMap;
 public class Client extends Persona{
     private HashMap<Integer,TipusPagament> formesPagament;
     
-    public Client (String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, TipusPagament...llistaPagaments) throws NoAfegitException{
+    public Client (Empresa empresa, String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, TipusPagament...llistaPagaments) throws NoAfegitException{
         super(nom,cognom,document,numeroDocument,adreça,telefon,email);
         formesPagament = new HashMap<>();
         for(TipusPagament x: llistaPagaments){
             this.afegirFormaPagament(x);
         }
+        empresa.afegirClient(this);
     }
 
     public HashMap<Integer, TipusPagament> getFormesPagament() {
