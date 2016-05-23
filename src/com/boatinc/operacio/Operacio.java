@@ -7,13 +7,14 @@ package com.boatinc.operacio;
 
 import com.boatinc.embarcacio.Embarcacio;
 import com.boatinc.persona.Client;
+import java.io.Serializable;
 
 
 /**
  *
  * @author Arsenik
  */
-public abstract class Operacio {
+public abstract class Operacio implements Serializable{
     private int identificador;
     private static int contador = 1;
     private Client client;

@@ -5,11 +5,13 @@
  */
 package com.boatinc.persona.pagament;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Joanmi
  */
-public abstract class TipusPagament {
+public abstract class TipusPagament implements Serializable{
     private int identificador;
     private static int contador=1;
     

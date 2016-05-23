@@ -8,13 +8,14 @@ package com.boatinc.embarcacio;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.operacio.Reparacio;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author Arsenik
  */
-public abstract class Embarcacio implements Informacio{
+public abstract class Embarcacio implements Informacio, Serializable{
     private int numeroSerie;
     private String matricula;
     private String marca;

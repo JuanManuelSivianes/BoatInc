@@ -13,15 +13,39 @@ import com.boatinc.persona.empleat.Habilitat;
 import com.boatinc.persona.empleat.Reparador;
 import com.boatinc.persona.pagament.CompteCorrent;
 import com.boatinc.persona.pagament.TargetaCredit;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
         Empresa mare = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
+
         
-        inicialitzacio(mare);
-        System.out.println(mare.getLlistaClients());
-        System.out.println(mare.getLlistaEmpleat());
-        System.out.println(mare.getLlistaPatrons());
+//        inicialitzacio(mare);
+//        
+//        try {
+//            desaDades("src/dadesOB.dat", mare);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+        
+        try {
+            mare=(Empresa)llegeixObjecte("src/dadesOB.dat");
+            System.out.println(mare.getLlistaClients());
+            System.out.println(mare.getLlistaEmpleat());
+            System.out.println(mare.getLlistaPatrons());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
     
     public static void inicialitzacio(Empresa empresa){
@@ -68,6 +92,24 @@ public class Main {
         }catch(NoAfegitException | DataException ex){
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public static void desaDades(String desti, Object objecte) throws FileNotFoundException, IOException {
+        try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(desti)))){
+            out.writeObject(objecte);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static Object llegeixObjecte(String origen) throws IOException {
+        Object nou = new Object();
+	try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(origen)))){
+            nou=in.readObject();
+        }catch(ClassNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+	return nou;
     }
     
 }
