@@ -167,6 +167,73 @@ public class XaviMain {
         System.out.println("\nPreu de l'embarcacio: "+iot1.getPreu()+"\nEl canviam per \"300000\" amb iot1.setPreu(300000);");
         iot1.setPreu(300000);
         System.out.println("Preu de l'embarcacio després del canvi: "+iot1.getPreu());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE IOT  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Iot:");
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> iot1.getNumeroCamarots(): "+iot1.getNumeroCamarots());
+        System.out.println("-> iot1.getPotencia(): "+iot1.getPotencia());
+        System.out.println("-> iot1.getAutonomia(): "+iot1.getAutonomia());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Numero de camarots de l'embaracio: "+iot1.getNumeroCamarots()+"\nEl canviam per \"2\" amb iot1.setNumeroCamarots(2);");
+        iot1.setNumeroCamarots(2);
+        System.out.println("Numero de camarots després del canvi: "+iot1.getNumeroCamarots());
+        
+        System.out.println("Potencia de l'embaracio: "+iot1.getPotencia()+"\nLa canviam per \"1200\" amb iot1.setPotencia(1200);");
+        iot1.setPotencia(1200);
+        System.out.println("Potencia després del canvi: "+iot1.getPotencia());
+        
+        System.out.println("Autonomia de l'embaracio: "+iot1.getAutonomia()+"\nLa canviam per \"300\" amb iot1.setAutonomia(300);");
+        iot1.setAutonomia(300);
+        System.out.println("Autonomia després del canvi: "+iot1.getAutonomia());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
+        Veler veler1 = new Veler(2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> veler1.getNumeroCascs(): "+veler1.getNumeroCascs());
+        System.out.println("-> veler1.getNumeroPals(): "+veler1.getNumeroPals());
+        System.out.println("-> veler1.getNumeroCabines(): "+veler1.getNumeroCabines());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Numero de cascs de l'embaracio: "+veler1.getNumeroCascs()+"\nEl canviam per \"4\" amb veler1.setNumeroCascs(4);");
+        veler1.setNumeroCascs(4);
+        System.out.println("Numero de cascs després del canvi: "+veler1.getNumeroCascs());
+        
+        System.out.println("Numero de pals de l'embaracio: "+veler1.getNumeroPals()+"\nEl canviam per \"2\" amb veler1.setNumeroPals(2);");
+        veler1.setNumeroPals(2);
+        System.out.println("Numero de pals després del canvi: "+veler1.getNumeroPals());
+        
+        System.out.println("Numero de cabines de l'embaracio: "+veler1.getNumeroCabines()+"\nEl canviam per \"4\" amb veler1.setNumeroCabines(4);");
+        veler1.setNumeroCabines(4);
+        System.out.println("Numero de cabines després del canvi: "+veler1.getNumeroCabines());
+        
+        
+        System.out.println("\n\n##########################" + "\n## PROVES CLASSE MOTOR  ##" + "\n##########################\n");
+        System.out.println("\nAquí farem les proves de la part especifica de la classe Motor:");
+        Motor motor1 = new Motor(150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+        
+        System.out.println("-- PROVES GETTERS --");
+        System.out.println("-> motor1.getPotencia(): "+motor1.getPotencia());
+        System.out.println("-> motor1.getCapacitatDeposit(): "+motor1.getCapacitatDeposit());
+        
+        
+        System.out.println("\n\n-- PROVES SETTERS --");
+        System.out.println("Potencia de l'embaracio: "+motor1.getPotencia()+"\nLa canviam per \"200\" amb motor1.setPotencia(200);");
+        motor1.setPotencia(200);
+        System.out.println("Potencia després del canvi: "+motor1.getPotencia());
+        
+        System.out.println("Capacitat del deposit de l'embaracio: "+motor1.getCapacitatDeposit()+"\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
+        motor1.setCapacitatDeposit(150);
+        System.out.println("Capacitat del deposit després del canvi: "+motor1.getCapacitatDeposit());
+        
     }
     
 }
