@@ -75,6 +75,6 @@ public abstract class Operacio implements Serializable{
 
     @Override
     public String toString() {
-        return "Operacio{" + "identificador=" + identificador + ", client=" + client + ", embarcacio=" + embarcacio + ", estat=" + estat + ", preu=" + preu + ", tipusOperacio=" + tipusOperacio + '}';
+        return "Operacio{" + "identificador=" + identificador + ", client=" + client.getNom() + ", embarcacio=" + embarcacio + ", estat=" + estat + ", preu=" + preu + ", tipusOperacio=" + tipusOperacio + '}';
     }
 }

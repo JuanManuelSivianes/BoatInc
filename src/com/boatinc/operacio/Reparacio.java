@@ -16,6 +16,7 @@ import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Reparador;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -24,7 +25,7 @@ import java.util.Date;
 public class Reparacio extends Operacio {
 
     private ArrayList<Reparador> empleats;
-    private ArrayList<Comentari> comentarisReparacio;
+    private HashMap<Integer,Comentari> comentarisReparacio;
     private String lloc;
     private Date dataInici;
     private Date dataPrevista;
@@ -39,7 +40,7 @@ public class Reparacio extends Operacio {
             throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
         }
         this.descripcioAveria = descripcioAveria;
-        this.comentarisReparacio = new ArrayList<>();
+        this.comentarisReparacio = new HashMap<>();
         this.empleats = new ArrayList<>();
         if (embarcacio.getProposit() != Proposit.REPARACIO || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
@@ -86,7 +87,7 @@ public class Reparacio extends Operacio {
         this.descripcioAveria = descripcioAveria;
     }
 
-    public ArrayList<Comentari> getComentarisReparacio() {
+    public HashMap<Integer,Comentari> getComentarisReparacio() {
         return comentarisReparacio;
     }
 
@@ -128,10 +129,10 @@ public class Reparacio extends Operacio {
     Si no lo esta, lo añade a la lista.
      */
     public void afegirComentari(Comentari comentari) throws NoAfegitException {
-        if (comentarisReparacio.contains(comentari)) {
+        if (comentarisReparacio.containsKey(comentari.getIdentificador())) {
             throw new NoAfegitException("Ja existeix aquest comentari.");
         } else {
-            comentarisReparacio.add(comentari);
+            comentarisReparacio.put(comentari.getIdentificador(), comentari);
         }
     }
 
@@ -141,10 +142,10 @@ public class Reparacio extends Operacio {
     Si no esta en la lista, lanza una excepcion y no lo elimina.
      */
     public void eliminarComentari(int identificador) throws NoEliminatException {
-        for (Comentari i : comentarisReparacio) {
-            if (i.getIdentificador() == identificador) {
-                comentarisReparacio.remove(i);
-            }
+        if(comentarisReparacio.containsKey(identificador)){
+            comentarisReparacio.remove(identificador);
+        }else{
+            throw new NoEliminatException("No s'ha pogut eliminar el comentari.");
         }
     }
     //FUNCIONA.

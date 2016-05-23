@@ -29,8 +29,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,7 +52,7 @@ public class Main {
             System.out.println(mare.getLlistaEmbarcacions());
             System.out.println(mare.tornaModelsVenta());
             System.out.println(mare.tornaModelsVentaTipus("Iot"));
-            System.out.println(mare.tornaModelsVentaPreu(100, 200));  
+            System.out.println(mare.tornaModelsVentaPreu(100, 200));
         }catch(NoTrovatException e){
             System.out.println(e.getMessage());
         }
