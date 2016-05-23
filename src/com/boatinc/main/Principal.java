@@ -39,36 +39,37 @@ public class Principal {
 
         try {
             /*EMPRESA*/
-            Empresa boatsINC = new Empresa();
+            Empresa boatsINC = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
 
             /*CLIENTE*/
             TargetaCredit tarjeta1 = new TargetaCredit(01, 02, 2018, 123);
             CompteCorrent compte1 = new CompteCorrent("123456789");
-            Client toni = new Client("Toni", "Dalmau", Document.DNI, "11111111A", "C/ mar nº 1", 600000001, "tonidalmau@gmail.com", tarjeta1, compte1);
-            Client alfonso = new Client("Alfonso", "Perez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "alfonsoperez@gmail.com", tarjeta1, compte1);
-            Client catalina = new Client("Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com", tarjeta1, compte1);
+            Client toni = new Client(boatsINC, "Toni", "Dalmau", Document.DNI, "11111111A", "C/ mar nº 1", 600000001, "tonidalmau@gmail.com", tarjeta1, compte1);
+            Client alfonso = new Client(boatsINC, "Alfonso", "Perez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "alfonsoperez@gmail.com", tarjeta1, compte1);
+            Client catalina = new Client(boatsINC, "Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com", tarjeta1, compte1);
 
             /*COMERCIALS*/
-            Comercial paco = new Comercial("Paco", "Jemez", Document.DNI, "11111111D", "C/ mar nº 4", 600000004, "pacojemez@gmail.com", 1000f, "01/01/2016", 10);
+            Comercial paco = new Comercial(boatsINC, "Paco", "Jemez", Document.DNI, "11111111D", "C/ mar nº 4", 600000004, "pacojemez@gmail.com", 1000f, "01/01/2016", 10);
+            Comercial luis = new Comercial(boatsINC, "Luis", "Bajon", Document.DNI, "11111111I", "C/ mar nº 9", 600000009, "luisbajon@gmail.com", 1000f, "02/01/2016", 10);
 
             /*REPARADORS*/
-            Reparador jose = new Reparador("Jose", "delafuente", Document.DNI, "11111111E", "C/ mar nº 5", 600000005, "josedelafuente@gmail.com", 600f, "02/05/2016", FUSTERIA, VELES);
-            Reparador juan = new Reparador("Juan", "perico", Document.DNI, "11111111F", "C/ mar nº 6", 600000006, "juanperico@gmail.com", 900f, "05/05/2014", FONTANERIA, ELECTRICITAT, FIBRA_DE_VIDRE);
+            Reparador jose = new Reparador(boatsINC, "Jose", "delafuente", Document.DNI, "11111111E", "C/ mar nº 5", 600000005, "josedelafuente@gmail.com", 600f, "02/05/2016", FUSTERIA, VELES);
+            Reparador juan = new Reparador(boatsINC, "Juan", "perico", Document.DNI, "11111111F", "C/ mar nº 6", 600000006, "juanperico@gmail.com", 900f, "05/05/2014", FONTANERIA, ELECTRICITAT, FIBRA_DE_VIDRE);
 
             /*PATRONS*/
-            Patro bernat = new Patro("Bernat", "Sabater", Document.DNI, "11111111G", "C/ mar nº 7", 600000007, "bernatsabater@gmail.com", "Patron de 1ª", 250f);
-            Patro jenny = new Patro("Jenny", "Valencia", Document.DNI, "11111111H", "C/ mar nº 8", 600000008, "jenyvalencia@gmail.com", "Patron de 2ª", 150f);
+            Patro bernat = new Patro(boatsINC, "Bernat", "Sabater", Document.DNI, "11111111G", "C/ mar nº 7", 600000007, "bernatsabater@gmail.com", "Patron de 1ª", 250f);
+            Patro jenny = new Patro(boatsINC, "Jenny", "Valencia", Document.DNI, "11111111H", "C/ mar nº 8", 600000008, "jenyvalencia@gmail.com", "Patron de 2ª", 150f);
 
             /*EMBARCACIONS DISPONIBLES*/
-            Veler veler1 = new Veler(2, 4, 1, 000001, "AAA01", "Concordia", "AIR", 10, 20, 5, Proposit.LLOGUER, 50000, true);
-            Veler veler2 = new Veler(5, 2, 8, 000001, "AAA02", "Luitsu", "FIRE", 10, 20, 5, Proposit.LLOGUER, 50000, true);
-            Iot iot1 = new Iot(2, 100, 200, true, 000002, "AAA02", "Suiter", "LUXUS", 20, 10, 20, Proposit.REPARACIO, 80000, true);
-            Motor motor1 = new Motor(350, 2, true, 000003, "AAA03", "BMW", "A450", 10, 2, 3, Proposit.VENTA, 30000, true);
+            Veler veler1 = new Veler(boatsINC, 2, 4, 1, 000001, "AAA01", "Concordia", "AIR", 10, 20, 5, Proposit.LLOGUER, 50000, true);
+            Veler veler2 = new Veler(boatsINC, 5, 2, 8, 000002, "AAA02", "Luitsu", "FIRE", 10, 20, 5, Proposit.LLOGUER, 50000, true);
+            Iot iot1 = new Iot(boatsINC, 2, 100, 200, true, 000003, "AAA02", "Suiter", "LUXUS", 20, 10, 20, Proposit.REPARACIO, 80000, true);
+            Motor motor1 = new Motor(boatsINC, 350, 2, true, 000005, "AAA03", "BMW", "A450", 10, 2, 3, Proposit.VENTA, 30000, true);
 
             /*EMBARCACIONS NO DISPONIBLES*/
-            Veler veler3 = new Veler(2, 4, 1, 000001, "AAA04", "Concordia", "AIR2", 10, 20, 5, Proposit.LLOGUER, 50000, false);
-            Iot iot2 = new Iot(2, 100, 200, true, 000002, "AAA05", "Suiter", "LUXUS2", 20, 10, 20, Proposit.REPARACIO, 80000, false);
-            Motor motor2 = new Motor(350, 2, true, 000003, "AAA06", "BMW", "A4502", 10, 2, 3, Proposit.VENTA, 30000, false);
+            //Veler veler3 = new Veler(boatsINC, 2, 4, 1, 000001, "AAA04", "Concordia", "AIR2", 10, 20, 5, Proposit.LLOGUER, 50000, false);
+            Iot iot2 = new Iot(boatsINC, 2, 100, 200, true, 000004, "AAA05", "Suiter", "LUXUS2", 20, 10, 20, Proposit.REPARACIO, 80000, false);
+            Motor motor2 = new Motor(boatsINC, 350, 2, true, 000006, "AAA06", "BMW", "A4502", 10, 2, 3, Proposit.VENTA, 30000, false);
 
             /*OPERACIONS*/
             //Lloguer lloguer1 = new Lloguer(boatsINC, alfonso, veler1, Estat.INICIADA, "19/05/2016", "27/05/2016", 100f);
@@ -138,7 +139,7 @@ public class Principal {
             Comentari comentari2 = new Comentari("25/05/2016", juan, "Empiezo a cambiar los filtros");
             reparacio1.afegirComentari(comentari1);
             reparacio1.afegirEmpleat(jose);
-            
+
             System.out.println("-- PROVES GETTERS --");
             System.out.println("-> reparacio1.getEmpleats(): " + reparacio1.getEmpleats());
             System.out.println("-> reparacio1.getComentarisReparacio(): " + reparacio1.getComentarisReparacio());
@@ -151,55 +152,74 @@ public class Principal {
             System.out.println("Lloc de la operacio: " + reparacio1.getLloc() + "\nEl camviam per Oficina amb reparacio1.setLloc(\"Oficina\")");
             reparacio1.setLloc("Oficina");
             System.out.println("Lloc de la operacio després del canvi: " + reparacio1.getLloc());
-            
+
             System.out.println("\nData inicial de la operacio: " + reparacio1.getDataInici() + "\nLa canviam per \"25/05/2016\" amb reparacio1.setDataInici(\"25/05/2016\")");
             reparacio1.setDataInici("25/05/2016");
             System.out.println("Data inicial de la operacio després del canvi: " + reparacio1.getDataInici());
-            
+
             System.out.println("\nData prevista de la operacio: " + reparacio1.getDataPrevista() + "\nLa canviam per \"02/06/2016\" amb reparacio1.setDataPrevista(\"02/06/2016\")");
             reparacio1.setDataPrevista("02/06/2016");
             System.out.println("Data prevista de la operacio després del canvi: " + reparacio1.getDataPrevista());
-            
+
             System.out.println("\nDescripcio de la operacio: " + reparacio1.getDescripcioAveria() + "\nLa canviam per \"Limpieza de filtros\" amb reparacio1.setDescripcioAveria(\"Limpieza de filtros\")");
             reparacio1.setDescripcioAveria("Limpieza de filtros");
             System.out.println("Descripcio de la operacio després del canvi: " + reparacio1.getDescripcioAveria());
-            
+
             System.out.println("\n\n -- PROVES METODES --");
             System.out.println("Afegim un nou treballador a la reparacio amb reparacio1.afegirEmpleat(juan)");
             reparacio1.afegirEmpleat(juan);
-            System.out.println("Comprovam que s'ha afegit: "+reparacio1.getEmpleats());
-            
+            System.out.println("Comprovam que s'ha afegit: " + reparacio1.getEmpleats());
+
             System.out.println("Que passaria si afegim un altre cop el mateix treballador ? Ens retornaria un NoAfegitException el qual imprimirem el missatge:");
-            try{
+            try {
                 reparacio1.afegirEmpleat(juan);
-            }catch(NoAfegitException e){
+            } catch (NoAfegitException e) {
                 System.out.println(e.getMessage());
             }
-            
+
             System.out.println("\nAra eliminarem el treballador que tenia pasant l'objecte d'aquest");
             reparacio1.eliminarEmpleat(juan);
             System.out.println(reparacio1.getEmpleats());
             System.out.println("S'ha eliminat correctament, pero que passaria si intentam eliminar un treballador que no te ? Ens avisaria de que el treballador introduït no coincideix amb cap de les que té la reparacio:");
-            try{
+            try {
                 reparacio1.eliminarEmpleat(juan);
-            }catch(NoEliminatException e){
+            } catch (NoEliminatException e) {
                 System.out.println(e.getMessage());
             }
-            
+
             System.out.println("\nAfegim un nou comentari a la reparacio amb reparacio1.afegirComentari(comentari2)");
             reparacio1.afegirComentari(comentari2);
-            System.out.println("Comprovam que s'ha afegit: "+reparacio1.getComentarisReparacio());
+            System.out.println("Comprovam que s'ha afegit: " + reparacio1.getComentarisReparacio());
             System.out.println("Que passaria si afegim un altre cop el mateix comentari ? Ens retornaria un NoAfegitException el qual imprimirem el missatge:");
-            try{
+            try {
                 reparacio1.afegirComentari(comentari2);
-            }catch(NoAfegitException e){
+            } catch (NoAfegitException e) {
                 System.out.println(e.getMessage());
             }
             System.out.println("\nAra eliminarem un comentari que tenia pasant l'identificador d'aquest");
             System.out.println(reparacio1.getComentarisReparacio());
-            reparacio1.eliminarComentari(2);
-            System.out.println(reparacio1.getComentarisReparacio());
-            
+            //reparacio1.eliminarComentari(2);
+            //System.out.println(reparacio1.getComentarisReparacio());
+
+            System.out.println("\nAra retornarem el nom dels empleats que estan fent feina a la operacio amb reparacio1.retornaEmpleats()");
+            System.out.println(reparacio1.retornaEmpleats());
+
+            System.out.println("\n\n##########################" + "\n## PROVES CLASSE VENDA  ##" + "\n##########################\n");
+            System.out.println("\nAquí farem les proves de la part especifica de la classe Venda:");
+            Venda venta1 = new Venda(boatsINC, alfonso, motor1, Estat.FINALITZADA, paco, "22/05/2016", 30000f);
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> venta1.getComercial(): " + venta1.getComercial());
+            System.out.println("-> venta1.getDataVenta(): " + venta1.getDataVenta());
+
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("Comercial de la operacio: " + venta1.getComercial() + "\nEl camviam per el comercial Luis amb venta1.setComercial(luis);");
+            venta1.setComercial(luis);
+            System.out.println("Comercial de la operacio després del canvi: " + venta1.getComercial());
+
+            System.out.println("\nData de la operacio: " + venta1.getDataVenta() + "\nLa canviam per \"31/05/2016\" amb venta1.setDataVenta(\"22/05/2016\");");
+            venta1.setDataVenta("31/05/2016");
+            System.out.println("Data de la operacio després del canvi: " + venta1.getDataVenta());
+
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
         }
