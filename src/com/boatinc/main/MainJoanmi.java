@@ -94,11 +94,12 @@ public class MainJoanmi {
         
     }
     
-    public static void provesPersona(){
+    public static void provesPersona() throws NoAfegitException{
+        Empresa empresa = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
         System.out.println("############################" + "\n## PROVES CLASSE PERSONA  ##" + "\n############################\n");
         
         System.out.println("En aquest cas agafarem un patró ja que no podem crear una persona perque la classe es abstracta i farem ús dels metodes de persona: \n");
-        Patro patro1 = new Patro("Josep", "Ferriol Crestatx", Document.DNI, "3344665547C", "C/ Colomi, planta baixa, Puigpunyent", 902202122, "josepet@gmail.com", "Patró de Iot", 200f);
+        Patro patro1 = new Patro(empresa, "Josep", "Ferriol Crestatx", Document.DNI, "3344665547C", "C/ Colomi, planta baixa, Puigpunyent", 902202122, "josepet@gmail.com", "Patró de Iot", 200f);
         
         System.out.println("-- PROVES GETTERS --");
         System.out.println("-> patro1.getNom(): "+patro1.getNom());
@@ -159,7 +160,7 @@ public class MainJoanmi {
         TargetaCredit tarj2 = new TargetaCredit(3333444422221111L, 8, 17, 114);
         
         try {
-            Client client1 = new Client("Toni", "Pons Van", Document.DNI, "11111111E", "C/ mar nº2, Alcudia", 600252421, "toni@gmail.com",tarj1);
+            Client client1 = new Client(empresa, "Toni", "Pons Van", Document.DNI, "11111111E", "C/ mar nº2, Alcudia", 600252421, "toni@gmail.com",tarj1);
             System.out.println("\nEn aquest cas el Client no te cap atribut a destacar, nomes te un HashMap en el qual guarda els seus metodes de pagament.");
             System.out.println("-- PROVES GETTERS --");
             System.out.println("-> client1.getFormesPagament(): "+client1.getFormesPagament());
@@ -190,7 +191,7 @@ public class MainJoanmi {
             }
             
             
-            Empleat empleat1 = new Empleat("Carlos", "Punset", Document.DNI, "78943526F", "C/ Pascual, nº 2, 4b, Inca", 642554411, "Carlos@gmail.com", 1240f, "20/04/2000");
+            Empleat empleat1 = new Empleat(empresa, "Carlos", "Punset", Document.DNI, "78943526F", "C/ Pascual, nº 2, 4b, Inca", 642554411, "Carlos@gmail.com", 1240f, "20/04/2000");
             System.out.println("\n\n############################" + "\n## PROVES CLASSE EMPLEAT  ##" + "\n############################\n");
             
             System.out.println("-- PROVES GETTERS --");
@@ -222,12 +223,11 @@ public class MainJoanmi {
             System.out.println("Si feim empleat1.tornaNomina() ens retornarà un String amb la nòmina de l'empleat en format JSON: ");
             System.out.println(empleat1.tornaNomina());
             
-            Comercial comercial1 = new Comercial("David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 300f, "02/04/1999", 7);
+            Comercial comercial1 = new Comercial(empresa, "David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 300f, "02/04/1999", 7);
             Iot iot1 = new Iot(4, 250, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.VENTA, 20000, true);
             Iot iot2 = new Iot(4, 300, 400, true, 4321, "7799x", "Volvo", "v34", 2, 15, 1, Proposit.VENTA, 40000, true);
-            Empresa aqua = new Empresa();
-            Venda venda1 = new Venda(aqua, client1, iot1, Estat.FINALITZADA, comercial1, "12/04/2000", iot1.getPreu());
-            Venda venda2 = new Venda(aqua, client1, iot2, Estat.FINALITZADA, comercial1, "12/04/2000", iot2.getPreu());
+            Venda venda1 = new Venda(empresa, client1, iot1, Estat.FINALITZADA, comercial1, "12/04/2000", iot1.getPreu());
+            Venda venda2 = new Venda(empresa, client1, iot2, Estat.FINALITZADA, comercial1, "12/04/2000", iot2.getPreu());
             
             System.out.println("\n\n##############################" + "\n## PROVES CLASSE COMERCIAL  ##" + "\n##############################\n");
             
@@ -269,7 +269,7 @@ public class MainJoanmi {
             }
             
             
-            Reparador reparador1 = new Reparador("Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
+            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
             System.out.println("\n\n##############################" + "\n## PROVES CLASSE REPARADOR  ##" + "\n##############################\n");
             
             System.out.println("-- PROVES GETTERS --");
@@ -305,12 +305,6 @@ public class MainJoanmi {
         } catch (NoAfegitException | NoEliminatException | DataException ex) {
             System.out.println(ex.getMessage());
         }
-        
-
-        
-        
-        
-        
     }
     
 }
