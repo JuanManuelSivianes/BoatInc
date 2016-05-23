@@ -11,6 +11,7 @@ import com.boatinc.embarcacio.Proposit;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.exceptions.NoTrovatException;
 import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Operacio;
@@ -183,51 +184,66 @@ public class Empresa implements Serializable{
         }
     }
     
-    public ArrayList<String> tornaModelsVenta(){
+    public ArrayList<String> tornaModelsVenta() throws NoTrovatException{
         ArrayList<String> modelsVenta = new ArrayList<>();
         for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
             if(x.getValue().getProposit().equals(Proposit.VENTA)){
                 modelsVenta.add(x.getValue().getModel());
             }
         }
+        if(modelsVenta.isEmpty()){
+            throw new NoTrovatException("No s'ha trovat cap model a la venta");
+        }
         return modelsVenta;
     }
     
-    public ArrayList<String> tornaModelsVentaTipus(String tipusEmbarcacio){
+    public ArrayList<String> tornaModelsVentaTipus(String tipusEmbarcacio) throws NoTrovatException{
         ArrayList<String> modelsTipus = new ArrayList<>();
         for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
             if(x.getValue().getTipusEmbarcacio().equals(tipusEmbarcacio) && x.getValue().getProposit().equals(Proposit.VENTA)){
                 modelsTipus.add(x.getValue().getModel());
             }
         }
+        if(modelsTipus.isEmpty()){
+            throw new NoTrovatException("No s'ha trovat cap model del tipus "+tipusEmbarcacio+".");
+        }
         return modelsTipus;                
     }
     
-    public ArrayList<String> tornaModelsVentaPreu(float preuMinim, float preuMaxim){
+    public ArrayList<String> tornaModelsVentaPreu(float preuMinim, float preuMaxim) throws NoTrovatException{
         ArrayList<String> modelsTipusPreu = new ArrayList<>();
         for(Entry<Integer, Embarcacio> x: llistaEmbarcacions.entrySet()){
             if((x.getValue().getProposit().equals(Proposit.VENTA)) && (x.getValue().getPreu()>=preuMinim) && (x.getValue().getPreu()<=preuMaxim)){
                 modelsTipusPreu.add(x.getValue().getModel());
             }
         }
+        if(modelsTipusPreu.isEmpty()){
+            throw new NoTrovatException("No s'ha trovat cap model entre els preus "+preuMinim+" i "+preuMaxim);
+        }
         return modelsTipusPreu;        
     }
     
-    public ArrayList<Reparacio> tornaReparacionsEstat(Estat estat){
+    public ArrayList<Reparacio> tornaReparacionsEstat(Estat estat) throws NoTrovatException{
         ArrayList<Reparacio> llistaReparacions = new ArrayList<>();
         for(Entry<Integer,Operacio> x: llistaOperacions.entrySet()){
             if(x.getValue().getTipusOperacio().equals("Reparacio") && x.getValue().getEstat().equals(estat)){
                 llistaReparacions.add((Reparacio)x.getValue());
             }
         }
+        if(llistaReparacions.isEmpty()){
+            throw new NoTrovatException("No tenim cap reparació amb l'estat: "+estat);
+        }
         return llistaReparacions;
     }
     
-    public HashMap<Integer,Reparacio> tornaHistoricReparacions(Embarcacio embarcacio){
+    public HashMap<Integer,Reparacio> tornaHistoricReparacions(Embarcacio embarcacio) throws NoTrovatException{
+        if(embarcacio.getHistoricReparacions().isEmpty()){
+            throw new NoTrovatException("Aquesta embarcacio no ha sofert cap reparació.");
+        }
         return embarcacio.getHistoricReparacions();
     }
     
-    public HashMap<Integer,Embarcacio> tornaLloguersDisponibles(String dataPrimera, String dataFinal) throws DataException{
+    public HashMap<Integer,Embarcacio> tornaLloguersDisponibles(String dataPrimera, String dataFinal) throws DataException, NoTrovatException{
         HashMap<Integer,Embarcacio> llistaEmbarcacionsDisponibles = new HashMap<>();
         ArrayList<Lloguer> llistaLloguers = new ArrayList<>();
         ArrayList<Embarcacio> llistaEmbarcacionsOcupades = new ArrayList<>();
@@ -257,6 +273,10 @@ public class Empresa implements Serializable{
             if(llistaEmbarcacionsOcupades.contains(x.getValue())==false){
                 llistaEmbarcacionsDisponibles.put(x.getValue().getNumeroSerie(), x.getValue());
             }
+        }
+        
+        if(llistaEmbarcacionsDisponibles.isEmpty()){
+            throw new NoTrovatException("No tenim lloguers disponibles en aquest moment.");
         }
         
         return llistaEmbarcacionsDisponibles;

@@ -8,6 +8,7 @@ import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
+import com.boatinc.exceptions.NoTrovatException;
 import com.boatinc.operacio.Estat;
 import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Client;
@@ -46,13 +47,18 @@ public class Main {
         
 
         mare=(Empresa)recuperaDades("src/dadesOB.dat");
-        System.out.println(mare.getLlistaClients());
-        System.out.println(mare.getLlistaEmpleat());
-        System.out.println(mare.getLlistaPatrons());
-        System.out.println(mare.getLlistaEmbarcacions());
-        System.out.println(mare.tornaModelsVenta());
-        System.out.println(mare.tornaModelsVentaTipus("Iot"));
-        System.out.println(mare.tornaModelsVentaPreu(100, 200000));
+        try{
+            System.out.println(mare.getLlistaClients());
+            System.out.println(mare.getLlistaEmpleat());
+            System.out.println(mare.getLlistaPatrons());
+            System.out.println(mare.getLlistaEmbarcacions());
+            System.out.println(mare.tornaModelsVenta());
+            System.out.println(mare.tornaModelsVentaTipus("Iot"));
+            System.out.println(mare.tornaModelsVentaPreu(100, 200));  
+        }catch(NoTrovatException e){
+            System.out.println(e.getMessage());
+        }
+
 
 
     }
