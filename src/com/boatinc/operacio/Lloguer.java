@@ -20,6 +20,7 @@ import java.util.Date;
  * @author Arsenik
  */
 public class Lloguer extends Operacio {
+
     private Date dataInicial;
     private Date dataFinal;
     private Patro patro;
@@ -29,36 +30,40 @@ public class Lloguer extends Operacio {
         super(client, embarcacio, estat, preu);
         this.dataInicial = Eina.creaDate(dataInicial);
         this.dataFinal = Eina.creaDate(dataFinal);
-        if(embarcacio.getProposit()!=Proposit.LLOGUER || embarcacio.isDisponibilitat()==false){
+        if (embarcacio.getProposit() != Proposit.LLOGUER || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
         }
-        if(this.dataInicial.after(this.dataFinal)){
+        if (this.dataInicial.after(this.dataFinal)) {
             throw new DataException("La data d'inici d'un lloguer no pot ser posterior a la data final.");
         }
-        
-        this.preuTotal=embarcacio.getPreu();
+
+        this.preuTotal = embarcacio.getPreu();
         empresa.afegirOperacions(this);
     }
-    public Lloguer(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal,Patro patro, float preu) throws DataException, NoAfegitException {
-        this(empresa,client,embarcacio,estat,dataInicial,dataFinal,preu);
-        this.patro=patro;
-        this.preuTotal=embarcacio.getPreu()+patro.getCost();
+
+    public Lloguer(Empresa empresa, Client client, Embarcacio embarcacio, Estat estat, String dataInicial, String dataFinal, Patro patro, float preu) throws DataException, NoAfegitException {
+        this(empresa, client, embarcacio, estat, dataInicial, dataFinal, preu);
+        this.patro = patro;
+        this.preuTotal =this.getPreu()+ patro.getCost();
     }
 
     public Date getDataInicial() {
         return dataInicial;
     }
 
-    public void setDataInicial(Date dataInicial) {
-        this.dataInicial = dataInicial;
+    public void setDataInicial(String dataInicial) throws DataException {
+        this.dataInicial = Eina.creaDate(dataInicial);
+        if (this.dataInicial.after(this.dataFinal)) {
+            throw new DataException("La data d'inici d'un lloguer no pot ser posterior a la data final.");
+        }
     }
 
     public Date getDataFinal() {
         return dataFinal;
     }
 
-    public void setDataFinal(Date dataFinal) {
-        this.dataFinal = dataFinal;
+    public void setDataFinal(String dataFinal) throws DataException {
+        this.dataFinal = Eina.creaDate(dataFinal);
     }
 
     public Patro getPatro() {
@@ -79,11 +84,7 @@ public class Lloguer extends Operacio {
 
     @Override
     public String toString() {
-        return super.toString()+"Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", patro=" + patro + ", preuTotal=" + preuTotal + '}';
+        return super.toString() + "Lloguer{" + "dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", patro=" + patro + ", preuTotal=" + preuTotal + '}';
     }
 
-    
-    
-    
-    
 }

@@ -27,7 +27,7 @@ public abstract class Operacio {
         this.client = client;
         this.embarcacio = embarcacio;
         this.estat = estat;
-        this.preu=preu;
+        this.preu=preu+embarcacio.getPreu();
         this.tipusOperacio=this.getClass().getName().substring(21);
         contador++;
     }
@@ -70,10 +70,6 @@ public abstract class Operacio {
 
     public String getTipusOperacio() {
         return tipusOperacio;
-    }
-
-    public void setTipusOperacio(String tipusOperacio) {
-        this.tipusOperacio = tipusOperacio;
     }
 
     @Override

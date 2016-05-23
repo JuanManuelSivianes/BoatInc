@@ -16,7 +16,6 @@ import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Reparador;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 
 /**
  *
@@ -60,12 +59,23 @@ public class Reparacio extends Operacio {
         this.lloc = lloc;
     }
 
+    public Date getDataInici() {
+        return dataInici;
+    }
+
+    public void setDataInici(String dataInici) throws DataException {
+        this.dataInici = Eina.creaDate(dataInici);
+        if (this.dataInici.after(this.dataPrevista)) {
+            throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
+        }
+    }
+
     public Date getDataPrevista() {
         return dataPrevista;
     }
 
-    public void setDataPrevista(Date dataPrevista) {
-        this.dataPrevista = dataPrevista;
+    public void setDataPrevista(String dataPrevista) throws DataException {
+        this.dataPrevista = Eina.creaDate(dataPrevista);
     }
 
     public String getDescripcioAveria() {
@@ -131,17 +141,14 @@ public class Reparacio extends Operacio {
     Si no esta en la lista, lanza una excepcion y no lo elimina.
      */
     public void eliminarComentari(int identificador) throws NoEliminatException {
-        Iterator<Comentari> it = comentarisReparacio.iterator();
-        while (it.hasNext()) {
-            if (it.next().getIdentificador() == identificador) {
-                it.remove();
-            } else {
-                throw new NoEliminatException("No s'ha pogut eliminar el comentari.");
+        for (Comentari i : comentarisReparacio) {
+            if (i.getIdentificador() == identificador) {
+                comentarisReparacio.remove(i);
             }
         }
     }
-
     //FUNCIONA.
+
     /*
     Recorre la lista de empleados de la repacion y devuelve un string concatenado.
      */
