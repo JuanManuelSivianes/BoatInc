@@ -77,8 +77,8 @@ public class MainJoanmi {
             Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA,Habilitat.FONTANERIA);
             Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FONTANERIA,Habilitat.MECANICA);
             
-            Iot iot1 = new Iot(4,25, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
-            Veler concordia = new Veler(5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
+            Iot iot1 = new Iot(empresa,4,25, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.LLOGUER, 20000, true);
+            Veler concordia = new Veler(empresa,5, 4, 2, 00001, "BNX105", "Goleto", "Turca", 10, 50, 20, Proposit.REPARACIO, 23.215f,true);
             
 //            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
 //            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
@@ -224,8 +224,8 @@ public class MainJoanmi {
             System.out.println(empleat1.tornaNomina());
             
             Comercial comercial1 = new Comercial(empresa, "David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 300f, "02/04/1999", 7);
-            Iot iot1 = new Iot(4, 250, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.VENTA, 20000, true);
-            Iot iot2 = new Iot(4, 300, 400, true, 4321, "7799x", "Volvo", "v34", 2, 15, 1, Proposit.VENTA, 40000, true);
+            Iot iot1 = new Iot(empresa, 4, 250, 200, true, 1234, "4444x", "Yamaha", "y23", 2, 10, 1, Proposit.VENTA, 20000, true);
+            Iot iot2 = new Iot(empresa, 4, 300, 400, true, 4321, "7799x", "Volvo", "v34", 2, 15, 1, Proposit.VENTA, 40000, true);
             Venda venda1 = new Venda(empresa, client1, iot1, Estat.FINALITZADA, comercial1, "12/04/2000", iot1.getPreu());
             Venda venda2 = new Venda(empresa, client1, iot2, Estat.FINALITZADA, comercial1, "12/04/2000", iot2.getPreu());
             
