@@ -28,13 +28,21 @@ import java.util.Map.Entry;
  * @author Arsenik
  */
 public class Empresa {
+    private String nom;
+    private String cif;
+    private String adreça;
+    private int telefon;
     private HashMap<Integer,Embarcacio> llistaEmbarcacions;
     private HashMap<String,Client> llistaClients;
     private HashMap<String,Empleat> llistaEmpleat;
     private HashMap<String,Patro> llistaPatrons;
     private HashMap<Integer,Operacio> llistaOperacions;
 
-    public Empresa() {
+    public Empresa(String nom, String cif, String adreça, int telefon) {
+        this.nom=nom;
+        this.cif=cif;
+        this.adreça=adreça;
+        this.telefon=telefon;
         this.llistaEmbarcacions = new HashMap<>();
         this.llistaClients = new HashMap<>();
         this.llistaEmpleat = new HashMap<>();
@@ -61,7 +69,39 @@ public class Empresa {
     public HashMap<Integer, Operacio> getLlistaOperacions() {
         return llistaOperacions;
     }
-    
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getCif() {
+        return cif;
+    }
+
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
+
+    public String getAdreça() {
+        return adreça;
+    }
+
+    public void setAdreça(String adreça) {
+        this.adreça = adreça;
+    }
+
+    public int getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(int telefon) {
+        this.telefon = telefon;
+    }
+
     public void afegirOperacions(Operacio operacio) throws NoAfegitException{
         if(llistaOperacions.containsKey(operacio.getIdentificador())){
             throw new NoAfegitException("No s'ha pogut afegir la operacio a la empresa.");

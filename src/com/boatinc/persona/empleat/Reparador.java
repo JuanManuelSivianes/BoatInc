@@ -5,6 +5,7 @@
  */
 package com.boatinc.persona.empleat;
 
+import com.boatinc.empresa.Empresa;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class Reparador extends Empleat{
     private ArrayList<Habilitat> habilitats;
     
-    public Reparador(String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, Habilitat...habilitatsParam) throws DataException, NoAfegitException{
-        super(nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
+    public Reparador(Empresa empresa, String nom, String cognom, Document document, String numeroDocument, String adreça, int telefon, String email, float sou, String dataContracte, Habilitat...habilitatsParam) throws DataException, NoAfegitException{
+        super(empresa,nom,cognom,document,numeroDocument,adreça,telefon,email,sou,dataContracte);
         habilitats = new ArrayList<>();
         for(Habilitat x: habilitatsParam){
             this.afegirHabilitat(x);
