@@ -234,6 +234,7 @@ public class XaviMain {
         motor1.setCapacitatDeposit(150);
         System.out.println("Capacitat del deposit després del canvi: "+motor1.getCapacitatDeposit());
         
+        
     }
     
 }
