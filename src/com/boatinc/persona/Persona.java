@@ -5,11 +5,13 @@
  */
 package com.boatinc.persona;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Joanmi
  */
-public class Persona {
+public class Persona implements Serializable{
     private String nom;
     private String cognom;
     private Document document;

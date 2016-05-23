@@ -18,6 +18,7 @@ import com.boatinc.operacio.Reparacio;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Patro;
 import com.boatinc.persona.empleat.Empleat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ import java.util.Map.Entry;
  *
  * @author Arsenik
  */
-public class Empresa {
+public class Empresa implements Serializable{
     private String nom;
     private String cif;
     private String adreça;
