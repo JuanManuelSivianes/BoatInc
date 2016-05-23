@@ -5,6 +5,7 @@
  */
 package com.boatinc.main;
 
+import com.boatinc.eines.Eina;
 import com.boatinc.embarcacio.Iot;
 import com.boatinc.embarcacio.Proposit;
 import com.boatinc.embarcacio.Veler;
@@ -80,8 +81,7 @@ public class MainJoanmi {
 //            Venda venda1 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
 //            Venda venda2 = new Venda(client1, iot1, Estat.FINALITZADA, comercial1, "20/04/2016", iot1.getPreuVenda());
 
-            System.out.println(reparador1.tornaNomina());
-            System.out.println(comercial1.tornaNomina());
+
             
 
         }catch(NoAfegitException | DataException e){
