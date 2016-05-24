@@ -152,7 +152,7 @@ public abstract class Embarcacio implements Informacio, Serializable{
     
     public void afegirReparacio(Reparacio reparacio) throws NoAfegitException{
         if(historicReparacions.containsKey(reparacio.getIdentificador())){
-            throw new NoAfegitException("Aquesta embaracació ja té aquesta reparació dins el seur històric.");
+            throw new NoAfegitException("Aquesta embarcació ja té aquesta reparació dins el seu històric.");
         }else{
             historicReparacions.put(reparacio.getIdentificador(), reparacio);
         }

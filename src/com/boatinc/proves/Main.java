@@ -9,7 +9,9 @@ import com.boatinc.exceptions.DataException;
 import com.boatinc.exceptions.NoAfegitException;
 import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.exceptions.NoTrovatException;
+import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Reparacio;
 import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Client;
 import com.boatinc.persona.Document;
@@ -130,6 +132,13 @@ public class Main {
             Motor motor7 = new Motor(empresa, 200, 150, true, 33222233, "2461v", "MERCURY", "HEAVY DUTY 470", 2, 5, 1, Proposit.VENTA, 9000, true);
             Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.VENTA, 5000, true);
             Motor motor9 = new Motor(empresa, 600, 300, true, 46339900, "6984q", "ASIS", "8M", 2, 8, 1, Proposit.VENTA, 20000, true);
+            
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot5, Estat.PENDENT, 1000);  
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client2, iot2, Estat.PENDENT, 2000);
+            
+            Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Motor romput");
+            Comentari comentari2 = new Comentari("19/05/2016", reparador2, "Reparació realitzada");
+
             
         }catch(NoAfegitException | DataException ex){
             System.out.println(ex.getMessage());
