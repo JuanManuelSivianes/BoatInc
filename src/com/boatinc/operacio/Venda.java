@@ -47,13 +47,13 @@ public class Venda extends Operacio {
         return dataVenta;
     }
 
-    public void setDataVenta(Date dataVenta) {
-        this.dataVenta = dataVenta;
+    public void setDataVenta(String dataVenta) throws DataException {
+        this.dataVenta = Eina.creaDate(dataVenta);
     }
 
     @Override
     public String toString() {
-        return "ID Operacio: "+getIdentificador()+", Comercial: "+ comercial.getNom()+" "+comercial.getCognom() + ", Data de venda: " + dataVenta+".";
+        return "ID Operacio: " + getIdentificador() + ", Comercial: " + comercial.getNom() + " " + comercial.getCognom() + ", Data de venda: " + dataVenta + ".";
     }
 
 }

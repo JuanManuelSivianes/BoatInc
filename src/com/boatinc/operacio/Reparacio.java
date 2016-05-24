@@ -16,7 +16,7 @@ import com.boatinc.persona.Client;
 import com.boatinc.persona.empleat.Reparador;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.HashMap;
 
 /**
  *
@@ -25,7 +25,7 @@ import java.util.Iterator;
 public class Reparacio extends Operacio {
 
     private ArrayList<Reparador> empleats;
-    private ArrayList<Comentari> comentarisReparacio;
+    private HashMap<Integer,Comentari> comentarisReparacio;
     private String lloc;
     private Date dataInici;
     private Date dataPrevista;
@@ -40,7 +40,7 @@ public class Reparacio extends Operacio {
             throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
         }
         this.descripcioAveria = descripcioAveria;
-        this.comentarisReparacio = new ArrayList<>();
+        this.comentarisReparacio = new HashMap<>();
         this.empleats = new ArrayList<>();
         if (embarcacio.getProposit() != Proposit.REPARACIO || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
@@ -60,12 +60,23 @@ public class Reparacio extends Operacio {
         this.lloc = lloc;
     }
 
+    public Date getDataInici() {
+        return dataInici;
+    }
+
+    public void setDataInici(String dataInici) throws DataException {
+        this.dataInici = Eina.creaDate(dataInici);
+        if (this.dataInici.after(this.dataPrevista)) {
+            throw new DataException("La data d'inici d'una reparació no pot ser posterior a la prevista de finalització.");
+        }
+    }
+
     public Date getDataPrevista() {
         return dataPrevista;
     }
 
-    public void setDataPrevista(Date dataPrevista) {
-        this.dataPrevista = dataPrevista;
+    public void setDataPrevista(String dataPrevista) throws DataException {
+        this.dataPrevista = Eina.creaDate(dataPrevista);
     }
 
     public String getDescripcioAveria() {
@@ -76,7 +87,7 @@ public class Reparacio extends Operacio {
         this.descripcioAveria = descripcioAveria;
     }
 
-    public ArrayList<Comentari> getComentarisReparacio() {
+    public HashMap<Integer,Comentari> getComentarisReparacio() {
         return comentarisReparacio;
     }
 
@@ -118,10 +129,10 @@ public class Reparacio extends Operacio {
     Si no lo esta, lo añade a la lista.
      */
     public void afegirComentari(Comentari comentari) throws NoAfegitException {
-        if (comentarisReparacio.contains(comentari)) {
+        if (comentarisReparacio.containsKey(comentari.getIdentificador())) {
             throw new NoAfegitException("Ja existeix aquest comentari.");
         } else {
-            comentarisReparacio.add(comentari);
+            comentarisReparacio.put(comentari.getIdentificador(), comentari);
         }
     }
 
@@ -131,17 +142,14 @@ public class Reparacio extends Operacio {
     Si no esta en la lista, lanza una excepcion y no lo elimina.
      */
     public void eliminarComentari(int identificador) throws NoEliminatException {
-        Iterator<Comentari> it = comentarisReparacio.iterator();
-        while (it.hasNext()) {
-            if (it.next().getIdentificador() == identificador) {
-                it.remove();
-            } else {
-                throw new NoEliminatException("No s'ha pogut eliminar el comentari.");
-            }
+        if(comentarisReparacio.containsKey(identificador)){
+            comentarisReparacio.remove(identificador);
+        }else{
+            throw new NoEliminatException("No s'ha pogut eliminar el comentari.");
         }
     }
-
     //FUNCIONA.
+
     /*
     Recorre la lista de empleados de la repacion y devuelve un string concatenado.
      */

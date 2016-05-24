@@ -47,6 +47,7 @@ public class Motor extends Embarcacio {
     public void setMotorAuxiliar(boolean motorAuxiliar) {
         this.motorAuxiliar = motorAuxiliar;
     }
+    
 
     @Override
     public String toString() {
