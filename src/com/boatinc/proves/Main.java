@@ -54,7 +54,7 @@ public class Main {
             System.out.println(mare.getLlistaEmbarcacions());
             System.out.println(mare.tornaModelsVenta());
             System.out.println(mare.tornaModelsVentaTipus("Iot"));
-            System.out.println(mare.tornaModelsVentaPreu(100, 200));  
+            System.out.println(mare.tornaModelsVentaPreu(100, 25000));  
         }catch(NoTrovatException e){
             System.out.println(e.getMessage());
         }
