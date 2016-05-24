@@ -44,7 +44,7 @@ public class XaviMain {
             Client client3 = new Client(empresa1, "Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com");
             
             System.out.println("2");
-            Iot iot1 = new Iot(empresa1,4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
+            Iot iot1 = new Iot(empresa1,4, 1000, 200, true, 1234, "4444x", "Fairline", "Targa", 2, 10, 1, Proposit.LLOGUER, 200000, true);
             Iot iot2 = new Iot(empresa1,4, 800, 400, true, 4321, "7799x", "Bavaria", "v34", 2, 15, 1, Proposit.REPARACIO, 100000, true);
             Iot iot3 = new Iot(empresa1,4, 700, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 150000, true);
             
@@ -112,11 +112,11 @@ public class XaviMain {
     }
     
     public static void provesEmbarcacio() throws NoAfegitException{
-        Empresa empresa1 = new Empresa("DevelopersNautics", "", "", 677888888);
+        Empresa empresa = new Empresa("DevelopersNautics", "", "", 677888888);
         System.out.println("############################" + "\n## PROVES CLASSE EMBARCACIO  ##" + "\n############################\n");
         
         System.out.println("En aquest cas agafarem un iot ja que no podem crear una embarcació perque la classe es abstracta i farem ús dels metodes de embarcacio: \n");
-        Iot iot1 = new Iot(empresa1,4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
+        Iot iot1 = new Iot(empresa,4, 1000, 200, true, 1234, "4444x", "Fairline", "Targa", 2, 10, 1, Proposit.LLOGUER, 200000, true);
         
         System.out.println("-- PROVES GETTERS --");
         System.out.println("-> iot1.getNumeroSerie(): "+iot1.getNumeroSerie());
@@ -195,7 +195,7 @@ public class XaviMain {
         
         System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
         System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
-        Veler veler1 = new Veler(empresa1,2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+        Veler veler1 = new Veler(empresa,2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
         
         System.out.println("-- PROVES GETTERS --");
         System.out.println("-> veler1.getNumeroCascs(): "+veler1.getNumeroCascs());
@@ -219,7 +219,7 @@ public class XaviMain {
         
         System.out.println("\n\n##########################" + "\n## PROVES CLASSE MOTOR  ##" + "\n##########################\n");
         System.out.println("\nAquí farem les proves de la part especifica de la classe Motor:");
-        Motor motor1 = new Motor(empresa1,150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+        Motor motor1 = new Motor(empresa,150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
         
         System.out.println("-- PROVES GETTERS --");
         System.out.println("-> motor1.getPotencia(): "+motor1.getPotencia());
@@ -234,6 +234,13 @@ public class XaviMain {
         System.out.println("Capacitat del deposit de l'embaracio: "+motor1.getCapacitatDeposit()+"\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
         motor1.setCapacitatDeposit(150);
         System.out.println("Capacitat del deposit després del canvi: "+motor1.getCapacitatDeposit());
+        
+        System.out.println("\n\n -- PROVES METODES --");
+        Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.REPARACIO, 4000000, true);
+        Reparacio reparacio1 = new Reparacio(empresa1, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.PENDENT, 1000);
+            System.out.println("Afegim una reparacio a una embarcacio: ");
+            iot5.afegirReparacio(reparacio1);
+            
     }
     
 }
