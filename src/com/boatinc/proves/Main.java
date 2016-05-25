@@ -24,7 +24,6 @@ import static com.boatinc.persona.empleat.Habilitat.*;
 import com.boatinc.persona.empleat.Reparador;
 import com.boatinc.persona.pagament.CompteCorrent;
 import com.boatinc.persona.pagament.TargetaCredit;
-import com.boatinc.persona.pagament.TipusPagament;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -33,6 +32,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -51,17 +52,19 @@ public class Main {
 
         mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
         try{
-            System.out.println(mare.tornaModelsVenta());
-            System.out.println(mare.tornaModelsVentaTipus("Veler"));
-            System.out.println(mare.tornaModelsVentaPreu(2000000, 3000000));
-            System.out.println(mare.tornaReparacionsEstat(Estat.PENDENT));
-            System.out.println(mare.tornaReparacionsEstat(Estat.ATURADA));
-            System.out.println(mare.tornaHistoricReparacions(01010101));
-            System.out.println(mare.tornaEmpleat("23451278G").tornaNomina());
-            System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
-        }catch(NoTrovatException | DataException e){
+//            System.out.println(mare.tornaModelsVenta());
+//            System.out.println(mare.tornaModelsVentaTipus("Veler"));
+//            System.out.println(mare.tornaModelsVentaPreu(2000000, 3000000));
+//            System.out.println(mare.tornaReparacionsEstat(Estat.PENDENT));
+//            System.out.println(mare.tornaReparacionsEstat(Estat.ATURADA));
+//            System.out.println(mare.tornaHistoricReparacions(01010101));
+//            System.out.println(mare.tornaEmpleat("23451278G").tornaNomina());
+//            System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+            provesEmbarcacio();
+            }catch(Exception /*| NoTrovatException | DataException | NoAfegitException*/ e){
             System.out.println(e.getMessage());
-        }
+            }
+           
     }
 
     public static void inicialitzacio(Empresa empresa) {
@@ -356,17 +359,14 @@ public class Main {
             System.out.println("Percentatge de comissió del comercial després del canvi: " + comercial1.getPercentComissio());
 
             System.out.println("\n\n -- PROVES METODES --");
-            System.out.println("L'històric d'operacions del comercial es buida: " + comercial1.getHistoricOperacions());
-            System.out.println("\nAfegim dues operacions al comercial:");
-            comercial1.afegirOperacio(venda1);
-            comercial1.afegirOperacio(venda2);
-            System.out.println("L'històric d'operacions del comercial ara té dues operacions: " + comercial1.getHistoricOperacions());
+            System.out.println("L'històric d'operacions del comercial conté dues operacions: " + comercial1.getHistoricOperacions());
+            System.out.println("\nAixò es degut a que quan cream una operació (dues creades anteriorment) el comercial té un mètode per inserir operacions que l'objecte Venta crida quan en cream un.");
 
             System.out.println("\nAra eliminam l'operacio amb l'identificador 2");
-            comercial1.eliminarOperacio(2);
+            comercial1.eliminarOperacio(venda2.getIdentificador());
             System.out.println("Mostram la llista de comercial i s'ha eliminat correctament: " + comercial1.getHistoricOperacions());
 
-            System.out.println("\nSi volem eliminar una operacio que no esta a la llista ens tornarà un NoEliminatException, i si volem afegir una operació que ja hi es ens tornarà un NoAfegitException.");
+            System.out.println("\nSi volem eliminar una operacio que no està a la llista ens tornarà un NoEliminatException, i si volem afegir una operació que ja hi es ens tornarà un NoAfegitException.");
             try {
                 comercial1.eliminarOperacio(2);
             } catch (NoEliminatException e) {
@@ -565,29 +565,33 @@ public class Main {
             Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Motor romput");
             Comentari comentari2 = new Comentari("19/05/2016", reparador2, "Reparació realitzada");
             
-            System.out.println("Afegim una reparació a una embarcació: iot5.afegirReparacio(reparacio1);");
-            iot5.afegirReparacio(reparacio1);
-            
-            System.out.println();
-            
-            System.out.println("Podem consultar l'historial de reparacions d'una embarcació: iot5.getHistoricReparacions();");
+            System.out.println("Quan cream reparacions el constructor d'aquesta ja s'encarrega d'inserir la reparació en la embarcacio corresponent.");
             System.out.println(iot5.getHistoricReparacions());
+            System.out.println("Com podem observar la embarcacio ja les  té inserides en el seu històric.");
             
-            /*System.out.println();
             
-            System.out.println("Si volem afegir la mateixa reparació dins el llista botara una excepció (NoAfegitException)");
-            iot5.afegirReparacio(reparacio1);*/
+            try{
+                System.out.println("\nSi volem afegir la mateixa reparació dins el llista botara una excepció (NoAfegitException)");
+                iot5.afegirReparacio(reparacio1);
+            }catch(NoAfegitException e){
+                e.getMessage();
+            }
+
             
-            System.out.println();
+
             
              
-            System.out.println("Eliminam una reparació de la llista de reparacions: iot5.eliminarReparacio(reparacio2);");
+            System.out.println("\nEliminam una reparació de la llista de reparacions: iot5.eliminarReparacio(reparacio2);");
             iot5.eliminarReparacio(reparacio1);
             
-            /*System.out.println();
-            
-            System.out.println("Si intentam eliminar una reparació que no te asociada aquesta embarcació botara una excepció (NoEliminatException)");
-            iot5.eliminarReparacio(reparacio1);*/
+
+            try{
+                System.out.println("Si intentam eliminar una reparació que no te asociada aquesta embarcació botara una excepció (NoEliminatException)");
+                iot5.eliminarReparacio(reparacio1);
+            }catch(NoEliminatException e){
+                e.getMessage();
+            }
+
             
             System.out.println();
             
@@ -601,8 +605,7 @@ public class Main {
             
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
-        }
-            
+        }   
     }
 
     public static void provesOperacions() {
@@ -743,7 +746,7 @@ public class Main {
             }
             System.out.println("\nAra eliminarem un comentari que tenia pasant l'identificador d'aquest");
             System.out.println(reparacio1.getComentarisReparacio());
-            reparacio1.eliminarComentari(1);
+            reparacio1.eliminarComentari(comentari1.getIdentificador());
             System.out.println(reparacio1.getComentarisReparacio());
 
             System.out.println("\nAra retornarem el nom dels empleats que estan fent feina a la operacio amb reparacio1.retornaEmpleats()");
