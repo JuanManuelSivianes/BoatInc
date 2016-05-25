@@ -268,9 +268,9 @@ public class Empresa implements Serializable {
                 llistaEmbarcacionsOcupades.add(x.getEmbarcacio());
             }
         }
-
-        for (Entry<Integer, Embarcacio> x : llistaEmbarcacions.entrySet()) {
-            if (llistaEmbarcacionsOcupades.contains(x.getValue()) == false) {
+        
+        for(Entry<Integer,Embarcacio> x: llistaEmbarcacions.entrySet()){
+            if(x.getValue().getProposit()==Proposit.LLOGUER && llistaEmbarcacionsOcupades.contains(x.getValue())==false){
                 llistaEmbarcacionsDisponibles.put(x.getValue().getNumeroSerie(), x.getValue());
             }
         }

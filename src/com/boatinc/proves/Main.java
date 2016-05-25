@@ -39,28 +39,27 @@ public class Main {
     public static void main(String[] args) {
         Empresa mare = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
 
-        inicialitzacio(mare);
+        
+//        inicialitzacio(mare);
+//        
+//        try {
+//            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+        
 
-        try {
-            desaDades("src/dadesOB.dat", mare);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        mare = (Empresa) recuperaDades("src/dadesOB.dat");
-        try {
-            System.out.println(mare.getLlistaClients());
-            System.out.println(mare.getLlistaEmpleat());
-            System.out.println(mare.getLlistaPatrons());
-            System.out.println(mare.getLlistaEmbarcacions());
-            System.out.println(mare.tornaModelsVenta());
-            System.out.println(mare.tornaModelsVentaTipus("Iot"));
-            //System.out.println(mare.tornaModelsVentaPreu(100, 200));
-            System.out.println(mare.tornaClient("11111111E").getNom());
-            System.out.println(mare.tornaEmpleat("78943526F").getNom());
-            System.out.println(mare.tornaPatro("3344665547C").getNom());
-            System.out.println(mare.tornaEmbarcacio(2424));
-            System.out.println(mare.tornaOperacions(1));
-        } catch (NoTrovatException e) {
+        mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
+        try{
+//            System.out.println(mare.getLlistaClients());
+//            System.out.println(mare.getLlistaEmpleat());
+//            System.out.println(mare.getLlistaPatrons());
+//            System.out.println(mare.getLlistaEmbarcacions());
+//            System.out.println(mare.tornaModelsVenta());
+//            System.out.println(mare.tornaModelsVentaTipus("Iot"));
+//            System.out.println(mare.tornaModelsVentaPreu(100, 25000));  
+              System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+        }catch(NoTrovatException | DataException e){
             System.out.println(e.getMessage());
         }
     }
@@ -98,28 +97,6 @@ public class Main {
 
             Comercial comercial1 = new Comercial(empresa, "David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 300f, "02/04/1999", 7);
             Comercial comercial2 = new Comercial(empresa, "Reimond", "Powell", Document.NIE, "X3544124P", "Avinguda Reus nº10, Algaida", 620348544, "Reimond@gmail.com", 400f, "20/09/2000", 9);
-
-            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FUSTERIA);
-            Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES, Habilitat.FUSTERIA);
-            Reparador reparador3 = new Reparador(empresa, "Benito", "Perez Silva", Document.NIE, "X6451244F", "C/ Aragon nº4, 5b, Palma", 664325674, "benito@gmail.es", 920f, "22/10/2001", Habilitat.FIBRA_DE_VIDRE, Habilitat.FUSTERIA, Habilitat.VELES);
-            Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA, Habilitat.FONTANERIA);
-            Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FONTANERIA, Habilitat.MECANICA);
-
-            Iot iot1 = new Iot(empresa, 4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
-            Iot iot2 = new Iot(empresa, 4, 800, 400, true, 4321, "7799x", "Bavaria", "v34", 2, 15, 1, Proposit.REPARACIO, 100000, true);
-            Iot iot3 = new Iot(empresa, 4, 700, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 150000, true);
-
-            Veler veler1 = new Veler(empresa, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
-            Veler veler2 = new Veler(empresa, 4, 1, 4, 1414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.REPARACIO, 100000, true);
-            Veler veler3 = new Veler(empresa, 2, 1, 4, 2424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
-
-            Motor motor1 = new Motor(empresa, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
-            Motor motor2 = new Motor(empresa, 400, 300, true, 1111, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.REPARACIO, 30000, true);
-            Motor motor3 = new Motor(empresa, 300, 200, true, 2222, "2234w", "Zodiac", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
-
-            Reparacio reparacio1 = new Reparacio(empresa, "Taller", "23/05/2016", "05/05/2016", "Neteja de filtres", client1, iot2, Estat.INICIADA, 200f);
-            Reparacio reparacio3 = new Reparacio(empresa, "Pantalà 52", "10/05/2016", "29/05/2016", "Canvi de motor", client2, motor2, Estat.PENDENT, 1200f);
-            Reparacio reparacio4 = new Reparacio(empresa, "Taller", "12/05/2016", "15/05/2016", "Polit de pals", client3, motor3, Estat.FINALITZADA, 200f);
             
             System.out.println(reparacio1);
             
@@ -207,10 +184,125 @@ public class Main {
         System.out.println("\nAquí farem les proves de la part especifica de la classe Iot:");
 
         System.out.println("-- PROVES GETTERS --");
-        System.out.println("-> iot1.getNumeroCamarots(): " + iot1.getNumeroCamarots());
-        System.out.println("-> iot1.getPotencia(): " + iot1.getPotencia());
-        System.out.println("-> iot1.getAutonomia(): " + iot1.getAutonomia());
+            
+            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
+            Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES,Habilitat.FUSTERIA);
+            Reparador reparador3 = new Reparador(empresa, "Benito", "Perez Silva", Document.NIE, "X6451244F", "C/ Aragon nº4, 5b, Palma", 664325674, "benito@gmail.es", 920f, "22/10/2001", Habilitat.FIBRA_DE_VIDRE,Habilitat.FUSTERIA,Habilitat.VELES);
+            Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA,Habilitat.FONTANERIA);
+            Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FONTANERIA,Habilitat.MECANICA);
+            
+            Iot iot1 = new Iot(empresa, 4, 1000, 2000, true, 12341234, "4444x", "Fairline", "f47", 3, 10, 1, Proposit.LLOGUER, 200000, true);
+            Iot iot2 = new Iot(empresa, 4, 800, 4000, true, 43210000, "7799w", "BAVARIA", "v34", 3, 15, 1, Proposit.REPARACIO, 100000, true);
+            Iot iot3 = new Iot(empresa, 4, 700, 5000, true, 56781111, "8800q", "Menorqui", "m67", 3, 20, 1, Proposit.VENTA, 150000, true);
+            Iot iot4 = new Iot(empresa, 5, 2000, 5000, true, 78942222, "1100b", "HORIZON", "p110", 6, 33, 2, Proposit.LLOGUER, 3000000, true);
+            Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.VENTA, 4000000, true);
+            Iot iot6 = new Iot(empresa, 4, 2000, 10000, true, 98748888, "1111j", "Sunseeker", "116", 5, 35, 2, Proposit.VENTA, 2500000, true);
+            Iot iot7 = new Iot(empresa, 6, 4000, 15000, true, 44444444, "6321m", "SANLORENZO", "SL118", 7, 36, 2, Proposit.LLOGUER, 3500000, true);
+            Iot iot8 = new Iot(empresa, 5, 4000, 25000, true, 98653214, "4567t", "Benetti", "ILLUSION FB246", 8, 45, 3, Proposit.VENTA, 5000000, true);
+            Iot iot9 = new Iot(empresa, 4, 2000, 5000, true, 14873487, "7632h", "WESTPORT", "W125", 7, 38, 2, Proposit.VENTA, 1500000, true);
+            
+            Veler veler1 = new Veler(empresa, 2, 1, 2, 77448888, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+            Veler veler2 = new Veler(empresa, 4, 1, 4, 14141414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.LLOGUER, 100000, true);
+            Veler veler3 = new Veler(empresa, 2, 1, 2, 24242424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
+            Veler veler4 = new Veler(empresa, 2, 1, 2, 78787878, "7468m", "vismara", "v56", 4, 18, 2, Proposit.LLOGUER, 1000000, true);
+            Veler veler5 = new Veler(empresa, 2, 1, 4, 01010101, "1433n", "Feeling", "FEELING 52", 4, 15, 2, Proposit.REPARACIO, 800000, true);
+            Veler veler6 = new Veler(empresa, 2, 1, 4, 43444344, "7291z", "Gunfleet", "58", 4, 18, 2, Proposit.VENTA, 2000000, true);
+            Veler veler7 = new Veler(empresa, 2, 1, 2, 22778899, "8966r", "Beneteau", "55", 4, 17, 2, Proposit.VENTA, 1700000, true);
+            Veler veler8 = new Veler(empresa, 4, 1, 4, 11223344, "3388j", "BAVARIA", "OPEN 46", 6, 13, 2, Proposit.VENTA, 3000000, true);
+            Veler veler9 = new Veler(empresa, 4, 1, 4, 77771414, "9977d", "LEOPARD", "58", 6, 17, 2, Proposit.VENTA, 3500000, true);
+            
+            Motor motor1 = new Motor(empresa, 150, 100, true, 99994444, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+            Motor motor2 = new Motor(empresa, 400, 300, true, 11112222, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.VENTA, 30000, true);
+            Motor motor3 = new Motor(empresa, 300, 200, true, 22223333, "2234w", "ZODIAC", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
+            Motor motor4 = new Motor(empresa, 400, 200, true, 44770000, "0170s", "ZODIAC", "FC-580", 2, 6, 1, Proposit.LLOGUER, 10000, true);
+            Motor motor5 = new Motor(empresa, 400, 200, true, 21004700, "4301f", "SELVA", "600 PRO", 2, 6, 1, Proposit.REPARACIO, 15000, true);
+            Motor motor6 = new Motor(empresa, 600, 300, true, 78001400, "7702n", "SELVA", "700 PRO", 2, 7, 1, Proposit.VENTA, 20000, true);
+            Motor motor7 = new Motor(empresa, 200, 150, true, 33222233, "2461v", "MERCURY", "HEAVY DUTY 470", 2, 5, 1, Proposit.VENTA, 9000, true);
+            Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.VENTA, 5000, true);
+            Motor motor9 = new Motor(empresa, 600, 300, true, 46339900, "6984q", "ASIS", "8M", 2, 8, 1, Proposit.VENTA, 20000, true);
+            
+            Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Inspeccionat el motor i fet un canvi de peça, pendent de proves.");
+            Comentari comentari2 = new Comentari("19/05/2016", reparador2, "El motor funciona correctament, passam averia a finalitzada.");
+            Comentari comentari3 = new Comentari("21/05/2016", reparador3, "Inspecció del casc realitzada.");
+            Comentari comentari4 = new Comentari("22/05/2016", reparador4, "He detectat una anomalia al costat esquerra del casc.");
+            Comentari comentari5 = new Comentari("22/05/2016", reparador4, "La anomalia necesita un producte especial per al seu tractament.");
+            Comentari comentari6 = new Comentari("23/05/2016", reparador5, "Passam la reparació a aturada fins que arrivi el material.");
+            
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200);
+            //, reparador1, reparador2
+            reparacio1.afegirComentari(comentari1);
+            reparacio1.afegirComentari(comentari2);
+            reparacio1.setEstat(Estat.FINALITZADA);
+             
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "26/05/2016", "Casc romput", client4, veler5, Estat.INICIADA, 5000);
+            //, reparador3, reparador4, reparador5
+            reparacio2.afegirComentari(comentari3);
+            reparacio2.afegirComentari(comentari4);
+            reparacio2.afegirComentari(comentari5);
+            reparacio2.afegirComentari(comentari6);
+            reparacio2.setEstat(Estat.ATURADA);
+            
+            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client3, motor5, Estat.PENDENT, 4500);
+            //, reparador2, reparador4, reparador5
+            
+            Venda venda1 = new Venda(empresa, client3, iot5, Estat.FINALITZADA, comercial1, "10/02/2015", 650);
+            iot5.setDisponibilitat(false);
+            Venda venda2 = new Venda(empresa, client4, iot6, Estat.FINALITZADA, comercial2, "15/05/2015", 420);
+            iot6.setDisponibilitat(false);
+            Venda venda3 = new Venda(empresa, client2, veler3, Estat.FINALITZADA, comercial2, "13/09/2015", 570);
+            veler3.setDisponibilitat(false);
+            Venda venda4 = new Venda(empresa, client4, veler6, Estat.INICIADA, comercial1, "10/02/2016", 840);
+            veler6.setDisponibilitat(false);
+            Venda venda5 = new Venda(empresa, client6, veler7, Estat.INICIADA, comercial2, "25/04/2016", 630);
+            veler7.setDisponibilitat(false);
+            Venda venda6 = new Venda(empresa, client5, motor6, Estat.PENDENT, comercial1, "20/06/2016", 280);
+            motor6.setDisponibilitat(false);
+            Venda venda7 = new Venda(empresa, client4, iot9, Estat.PENDENT, comercial1, "20/06/2016", 740);
+            iot9.setDisponibilitat(false);
+            
+            Lloguer lloguer1 = new Lloguer(empresa, client1, iot1, Estat.FINALITZADA, "10/02/2016", "20/02/2016", 1000);
+            Lloguer lloguer2 = new Lloguer(empresa, client1, iot4, Estat.FINALITZADA, "15/02/2016", "17/02/2016", patro2, 300);
+            Lloguer lloguer3 = new Lloguer(empresa, client1, iot7, Estat.FINALITZADA, "19/02/2016", "12/03/2016", patro2, 2000);
+            Lloguer lloguer4 = new Lloguer(empresa, client1, veler4, Estat.FINALITZADA, "15/03/2016", "22/03/2016", patro1, 1000);
+            Lloguer lloguer5 = new Lloguer(empresa, client1, motor4, Estat.INICIADA, "20/05/2016", "30/05/2016", 700);
+            motor4.setDisponibilitat(false);
+            Lloguer lloguer6 = new Lloguer(empresa, client1, iot1, Estat.INICIADA, "25/05/2016", "30/05/2016", patro2, 450);
+            iot1.setDisponibilitat(false);
+            Lloguer lloguer7 = new Lloguer(empresa, client1, iot7, Estat.INICIADA, "15/05/2016", "30/05/2016", patro3, 1000);
+            iot7.setDisponibilitat(false);
+            Lloguer lloguer8 = new Lloguer(empresa, client1, veler4, Estat.INICIADA, "10/05/2016", "20/05/2016", 500);
+            veler4.setDisponibilitat(false);
+            Lloguer lloguer9 = new Lloguer(empresa, client1, veler2, Estat.PENDENT, "25/07/2016", "10/08/2016", patro3, 1200);
+            Lloguer lloguer10 = new Lloguer(empresa, client1, iot1, Estat.PENDENT, "20/07/2016", "22/08/2016", patro1, 1700);
+            
+            
+            
+            
+            
+            
 
+
+            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FUSTERIA);
+            Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES, Habilitat.FUSTERIA);
+            Reparador reparador3 = new Reparador(empresa, "Benito", "Perez Silva", Document.NIE, "X6451244F", "C/ Aragon nº4, 5b, Palma", 664325674, "benito@gmail.es", 920f, "22/10/2001", Habilitat.FIBRA_DE_VIDRE, Habilitat.FUSTERIA, Habilitat.VELES);
+            Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA, Habilitat.FONTANERIA);
+            Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FONTANERIA, Habilitat.MECANICA);
+
+            Iot iot1 = new Iot(empresa, 4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
+            Iot iot2 = new Iot(empresa, 4, 800, 400, true, 4321, "7799x", "Bavaria", "v34", 2, 15, 1, Proposit.REPARACIO, 100000, true);
+            Iot iot3 = new Iot(empresa, 4, 700, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 150000, true);
+
+            Veler veler1 = new Veler(empresa, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+            Veler veler2 = new Veler(empresa, 4, 1, 4, 1414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.REPARACIO, 100000, true);
+            Veler veler3 = new Veler(empresa, 2, 1, 4, 2424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
+
+            Motor motor1 = new Motor(empresa, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+            Motor motor2 = new Motor(empresa, 400, 300, true, 1111, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.REPARACIO, 30000, true);
+            Motor motor3 = new Motor(empresa, 300, 200, true, 2222, "2234w", "Zodiac", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
+
+            Reparacio reparacio1 = new Reparacio(empresa, "Taller", "23/05/2016", "05/05/2016", "Neteja de filtres", client1, iot2, Estat.INICIADA, 200f);
+            Reparacio reparacio3 = new Reparacio(empresa, "Pantalà 52", "10/05/2016", "29/05/2016", "Canvi de motor", client2, motor2, Estat.PENDENT, 1200f);
+            Reparacio reparacio4 = new Reparacio(empresa, "Taller", "12/05/2016", "15/05/2016", "Polit de pals", client3, motor3, Estat.FINALITZADA, 200f);
         System.out.println("\n\n-- PROVES SETTERS --");
         System.out.println("Numero de camarots de l'embaracio: " + iot1.getNumeroCamarots() + "\nEl canviam per \"2\" amb iot1.setNumeroCamarots(2);");
         iot1.setNumeroCamarots(2);
@@ -222,8 +314,6 @@ public class Main {
 
         System.out.println("Autonomia de l'embaracio: " + iot1.getAutonomia() + "\nLa canviam per \"300\" amb iot1.setAutonomia(300);");
         iot1.setAutonomia(300);
-        System.out.println("Autonomia després del canvi: " + iot1.getAutonomia());
-
         System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
         System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
         Veler veler1 = new Veler(empresa1, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
@@ -251,9 +341,6 @@ public class Main {
         Motor motor1 = new Motor(empresa1, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
 
         System.out.println("-- PROVES GETTERS --");
-        System.out.println("-> motor1.getPotencia(): " + motor1.getPotencia());
-        System.out.println("-> motor1.getCapacitatDeposit(): " + motor1.getCapacitatDeposit());
-
         System.out.println("\n\n-- PROVES SETTERS --");
         System.out.println("Potencia de l'embaracio: " + motor1.getPotencia() + "\nLa canviam per \"200\" amb motor1.setPotencia(200);");
         motor1.setPotencia(200);
@@ -261,7 +348,6 @@ public class Main {
 
         System.out.println("Capacitat del deposit de l'embaracio: " + motor1.getCapacitatDeposit() + "\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
         motor1.setCapacitatDeposit(150);
-        System.out.println("Capacitat del deposit després del canvi: " + motor1.getCapacitatDeposit());
     }
 
     public static void provesPersona() throws NoAfegitException {
@@ -637,3 +723,9 @@ public class Main {
 
     }
 }
+        System.out.println("-> iot1.getNumeroCamarots(): "+iot1.getNumeroCamarots());
+        System.out.println("-> iot1.getPotencia(): "+iot1.getPotencia());
+        System.out.println("-> iot1.getAutonomia(): "+iot1.getAutonomia());
+        System.out.println("-> iot1.isEmbarcacioAuxiliar(): "+iot1.isEmbarcacioAuxiliar());
+        
+        
