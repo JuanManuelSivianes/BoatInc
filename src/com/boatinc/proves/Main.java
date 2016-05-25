@@ -32,8 +32,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
 
@@ -41,29 +39,32 @@ public class Main {
         Empresa mare = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
 
         
-        inicialitzacio(mare);
-        
-        try {
-            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+//        inicialitzacio(mare);
+//        
+//        try {
+//            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
         
 
         mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
+        
         try{
-//            System.out.println(mare.tornaModelsVenta());
-//            System.out.println(mare.tornaModelsVentaTipus("Veler"));
-//            System.out.println(mare.tornaModelsVentaPreu(2000000, 3000000));
-//            System.out.println(mare.tornaReparacionsEstat(Estat.PENDENT));
-//            System.out.println(mare.tornaReparacionsEstat(Estat.ATURADA));
-//            System.out.println(mare.tornaHistoricReparacions(01010101));
-//            System.out.println(mare.tornaEmpleat("23451278G").tornaNomina());
-//            System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+            System.out.println(mare.tornaModelsVenta());
+            System.out.println(mare.tornaModelsVentaTipus("Veler"));
+            System.out.println(mare.tornaModelsVentaPreu(2000000, 3000000));
+            System.out.println(mare.tornaReparacionsEstat(Estat.PENDENT));
+            System.out.println(mare.tornaReparacionsEstat(Estat.ATURADA));
+            System.out.println(mare.tornaHistoricReparacions(01010101));
+            System.out.println(mare.tornaEmpleat("23451278G").tornaNomina());
+            System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+            provesPersona();
+            provesOperacions();
             provesEmbarcacio();
-            }catch(Exception /*| NoTrovatException | DataException | NoAfegitException*/ e){
+        }catch( NoEliminatException | NoTrovatException | DataException | NoAfegitException e){
             System.out.println(e.getMessage());
-            }
+        }
            
     }
 
@@ -125,7 +126,7 @@ public class Main {
             Veler veler6 = new Veler(empresa, 2, 1, 4, 43444344, "7291z", "Gunfleet", "58", 4, 18, 2, Proposit.VENTA, 2000000, true);
             Veler veler7 = new Veler(empresa, 2, 1, 2, 22778899, "8966r", "Beneteau", "55", 4, 17, 2, Proposit.VENTA, 1700000, true);
             Veler veler8 = new Veler(empresa, 4, 1, 4, 11223344, "3388j", "BAVARIA", "OPEN 46", 6, 13, 2, Proposit.VENTA, 3000000, true);
-            Veler veler9 = new Veler(empresa, 4, 1, 4, 77771414, "9977d", "LEOPARD", "58", 6, 17, 2, Proposit.VENTA, 3500000, true);
+            Veler veler9 = new Veler(empresa, 4, 1, 4, 77771414, "9977d", "LEOPARD", "58s", 6, 17, 2, Proposit.VENTA, 3500000, true);
             
             Motor motor1 = new Motor(empresa, 150, 100, true, 99994444, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.ALTRES, 0, false);
             Motor motor2 = new Motor(empresa, 400, 300, true, 11112222, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.VENTA, 30000, true);
