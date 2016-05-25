@@ -11,6 +11,7 @@ import com.boatinc.exceptions.NoEliminatException;
 import com.boatinc.exceptions.NoTrovatException;
 import com.boatinc.operacio.Comentari;
 import com.boatinc.operacio.Estat;
+import com.boatinc.operacio.Lloguer;
 import com.boatinc.operacio.Reparacio;
 import com.boatinc.operacio.Venda;
 import com.boatinc.persona.Client;
@@ -40,13 +41,13 @@ public class Main {
 //        inicialitzacio(mare);
 //        
 //        try {
-//            desaDades("src/dadesOB.dat", mare);
+//            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
 //        } catch (IOException ex) {
 //            System.out.println(ex.getMessage());
 //        }
         
 
-        mare=(Empresa)recuperaDades("src/dadesOB.dat");
+        mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
         try{
             System.out.println(mare.getLlistaClients());
             System.out.println(mare.getLlistaEmpleat());
@@ -133,13 +134,65 @@ public class Main {
             Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.VENTA, 5000, true);
             Motor motor9 = new Motor(empresa, 600, 300, true, 46339900, "6984q", "ASIS", "8M", 2, 8, 1, Proposit.VENTA, 20000, true);
             
-            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200); 
+            Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Inspeccionat el motor i fet un canvi de peça, pendent de proves.");
+            Comentari comentari2 = new Comentari("19/05/2016", reparador2, "El motor funciona correctament, passam averia a finalitzada.");
+            Comentari comentari3 = new Comentari("21/05/2016", reparador3, "Inspecció del casc realitzada.");
+            Comentari comentari4 = new Comentari("22/05/2016", reparador4, "He detectat una anomalia al costat esquerra del casc.");
+            Comentari comentari5 = new Comentari("22/05/2016", reparador4, "La anomalia necesita un producte especial per al seu tractament.");
+            Comentari comentari6 = new Comentari("23/05/2016", reparador5, "Passam la reparació a aturada fins que arrivi el material.");
             
-            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client2, veler5, Estat.INICIADA, 5000);
-            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client2, veler5, Estat.PENDENT, 4500);
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200);
+            //, reparador1, reparador2
+            reparacio1.afegirComentari(comentari1);
+            reparacio1.afegirComentari(comentari2);
+            reparacio1.setEstat(Estat.FINALITZADA);
+             
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "26/05/2016", "Casc romput", client4, veler5, Estat.INICIADA, 5000);
+            //, reparador3, reparador4, reparador5
+            reparacio2.afegirComentari(comentari3);
+            reparacio2.afegirComentari(comentari4);
+            reparacio2.afegirComentari(comentari5);
+            reparacio2.afegirComentari(comentari6);
+            reparacio2.setEstat(Estat.ATURADA);
             
-            Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Motor romput");
-            Comentari comentari2 = new Comentari("19/05/2016", reparador2, "Reparació realitzada");
+            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client3, motor5, Estat.PENDENT, 4500);
+            //, reparador2, reparador4, reparador5
+            
+            Venda venda1 = new Venda(empresa, client3, iot5, Estat.FINALITZADA, comercial1, "10/02/2015", 650);
+            iot5.setDisponibilitat(false);
+            Venda venda2 = new Venda(empresa, client4, iot6, Estat.FINALITZADA, comercial2, "15/05/2015", 420);
+            iot6.setDisponibilitat(false);
+            Venda venda3 = new Venda(empresa, client2, veler3, Estat.FINALITZADA, comercial2, "13/09/2015", 570);
+            veler3.setDisponibilitat(false);
+            Venda venda4 = new Venda(empresa, client4, veler6, Estat.INICIADA, comercial1, "10/02/2016", 840);
+            veler6.setDisponibilitat(false);
+            Venda venda5 = new Venda(empresa, client6, veler7, Estat.INICIADA, comercial2, "25/04/2016", 630);
+            veler7.setDisponibilitat(false);
+            Venda venda6 = new Venda(empresa, client5, motor6, Estat.PENDENT, comercial1, "20/06/2016", 280);
+            motor6.setDisponibilitat(false);
+            Venda venda7 = new Venda(empresa, client4, iot9, Estat.PENDENT, comercial1, "20/06/2016", 740);
+            iot9.setDisponibilitat(false);
+            
+            Lloguer lloguer1 = new Lloguer(empresa, client1, iot1, Estat.FINALITZADA, "10/02/2016", "20/02/2016", 1000);
+            Lloguer lloguer2 = new Lloguer(empresa, client1, iot4, Estat.FINALITZADA, "15/02/2016", "17/02/2016", patro2, 300);
+            Lloguer lloguer3 = new Lloguer(empresa, client1, iot7, Estat.FINALITZADA, "19/02/2016", "12/03/2016", patro2, 2000);
+            Lloguer lloguer4 = new Lloguer(empresa, client1, veler4, Estat.FINALITZADA, "15/03/2016", "22/03/2016", patro1, 1000);
+            Lloguer lloguer5 = new Lloguer(empresa, client1, motor4, Estat.INICIADA, "20/05/2016", "30/05/2016", 700);
+            motor4.setDisponibilitat(false);
+            Lloguer lloguer6 = new Lloguer(empresa, client1, iot1, Estat.INICIADA, "25/05/2016", "30/05/2016", patro2, 450);
+            iot1.setDisponibilitat(false);
+            Lloguer lloguer7 = new Lloguer(empresa, client1, iot7, Estat.INICIADA, "15/05/2016", "30/05/2016", patro3, 1000);
+            iot7.setDisponibilitat(false);
+            Lloguer lloguer8 = new Lloguer(empresa, client1, veler4, Estat.INICIADA, "10/05/2016", "20/05/2016", 500);
+            veler4.setDisponibilitat(false);
+            Lloguer lloguer9 = new Lloguer(empresa, client1, veler2, Estat.PENDENT, "25/07/2016", "10/08/2016", patro3, 1200);
+            Lloguer lloguer10 = new Lloguer(empresa, client1, iot1, Estat.PENDENT, "20/07/2016", "22/08/2016", patro1, 1700);
+            
+            
+            
+            
+            
+            
 
             
         }catch(NoAfegitException | DataException ex){

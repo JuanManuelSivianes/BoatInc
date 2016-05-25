@@ -8,13 +8,14 @@ package com.boatinc.operacio;
 import com.boatinc.eines.Eina;
 import com.boatinc.exceptions.DataException;
 import com.boatinc.persona.empleat.Reparador;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Arsenik
  */
-public class Comentari {
+public class Comentari implements Serializable{
 
     private int identificador;
     private static int contador = 1;
