@@ -111,7 +111,7 @@ public class Main {
             Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.VENTA, 4000000, true);
             Iot iot6 = new Iot(empresa, 4, 2000, 10000, true, 98748888, "1111j", "Sunseeker", "116", 5, 35, 2, Proposit.VENTA, 2500000, true);
             Iot iot7 = new Iot(empresa, 6, 4000, 15000, true, 44444444, "6321m", "SANLORENZO", "SL118", 7, 36, 2, Proposit.LLOGUER, 3500000, true);
-            Iot iot8 = new Iot(empresa, 5, 4000, 25000, true, 98653214, "4567t", "Benetti", "ILLUSION FB246", 8, 45, 3, Proposit.VENTA, 5000000, true);
+            Iot iot8 = new Iot(empresa, 5, 4000, 25000, true, 98653214, "4567t", "Benetti", "ILLUSION FB246", 8, 45, 3, Proposit.ALTRES, 0, false);
             Iot iot9 = new Iot(empresa, 4, 2000, 5000, true, 14873487, "7632h", "WESTPORT", "W125", 7, 38, 2, Proposit.VENTA, 1500000, true);
             
             Veler veler1 = new Veler(empresa, 2, 1, 2, 77448888, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
@@ -124,14 +124,14 @@ public class Main {
             Veler veler8 = new Veler(empresa, 4, 1, 4, 11223344, "3388j", "BAVARIA", "OPEN 46", 6, 13, 2, Proposit.VENTA, 3000000, true);
             Veler veler9 = new Veler(empresa, 4, 1, 4, 77771414, "9977d", "LEOPARD", "58", 6, 17, 2, Proposit.VENTA, 3500000, true);
             
-            Motor motor1 = new Motor(empresa, 150, 100, true, 99994444, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+            Motor motor1 = new Motor(empresa, 150, 100, true, 99994444, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.ALTRES, 0, false);
             Motor motor2 = new Motor(empresa, 400, 300, true, 11112222, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.VENTA, 30000, true);
             Motor motor3 = new Motor(empresa, 300, 200, true, 22223333, "2234w", "ZODIAC", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
             Motor motor4 = new Motor(empresa, 400, 200, true, 44770000, "0170s", "ZODIAC", "FC-580", 2, 6, 1, Proposit.LLOGUER, 10000, true);
             Motor motor5 = new Motor(empresa, 400, 200, true, 21004700, "4301f", "SELVA", "600 PRO", 2, 6, 1, Proposit.REPARACIO, 15000, true);
             Motor motor6 = new Motor(empresa, 600, 300, true, 78001400, "7702n", "SELVA", "700 PRO", 2, 7, 1, Proposit.VENTA, 20000, true);
-            Motor motor7 = new Motor(empresa, 200, 150, true, 33222233, "2461v", "MERCURY", "HEAVY DUTY 470", 2, 5, 1, Proposit.VENTA, 9000, true);
-            Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.VENTA, 5000, true);
+            Motor motor7 = new Motor(empresa, 200, 150, true, 33222233, "2461v", "MERCURY", "HEAVY DUTY 470", 2, 5, 1, Proposit.ALTRES, 0, false);
+            Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.ALTRES, 0, false);
             Motor motor9 = new Motor(empresa, 600, 300, true, 46339900, "6984q", "ASIS", "8M", 2, 8, 1, Proposit.VENTA, 20000, true);
             
             Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Inspeccionat el motor i fet un canvi de peça, pendent de proves.");
