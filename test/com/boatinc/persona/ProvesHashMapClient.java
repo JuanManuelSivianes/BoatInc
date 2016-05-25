@@ -50,7 +50,6 @@ public class ProvesHashMapClient {
         System.out.println("Test eliminar una forma de pagament.");
 
         client.afegirFormaPagament(targeta1);
-        client.afegirFormaPagament(targeta2);
         
         client.eliminarFormaPagament(targeta1.getIdentificador());
         

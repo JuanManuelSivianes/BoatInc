@@ -56,7 +56,6 @@ public class Motor extends Embarcacio {
     
     @Override
     public String infoDetallada() {
-        super.infoGeneral();
         return super.infoGeneral() + " " + "Motor{" + "\"potencia\"" + ": " + potencia + "," + " \"capacitatDeposit\"" + ": " + capacitatDeposit + "," + " \"motorAuxiliar\"" + ": " + "\"" +motorAuxiliar + "\"" + '}';
     }
 }
