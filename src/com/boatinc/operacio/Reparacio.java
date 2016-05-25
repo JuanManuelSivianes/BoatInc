@@ -31,7 +31,7 @@ public class Reparacio extends Operacio {
     private Date dataPrevista;
     private String descripcioAveria;
 
-    public Reparacio(Empresa empresa, String lloc, String dataInici, String dataPrevista, String descripcioAveria, Client client, Embarcacio embarcacio, Estat estat, float preu) throws DataException, NoAfegitException {
+    public Reparacio(Empresa empresa, String lloc, String dataInici, String dataPrevista, String descripcioAveria, Client client, Embarcacio embarcacio, Estat estat, float preu, Reparador...reparador) throws DataException, NoAfegitException {
         super(client, embarcacio, estat, preu);
         this.lloc = lloc;
         this.dataInici = Eina.creaDate(dataInici);
@@ -44,6 +44,12 @@ public class Reparacio extends Operacio {
         this.empleats = new ArrayList<>();
         if (embarcacio.getProposit() != Proposit.REPARACIO || embarcacio.isDisponibilitat() == false) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per reparar.");
+        }
+        for(Reparador r : reparador){
+            if(empleats.contains(r)){
+                throw new NoAfegitException("No s'ha pogut afegir l'empleat a la reparacio.");
+            }
+            empleats.add(r);
         }
         empresa.afegirOperacions(this);
     }

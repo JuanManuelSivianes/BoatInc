@@ -36,47 +36,10 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        try {
-            /*EMPRESA*/
-            Empresa boatsINC = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
-
-            /*CLIENTE*/
-            TargetaCredit tarjeta1 = new TargetaCredit(01, 02, 2018, 123);
-            CompteCorrent compte1 = new CompteCorrent("123456789");
-            Client toni = new Client(boatsINC, "Toni", "Dalmau", Document.DNI, "11111111A", "C/ mar nº 1", 600000001, "tonidalmau@gmail.com", tarjeta1, compte1);
-            Client alfonso = new Client(boatsINC, "Alfonso", "Perez", Document.DNI, "11111111B", "C/ mar nº 2", 600000002, "alfonsoperez@gmail.com", tarjeta1, compte1);
-            Client catalina = new Client(boatsINC, "Catalina", "Guardiola", Document.DNI, "11111111C", "C/ mar nº 3", 600000003, "catalinaguardiola@gmail.com", tarjeta1, compte1);
-
-            /*COMERCIALS*/
-            Comercial paco = new Comercial(boatsINC, "Paco", "Jemez", Document.DNI, "11111111D", "C/ mar nº 4", 600000004, "pacojemez@gmail.com", 1000f, "01/01/2016", 10);
-            Comercial luis = new Comercial(boatsINC, "Luis", "Bajon", Document.DNI, "11111111I", "C/ mar nº 9", 600000009, "luisbajon@gmail.com", 1000f, "02/01/2016", 10);
-
-            /*REPARADORS*/
-            Reparador jose = new Reparador(boatsINC, "Jose", "delafuente", Document.DNI, "11111111E", "C/ mar nº 5", 600000005, "josedelafuente@gmail.com", 600f, "02/05/2016", FUSTERIA, VELES);
-            Reparador juan = new Reparador(boatsINC, "Juan", "perico", Document.DNI, "11111111F", "C/ mar nº 6", 600000006, "juanperico@gmail.com", 900f, "05/05/2014", FONTANERIA, ELECTRICITAT, FIBRA_DE_VIDRE);
-
-            /*PATRONS*/
-            Patro bernat = new Patro(boatsINC, "Bernat", "Sabater", Document.DNI, "11111111G", "C/ mar nº 7", 600000007, "bernatsabater@gmail.com", "Patron de 1ª", 250f);
-            Patro jenny = new Patro(boatsINC, "Jenny", "Valencia", Document.DNI, "11111111H", "C/ mar nº 8", 600000008, "jenyvalencia@gmail.com", "Patron de 2ª", 150f);
-
-            /*EMBARCACIONS DISPONIBLES*/
-            Veler veler1 = new Veler(boatsINC, 2, 4, 1, 000001, "AAA01", "Concordia", "AIR", 10, 20, 5, Proposit.LLOGUER, 50000, true);
-            Veler veler2 = new Veler(boatsINC, 5, 2, 8, 000002, "AAA02", "Luitsu", "FIRE", 10, 20, 5, Proposit.LLOGUER, 50000, true);
-            Iot iot1 = new Iot(boatsINC, 2, 100, 200, true, 000003, "AAA02", "Suiter", "LUXUS", 20, 10, 20, Proposit.REPARACIO, 80000, true);
-            Motor motor1 = new Motor(boatsINC, 350, 2, true, 000005, "AAA03", "BMW", "A450", 10, 2, 3, Proposit.VENTA, 30000, true);
-
-            /*EMBARCACIONS NO DISPONIBLES*/
-            Iot iot2 = new Iot(boatsINC, 2, 100, 200, true, 000004, "AAA05", "Suiter", "LUXUS2", 20, 10, 20, Proposit.REPARACIO, 80000, false);
-            Motor motor2 = new Motor(boatsINC, 350, 2, true, 000006, "AAA06", "BMW", "A4502", 10, 2, 3, Proposit.VENTA, 30000, false);
-
-        } catch (DataException | NoAfegitException ex) {
-            System.out.println(ex.getMessage());
-        }
         provesOperacions();
     }
 
-    public static void provesOperacions(){
+    public static void provesOperacions() {
         try {
             /*----------PRUEBAS----------*/
             Empresa boatsINC = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
@@ -190,7 +153,7 @@ public class Principal {
             System.out.println("Que passaria si afegim un altre cop el mateix treballador ? Ens retornaria un NoAfegitException el qual imprimirem el missatge:");
             try {
                 reparacio1.afegirEmpleat(juan);
-            } catch (NoAfegitException ex){
+            } catch (NoAfegitException ex) {
                 System.out.println(ex.getMessage());
             }
 
@@ -198,9 +161,9 @@ public class Principal {
             reparacio1.eliminarEmpleat(juan);
             System.out.println(reparacio1.getEmpleats());
             System.out.println("S'ha eliminat correctament, pero que passaria si intentam eliminar un treballador que no te ? Ens avisaria de que el treballador introduït no coincideix amb cap de les que té la reparacio:");
-            try{
+            try {
                 reparacio1.eliminarEmpleat(juan);
-            }catch(NoEliminatException ex){
+            } catch (NoEliminatException ex) {
                 ex.getMessage();
             }
 
@@ -236,10 +199,14 @@ public class Principal {
             System.out.println("\nData de la operacio: " + venta1.getDataVenta() + "\nLa canviam per \"31/05/2016\" amb venta1.setDataVenta(\"22/05/2016\");");
             venta1.setDataVenta("31/05/2016");
             System.out.println("Data de la operacio després del canvi: " + venta1.getDataVenta());
+            
+            Reparacio reparacio6 = new Reparacio(boatsINC, "Taller", "23/05/2016", "05/06/2016", "Neteja de filtres", alfonso, iot1, Estat.INICIADA, 200f,jose, jose);
+            System.out.println(reparacio6.getEmpleats());
 
         } catch (DataException | NoAfegitException | NoEliminatException ex) {
             System.out.println(ex.getMessage());
         }
 
+        
     }
 }
