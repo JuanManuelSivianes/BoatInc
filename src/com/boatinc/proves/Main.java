@@ -107,14 +107,14 @@ public class Main {
             Iot iot2 = new Iot(empresa, 4, 800, 4000, true, 43210000, "7799w", "BAVARIA", "v34", 3, 15, 1, Proposit.REPARACIO, 100000, true);
             Iot iot3 = new Iot(empresa, 4, 700, 5000, true, 56781111, "8800q", "Menorqui", "m67", 3, 20, 1, Proposit.VENTA, 150000, true);
             Iot iot4 = new Iot(empresa, 5, 2000, 5000, true, 78942222, "1100b", "HORIZON", "p110", 6, 33, 2, Proposit.LLOGUER, 3000000, true);
-            Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.REPARACIO, 4000000, true);
+            Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.VENTA, 4000000, true);
             Iot iot6 = new Iot(empresa, 4, 2000, 10000, true, 98748888, "1111j", "Sunseeker", "116", 5, 35, 2, Proposit.VENTA, 2500000, true);
             Iot iot7 = new Iot(empresa, 6, 4000, 15000, true, 44444444, "6321m", "SANLORENZO", "SL118", 7, 36, 2, Proposit.LLOGUER, 3500000, true);
             Iot iot8 = new Iot(empresa, 5, 4000, 25000, true, 98653214, "4567t", "Benetti", "ILLUSION FB246", 8, 45, 3, Proposit.VENTA, 5000000, true);
             Iot iot9 = new Iot(empresa, 4, 2000, 5000, true, 14873487, "7632h", "WESTPORT", "W125", 7, 38, 2, Proposit.VENTA, 1500000, true);
             
             Veler veler1 = new Veler(empresa, 2, 1, 2, 77448888, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
-            Veler veler2 = new Veler(empresa, 4, 1, 4, 14141414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.REPARACIO, 100000, true);
+            Veler veler2 = new Veler(empresa, 4, 1, 4, 14141414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.LLOGUER, 100000, true);
             Veler veler3 = new Veler(empresa, 2, 1, 2, 24242424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
             Veler veler4 = new Veler(empresa, 2, 1, 2, 78787878, "7468m", "vismara", "v56", 4, 18, 2, Proposit.LLOGUER, 1000000, true);
             Veler veler5 = new Veler(empresa, 2, 1, 4, 01010101, "1433n", "Feeling", "FEELING 52", 4, 15, 2, Proposit.REPARACIO, 800000, true);
@@ -124,7 +124,7 @@ public class Main {
             Veler veler9 = new Veler(empresa, 4, 1, 4, 77771414, "9977d", "LEOPARD", "58", 6, 17, 2, Proposit.VENTA, 3500000, true);
             
             Motor motor1 = new Motor(empresa, 150, 100, true, 99994444, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
-            Motor motor2 = new Motor(empresa, 400, 300, true, 11112222, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.REPARACIO, 30000, true);
+            Motor motor2 = new Motor(empresa, 400, 300, true, 11112222, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.VENTA, 30000, true);
             Motor motor3 = new Motor(empresa, 300, 200, true, 22223333, "2234w", "ZODIAC", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
             Motor motor4 = new Motor(empresa, 400, 200, true, 44770000, "0170s", "ZODIAC", "FC-580", 2, 6, 1, Proposit.LLOGUER, 10000, true);
             Motor motor5 = new Motor(empresa, 400, 200, true, 21004700, "4301f", "SELVA", "600 PRO", 2, 6, 1, Proposit.REPARACIO, 15000, true);
@@ -133,8 +133,10 @@ public class Main {
             Motor motor8 = new Motor(empresa, 150, 100, true, 14799000, "4962x", "MERCURY", "HEAVY DUTY 415", 1, 4, 1, Proposit.VENTA, 5000, true);
             Motor motor9 = new Motor(empresa, 600, 300, true, 46339900, "6984q", "ASIS", "8M", 2, 8, 1, Proposit.VENTA, 20000, true);
             
-            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot5, Estat.PENDENT, 1000);  
-            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client2, iot2, Estat.PENDENT, 2000);
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200); 
+            
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client2, veler5, Estat.INICIADA, 5000);
+            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client2, veler5, Estat.PENDENT, 4500);
             
             Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Motor romput");
             Comentari comentari2 = new Comentari("19/05/2016", reparador2, "Reparació realitzada");
