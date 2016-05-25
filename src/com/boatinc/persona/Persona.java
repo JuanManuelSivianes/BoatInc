@@ -90,6 +90,5 @@ public class Persona implements Serializable{
     public String toString() {
         return "| Identificador: "+document+": "+numeroDocument+", Nom: "+nom+", Cognoms: "+cognom+" |";
     }
-    
-    
+
 }
