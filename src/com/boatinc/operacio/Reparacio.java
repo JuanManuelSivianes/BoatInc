@@ -52,6 +52,7 @@ public class Reparacio extends Operacio {
             empleats.add(r);
         }
         empresa.afegirOperacions(this);
+        embarcacio.afegirReparacio(this);
     }
 
     public ArrayList<Reparador> getEmpleats() {

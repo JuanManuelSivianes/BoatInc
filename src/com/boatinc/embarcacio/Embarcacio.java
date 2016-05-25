@@ -40,7 +40,7 @@ public abstract class Embarcacio implements Informacio, Serializable{
         this.calat = calat;
         this.proposit = proposit;
         this.preu = preuVenda;
-        this.tipusEmbarcacio = this.getClass().getName().substring(23);
+        this.tipusEmbarcacio = this.getClass().getSimpleName();
         historicReparacions = new HashMap<>();
         this.disponibilitat = disponibilitat;
         empresa.afegirEmbarcacio(this);

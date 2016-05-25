@@ -30,8 +30,12 @@ public class Lloguer extends Operacio {
         super(client, embarcacio, estat, preu);
         this.dataInicial = Eina.creaDate(dataInicial);
         this.dataFinal = Eina.creaDate(dataFinal);
-        if (embarcacio.getProposit() != Proposit.LLOGUER || embarcacio.isDisponibilitat() == false) {
+        if (embarcacio.getProposit() != Proposit.LLOGUER ) {
             throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
+        }else{
+            if(embarcacio.isDisponibilitat()==false){
+                throw new NoAfegitException("Aquest vaixell no esta disponible per lloguer.");
+            }
         }
         if (this.dataInicial.after(this.dataFinal)) {
             throw new DataException("La data d'inici d'un lloguer no pot ser posterior a la data final.");

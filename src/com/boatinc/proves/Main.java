@@ -40,25 +40,25 @@ public class Main {
         Empresa mare = new Empresa("Mare Nostrum", "A26123457", "C/ Bissanyes, nº 7", 902202122);
 
         
-//        inicialitzacio(mare);
-//        
-//        try {
-//            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+        inicialitzacio(mare);
+        
+        try {
+            desaDades("src/com/boatinc/dades/dadesSistema.dat", mare);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
         
 
         mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
         try{
-//            System.out.println(mare.getLlistaClients());
-//            System.out.println(mare.getLlistaEmpleat());
-//            System.out.println(mare.getLlistaPatrons());
-//            System.out.println(mare.getLlistaEmbarcacions());
-//            System.out.println(mare.tornaModelsVenta());
-//            System.out.println(mare.tornaModelsVentaTipus("Iot"));
-//            System.out.println(mare.tornaModelsVentaPreu(100, 25000));  
-              System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+            System.out.println(mare.tornaModelsVenta());
+            System.out.println(mare.tornaModelsVentaTipus("Veler"));
+            System.out.println(mare.tornaModelsVentaPreu(2000000, 3000000));
+            System.out.println(mare.tornaReparacionsEstat(Estat.PENDENT));
+            System.out.println(mare.tornaReparacionsEstat(Estat.ATURADA));
+            System.out.println(mare.tornaHistoricReparacions(01010101));
+            System.out.println(mare.tornaEmpleat("23451278G").tornaNomina());
+            System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
         }catch(NoTrovatException | DataException e){
             System.out.println(e.getMessage());
         }
@@ -97,93 +97,6 @@ public class Main {
 
             Comercial comercial1 = new Comercial(empresa, "David", "Ferrer Amoros", Document.DNI, "23451278G", "C/ Xavi nº10, Pollença", 654235241, "david@gmail.com", 300f, "02/04/1999", 7);
             Comercial comercial2 = new Comercial(empresa, "Reimond", "Powell", Document.NIE, "X3544124P", "Avinguda Reus nº10, Algaida", 620348544, "Reimond@gmail.com", 400f, "20/09/2000", 9);
-            
-            System.out.println(reparacio1);
-            
-        } catch (NoAfegitException | DataException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public static void desaDades(String desti, Object objecte) throws FileNotFoundException, IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(desti)))) {
-            out.writeObject(objecte);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static Object recuperaDades(String origen) {
-        Object nou = new Object();
-        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(origen)))) {
-            nou = in.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return nou;
-    }
-
-    public static void provesEmbarcacio() throws NoAfegitException {
-        Empresa empresa1 = new Empresa("DevelopersNautics", "", "", 677888888);
-        System.out.println("############################" + "\n## PROVES CLASSE EMBARCACIO  ##" + "\n############################\n");
-
-        System.out.println("En aquest cas agafarem un iot ja que no podem crear una embarcació perque la classe es abstracta i farem ús dels metodes de embarcacio: \n");
-        Iot iot1 = new Iot(empresa1, 4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
-
-        System.out.println("-- PROVES GETTERS --");
-        System.out.println("-> iot1.getNumeroSerie(): " + iot1.getNumeroSerie());
-        System.out.println("-> iot1.getMatricula(): " + iot1.getMatricula());
-        System.out.println("-> iot1.getMarca(): " + iot1.getMarca());
-        System.out.println("-> iot1.getModel(): " + iot1.getModel());
-        System.out.println("-> iot1.getManga(): " + iot1.getManga());
-        System.out.println("-> patro1.getEmail(): " + iot1.getEslora());
-        System.out.println("-> iot1.getCalat(): " + iot1.getCalat());
-        System.out.println("-> iot1.getTipusEmbarcacio(): " + iot1.getTipusEmbarcacio());
-        System.out.println("-> iot1.getProposit(): " + iot1.getProposit());
-        System.out.println("-> iot1.getPreu(): " + iot1.getPreu());
-        System.out.println("-> iot1.getHistoricReparacions(): " + iot1.getHistoricReparacions());
-
-        System.out.println("\n\n-- PROVES SETTERS --");
-        System.out.println("Numero de serie de l'embarcacio: " + iot1.getNumeroSerie() + "\nEl canviam per \"7777\" amb iot1.setNumeroSerie(7777);");
-        iot1.setNumeroSerie(7777);
-        System.out.println("Numero de serie després del canvi: " + iot1.getNumeroSerie());
-
-        System.out.println("\nMatricula de l'embarcacio: " + iot1.getMatricula() + "\nLa canviam per \"4411r\" amb iot1.setMatricula(\"4411r\");");
-        iot1.setMatricula("4411r");
-        System.out.println("Matricula de l'embarcacio després del canvi: " + iot1.getMatricula());
-
-        System.out.println("\nMarca de l'embarcacio: " + iot1.getMarca() + "\nLa canviam per \"Bavaria\" amb iot1.setMarca(\"Bavaria\");");
-        iot1.setMarca("Bavaria");
-        System.out.println("Marca de l'embarcacio després del canvi: " + iot1.getMarca());
-
-        System.out.println("\nModel de l'embarcacio: " + iot1.getModel() + "\nLa canviam per \"v34\" amb iot1.setModel(\"v34\");");
-        iot1.setModel("v34");
-        System.out.println("Model de l'embarcacio després del canvi: " + iot1.getModel());
-
-        System.out.println("\nManga de l'embarcacio: " + iot1.getManga() + "\nLa canviam per \"3\" amb iot1.setManga(3);");
-        iot1.setModel("v34");
-        System.out.println("Manga de l'embarcacio després del canvi: " + iot1.getManga());
-
-        System.out.println("\nEslora de l'embarcacio: " + iot1.getEslora() + "\nLa canviam per \"15\" amb iot1.setEslora(15);");
-        iot1.setEslora(15);
-        System.out.println("Eslora de l'embarcacio després del canvi: " + iot1.getEslora());
-
-        System.out.println("\nCalat de l'embarcacio: " + iot1.getCalat() + "\nEl canviam per \"2\" amb iot1.setCalat(2);");
-        iot1.setCalat(2);
-        System.out.println("Calat de l'embarcacio després del canvi: " + iot1.getCalat());
-
-        System.out.println("\nProposit de l'embarcacio: " + iot1.getProposit() + "\nEl canviam per \"VENTA\" amb iot1.setProposit(Proposit.VENTA);");
-        iot1.setProposit(Proposit.VENTA);
-        System.out.println("Proposit de l'embarcacio després del canvi: " + iot1.getProposit());
-
-        System.out.println("\nPreu de l'embarcacio: " + iot1.getPreu() + "\nEl canviam per \"300000\" amb iot1.setPreu(300000);");
-        iot1.setPreu(300000);
-        System.out.println("Preu de l'embarcacio després del canvi: " + iot1.getPreu());
-
-        System.out.println("\n\n##########################" + "\n## PROVES CLASSE IOT  ##" + "\n##########################\n");
-        System.out.println("\nAquí farem les proves de la part especifica de la classe Iot:");
-
-        System.out.println("-- PROVES GETTERS --");
             
             Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
             Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES,Habilitat.FUSTERIA);
@@ -228,22 +141,20 @@ public class Main {
             Comentari comentari5 = new Comentari("22/05/2016", reparador4, "La anomalia necesita un producte especial per al seu tractament.");
             Comentari comentari6 = new Comentari("23/05/2016", reparador5, "Passam la reparació a aturada fins que arrivi el material.");
             
-            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200);
-            //, reparador1, reparador2
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot2, Estat.INICIADA, 7200, reparador1, reparador2);
             reparacio1.afegirComentari(comentari1);
             reparacio1.afegirComentari(comentari2);
             reparacio1.setEstat(Estat.FINALITZADA);
              
-            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "26/05/2016", "Casc romput", client4, veler5, Estat.INICIADA, 5000);
-            //, reparador3, reparador4, reparador5
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "26/05/2016", "Casc romput", client4, veler5, Estat.INICIADA, 5000, reparador3, reparador4, reparador5);
             reparacio2.afegirComentari(comentari3);
             reparacio2.afegirComentari(comentari4);
             reparacio2.afegirComentari(comentari5);
             reparacio2.afegirComentari(comentari6);
             reparacio2.setEstat(Estat.ATURADA);
             
-            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client3, motor5, Estat.PENDENT, 4500);
-            //, reparador2, reparador4, reparador5
+            Reparacio reparacio3 = new Reparacio(empresa, "Port Pollença", "29/05/2016", "20/06/2016", "Manteniment", client3, motor5, Estat.PENDENT, 4500, reparador2, reparador4, reparador5);
+
             
             Venda venda1 = new Venda(empresa, client3, iot5, Estat.FINALITZADA, comercial1, "10/02/2015", 650);
             iot5.setDisponibilitat(false);
@@ -273,81 +184,29 @@ public class Main {
             Lloguer lloguer8 = new Lloguer(empresa, client1, veler4, Estat.INICIADA, "10/05/2016", "20/05/2016", 500);
             veler4.setDisponibilitat(false);
             Lloguer lloguer9 = new Lloguer(empresa, client1, veler2, Estat.PENDENT, "25/07/2016", "10/08/2016", patro3, 1200);
-            Lloguer lloguer10 = new Lloguer(empresa, client1, iot1, Estat.PENDENT, "20/07/2016", "22/08/2016", patro1, 1700);
+            Lloguer lloguer10 = new Lloguer(empresa, client1, iot4, Estat.PENDENT, "20/07/2016", "22/08/2016", patro1, 1700);
             
-            
-            
-            
-            
-            
+        } catch (NoAfegitException | DataException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
+    public static void desaDades(String desti, Object objecte) throws FileNotFoundException, IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(desti)))) {
+            out.writeObject(objecte);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FUSTERIA);
-            Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES, Habilitat.FUSTERIA);
-            Reparador reparador3 = new Reparador(empresa, "Benito", "Perez Silva", Document.NIE, "X6451244F", "C/ Aragon nº4, 5b, Palma", 664325674, "benito@gmail.es", 920f, "22/10/2001", Habilitat.FIBRA_DE_VIDRE, Habilitat.FUSTERIA, Habilitat.VELES);
-            Reparador reparador4 = new Reparador(empresa, "Santiago", "Calatrava", Document.DNI, "34998245A", "C/ Bonaire nº4, 2c, Palma", 648772165, "santiago@yahoo.es", 920f, "10/07/2003", Habilitat.MECANICA, Habilitat.FONTANERIA);
-            Reparador reparador5 = new Reparador(empresa, "Ramon", "Benitez Ruiz", Document.NIE, "X2844765G", "C/ Protectora nº7, Puerto de Alcudia", 634857321, "ramon@hotmail.com", 920f, "07/09/2001", Habilitat.ELECTRICITAT, Habilitat.FONTANERIA, Habilitat.MECANICA);
-
-            Iot iot1 = new Iot(empresa, 4, 1000, 200, true, 1234, "4444x", "Fairline", "f47", 2, 10, 1, Proposit.LLOGUER, 200000, true);
-            Iot iot2 = new Iot(empresa, 4, 800, 400, true, 4321, "7799x", "Bavaria", "v34", 2, 15, 1, Proposit.REPARACIO, 100000, true);
-            Iot iot3 = new Iot(empresa, 4, 700, 500, true, 5678, "8800x", "Menorqui", "m67", 2, 20, 1, Proposit.VENTA, 150000, true);
-
-            Veler veler1 = new Veler(empresa, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
-            Veler veler2 = new Veler(empresa, 4, 1, 4, 1414, "4422t", "Catamaran", "c42", 6, 14, 2, Proposit.REPARACIO, 100000, true);
-            Veler veler3 = new Veler(empresa, 2, 1, 4, 2424, "3399g", "Beneteau", "j64", 4, 12, 2, Proposit.VENTA, 70000, true);
-
-            Motor motor1 = new Motor(empresa, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
-            Motor motor2 = new Motor(empresa, 400, 300, true, 1111, "1177n", "Raptor", "r98", 2, 10, 1, Proposit.REPARACIO, 30000, true);
-            Motor motor3 = new Motor(empresa, 300, 200, true, 2222, "2234w", "Zodiac", "z46", 2, 12, 1, Proposit.VENTA, 25000, true);
-
-            Reparacio reparacio1 = new Reparacio(empresa, "Taller", "23/05/2016", "05/05/2016", "Neteja de filtres", client1, iot2, Estat.INICIADA, 200f);
-            Reparacio reparacio3 = new Reparacio(empresa, "Pantalà 52", "10/05/2016", "29/05/2016", "Canvi de motor", client2, motor2, Estat.PENDENT, 1200f);
-            Reparacio reparacio4 = new Reparacio(empresa, "Taller", "12/05/2016", "15/05/2016", "Polit de pals", client3, motor3, Estat.FINALITZADA, 200f);
-        System.out.println("\n\n-- PROVES SETTERS --");
-        System.out.println("Numero de camarots de l'embaracio: " + iot1.getNumeroCamarots() + "\nEl canviam per \"2\" amb iot1.setNumeroCamarots(2);");
-        iot1.setNumeroCamarots(2);
-        System.out.println("Numero de camarots després del canvi: " + iot1.getNumeroCamarots());
-
-        System.out.println("Potencia de l'embaracio: " + iot1.getPotencia() + "\nLa canviam per \"1200\" amb iot1.setPotencia(1200);");
-        iot1.setPotencia(1200);
-        System.out.println("Potencia després del canvi: " + iot1.getPotencia());
-
-        System.out.println("Autonomia de l'embaracio: " + iot1.getAutonomia() + "\nLa canviam per \"300\" amb iot1.setAutonomia(300);");
-        iot1.setAutonomia(300);
-        System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
-        System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
-        Veler veler1 = new Veler(empresa1, 2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
-
-        System.out.println("-- PROVES GETTERS --");
-        System.out.println("-> veler1.getNumeroCascs(): " + veler1.getNumeroCascs());
-        System.out.println("-> veler1.getNumeroPals(): " + veler1.getNumeroPals());
-        System.out.println("-> veler1.getNumeroCabines(): " + veler1.getNumeroCabines());
-
-        System.out.println("\n\n-- PROVES SETTERS --");
-        System.out.println("Numero de cascs de l'embaracio: " + veler1.getNumeroCascs() + "\nEl canviam per \"4\" amb veler1.setNumeroCascs(4);");
-        veler1.setNumeroCascs(4);
-        System.out.println("Numero de cascs després del canvi: " + veler1.getNumeroCascs());
-
-        System.out.println("Numero de pals de l'embaracio: " + veler1.getNumeroPals() + "\nEl canviam per \"2\" amb veler1.setNumeroPals(2);");
-        veler1.setNumeroPals(2);
-        System.out.println("Numero de pals després del canvi: " + veler1.getNumeroPals());
-
-        System.out.println("Numero de cabines de l'embaracio: " + veler1.getNumeroCabines() + "\nEl canviam per \"4\" amb veler1.setNumeroCabines(4);");
-        veler1.setNumeroCabines(4);
-        System.out.println("Numero de cabines després del canvi: " + veler1.getNumeroCabines());
-
-        System.out.println("\n\n##########################" + "\n## PROVES CLASSE MOTOR  ##" + "\n##########################\n");
-        System.out.println("\nAquí farem les proves de la part especifica de la classe Motor:");
-        Motor motor1 = new Motor(empresa1, 150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
-
-        System.out.println("-- PROVES GETTERS --");
-        System.out.println("\n\n-- PROVES SETTERS --");
-        System.out.println("Potencia de l'embaracio: " + motor1.getPotencia() + "\nLa canviam per \"200\" amb motor1.setPotencia(200);");
-        motor1.setPotencia(200);
-        System.out.println("Potencia després del canvi: " + motor1.getPotencia());
-
-        System.out.println("Capacitat del deposit de l'embaracio: " + motor1.getCapacitatDeposit() + "\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
-        motor1.setCapacitatDeposit(150);
+    public static Object recuperaDades(String origen) {
+        Object nou = new Object();
+        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(origen)))) {
+            nou = in.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return nou;
     }
 
     public static void provesPersona() throws NoAfegitException {
@@ -556,6 +415,195 @@ public class Main {
             System.out.println(ex.getMessage());
         }
     }
+    
+        public static void provesEmbarcacio() throws NoAfegitException, NoEliminatException{
+        try {
+            Empresa empresa = new Empresa("DevelopersNautics", "", "", 677888888);
+            System.out.println("############################" + "\n## PROVES CLASSE EMBARCACIO  ##" + "\n############################\n");
+            
+            System.out.println("En aquest cas agafarem un iot ja que no podem crear una embarcació perque la classe es abstracta i farem ús dels metodes de embarcacio: \n");
+            Iot iot1 = new Iot(empresa,4, 1000, 200, true, 1234, "4444x", "Fairline", "Targa", 2, 10, 1, Proposit.LLOGUER, 200000, true);
+            
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> iot1.getNumeroSerie(): "+iot1.getNumeroSerie());
+            System.out.println("-> iot1.getMatricula(): "+iot1.getMatricula());
+            System.out.println("-> iot1.getMarca(): "+iot1.getMarca());
+            System.out.println("-> iot1.getModel(): "+iot1.getModel());
+            System.out.println("-> iot1.getManga(): "+iot1.getManga());
+            System.out.println("-> patro1.getEmail(): "+iot1.getEslora());
+            System.out.println("-> iot1.getCalat(): "+iot1.getCalat());
+            System.out.println("-> iot1.getTipusEmbarcacio(): "+iot1.getTipusEmbarcacio());
+            System.out.println("-> iot1.getProposit(): "+iot1.getProposit());
+            System.out.println("-> iot1.getPreu(): "+iot1.getPreu());
+            System.out.println("-> iot1.getHistoricReparacions(): "+iot1.getHistoricReparacions());
+            
+            
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("Numero de serie de l'embarcacio: "+iot1.getNumeroSerie()+"\nEl canviam per \"7777\" amb iot1.setNumeroSerie(7777);");
+            iot1.setNumeroSerie(7777);
+            System.out.println("Numero de serie després del canvi: "+iot1.getNumeroSerie());
+            
+            System.out.println("\nMatricula de l'embarcacio: "+iot1.getMatricula()+"\nLa canviam per \"4411r\" amb iot1.setMatricula(\"4411r\");");
+            iot1.setMatricula("4411r");
+            System.out.println("Matricula de l'embarcacio després del canvi: "+iot1.getMatricula());
+            
+            System.out.println("\nMarca de l'embarcacio: "+iot1.getMarca()+"\nLa canviam per \"Bavaria\" amb iot1.setMarca(\"Bavaria\");");
+            iot1.setMarca("Bavaria");
+            System.out.println("Marca de l'embarcacio després del canvi: "+iot1.getMarca());
+            
+            System.out.println("\nModel de l'embarcacio: "+iot1.getModel()+"\nLa canviam per \"v34\" amb iot1.setModel(\"v34\");");
+            iot1.setModel("v34");
+            System.out.println("Model de l'embarcacio després del canvi: "+iot1.getModel());
+            
+            System.out.println("\nManga de l'embarcacio: "+iot1.getManga()+"\nLa canviam per \"3\" amb iot1.setManga(3);");
+            iot1.setModel("v34");
+            System.out.println("Manga de l'embarcacio després del canvi: "+iot1.getManga());
+            
+            System.out.println("\nEslora de l'embarcacio: "+iot1.getEslora()+"\nLa canviam per \"15\" amb iot1.setEslora(15);");
+            iot1.setEslora(15);
+            System.out.println("Eslora de l'embarcacio després del canvi: "+iot1.getEslora());
+            
+            System.out.println("\nCalat de l'embarcacio: "+iot1.getCalat()+"\nEl canviam per \"2\" amb iot1.setCalat(2);");
+            iot1.setCalat(2);
+            System.out.println("Calat de l'embarcacio després del canvi: "+iot1.getCalat());
+            
+            System.out.println("\nProposit de l'embarcacio: "+iot1.getProposit()+"\nEl canviam per \"VENTA\" amb iot1.setProposit(Proposit.VENTA);");
+            iot1.setProposit(Proposit.VENTA);
+            System.out.println("Proposit de l'embarcacio després del canvi: "+iot1.getProposit());
+            
+            System.out.println("\nPreu de l'embarcacio: "+iot1.getPreu()+"\nEl canviam per \"300000\" amb iot1.setPreu(300000);");
+            iot1.setPreu(300000);
+            System.out.println("Preu de l'embarcacio després del canvi: "+iot1.getPreu());
+            
+            
+            System.out.println("\n\n##########################" + "\n## PROVES CLASSE IOT  ##" + "\n##########################\n");
+            System.out.println("\nAquí farem les proves de la part especifica de la classe Iot:");
+            
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> iot1.getNumeroCamarots(): "+iot1.getNumeroCamarots());
+            System.out.println("-> iot1.getPotencia(): "+iot1.getPotencia());
+            System.out.println("-> iot1.getAutonomia(): "+iot1.getAutonomia());
+            
+            
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("Numero de camarots de l'embaracio: "+iot1.getNumeroCamarots()+"\nEl canviam per \"2\" amb iot1.setNumeroCamarots(2);");
+            iot1.setNumeroCamarots(2);
+            System.out.println("Numero de camarots després del canvi: "+iot1.getNumeroCamarots());
+            
+            System.out.println("Potencia de l'embaracio: "+iot1.getPotencia()+"\nLa canviam per \"1200\" amb iot1.setPotencia(1200);");
+            iot1.setPotencia(1200);
+            System.out.println("Potencia després del canvi: "+iot1.getPotencia());
+            
+            System.out.println("Autonomia de l'embaracio: "+iot1.getAutonomia()+"\nLa canviam per \"300\" amb iot1.setAutonomia(300);");
+            iot1.setAutonomia(300);
+            System.out.println("Autonomia després del canvi: "+iot1.getAutonomia());
+            
+            
+            System.out.println("\n\n##########################" + "\n## PROVES CLASSE VELER  ##" + "\n##########################\n");
+            System.out.println("\nAquí farem les proves de la part especifica de la classe Veler:");
+            Veler veler1 = new Veler(empresa,2, 1, 2, 7744, "6688q", "Sunseeker", "x78", 3, 12, 2, Proposit.LLOGUER, 80000, true);
+            
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> veler1.getNumeroCascs(): "+veler1.getNumeroCascs());
+            System.out.println("-> veler1.getNumeroPals(): "+veler1.getNumeroPals());
+            System.out.println("-> veler1.getNumeroCabines(): "+veler1.getNumeroCabines());
+            
+            
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("Numero de cascs de l'embaracio: "+veler1.getNumeroCascs()+"\nEl canviam per \"4\" amb veler1.setNumeroCascs(4);");
+            veler1.setNumeroCascs(4);
+            System.out.println("Numero de cascs després del canvi: "+veler1.getNumeroCascs());
+            
+            System.out.println("Numero de pals de l'embaracio: "+veler1.getNumeroPals()+"\nEl canviam per \"2\" amb veler1.setNumeroPals(2);");
+            veler1.setNumeroPals(2);
+            System.out.println("Numero de pals després del canvi: "+veler1.getNumeroPals());
+            
+            System.out.println("Numero de cabines de l'embaracio: "+veler1.getNumeroCabines()+"\nEl canviam per \"4\" amb veler1.setNumeroCabines(4);");
+            veler1.setNumeroCabines(4);
+            System.out.println("Numero de cabines després del canvi: "+veler1.getNumeroCabines());
+            
+            
+            System.out.println("\n\n##########################" + "\n## PROVES CLASSE MOTOR  ##" + "\n##########################\n");
+            System.out.println("\nAquí farem les proves de la part especifica de la classe Motor:");
+            Motor motor1 = new Motor(empresa,150, 100, true, 9999, "3214m", "Yamaha", "y23", 2, 8, 1, Proposit.LLOGUER, 20000, true);
+            
+            System.out.println("-- PROVES GETTERS --");
+            System.out.println("-> motor1.getPotencia(): "+motor1.getPotencia());
+            System.out.println("-> motor1.getCapacitatDeposit(): "+motor1.getCapacitatDeposit());
+            
+            
+            System.out.println("\n\n-- PROVES SETTERS --");
+            System.out.println("Potencia de l'embaracio: "+motor1.getPotencia()+"\nLa canviam per \"200\" amb motor1.setPotencia(200);");
+            motor1.setPotencia(200);
+            System.out.println("Potencia després del canvi: "+motor1.getPotencia());
+            
+            System.out.println("Capacitat del deposit de l'embaracio: "+motor1.getCapacitatDeposit()+"\nLa canviam per \"150\" amb motor1.setCapacitatDeposit(150);");
+            motor1.setCapacitatDeposit(150);
+            System.out.println("Capacitat del deposit després del canvi: "+motor1.getCapacitatDeposit());
+            
+            System.out.println("\n\n -- PROVES METODES --");
+            
+            Iot iot2 = new Iot(empresa, 4, 800, 4000, true, 43210000, "7799w", "BAVARIA", "v34", 3, 15, 1, Proposit.REPARACIO, 100000, true);
+            Iot iot5 = new Iot(empresa, 6, 4000, 20000, true, 33334444, "0147k", "DOMINATOR", "40M", 8, 40, 3, Proposit.REPARACIO, 4000000, true);
+            Iot iot6 = new Iot(empresa, 4, 2000, 10000, true, 98748888, "1111j", "Sunseeker", "116", 5, 35, 2, Proposit.VENTA, 2500000, true);
+            
+            TargetaCredit tarj1 = new TargetaCredit(1111000022224444L, 10, 18, 221);
+            TargetaCredit tarj2 = new TargetaCredit(3333444422221111L, 8, 17, 114);
+            TargetaCredit tarj3 = new TargetaCredit(3333111177776666L, 4, 18, 334);
+            
+            CompteCorrent com1 = new CompteCorrent("ES1200001111887777777777");
+            
+            Client client1 = new Client(empresa, "Toni", "Pons Van", Document.DNI, "11111111E", "C/ mar nº2, Alcudia", 600252421, "toni@gmail.com",tarj1,tarj2,com1);
+            Client client2 = new Client(empresa, "Manel", "Ferrer Mir", Document.DNI, "22222222G", "C/ tucan nº7, Sa Pobla", 600224455, "manel@gmail.com",tarj3);
+            
+            Reparador reparador1 = new Reparador(empresa, "Jose", "Sanchez Rodriguez", Document.DNI, "52164784P", "C/ Olmos nº2, Alcudia", 640224457, "jose@gmail.es", 920f, "07/09/2001", Habilitat.ELECTRICITAT,Habilitat.FUSTERIA);
+            Reparador reparador2 = new Reparador(empresa, "Manolo", "Cruz Dias", Document.DNI, "35664127K", "C/ San Martin nº13, Palma", 625449975, "manolo@msn.es", 920f, "07/09/2001", Habilitat.VELES,Habilitat.FUSTERIA);
+            
+            Reparacio reparacio1 = new Reparacio(empresa, "Alcudia", "18/05/2016", "20/05/2016", "Motor averiat", client1, iot5, Estat.PENDENT, 1000);
+            Reparacio reparacio2 = new Reparacio(empresa, "Sa Pobla", "21/05/2016", "24/05/2016", "Casc romput", client2, iot2, Estat.PENDENT, 2000);
+            
+            Comentari comentari1 = new Comentari("18/05/2016", reparador1, "Motor romput");
+            Comentari comentari2 = new Comentari("19/05/2016", reparador2, "Reparació realitzada");
+            
+            System.out.println("Afegim una reparació a una embarcació: iot5.afegirReparacio(reparacio1);");
+            iot5.afegirReparacio(reparacio1);
+            
+            System.out.println();
+            
+            System.out.println("Podem consultar l'historial de reparacions d'una embarcació: iot5.getHistoricReparacions();");
+            System.out.println(iot5.getHistoricReparacions());
+            
+            /*System.out.println();
+            
+            System.out.println("Si volem afegir la mateixa reparació dins el llista botara una excepció (NoAfegitException)");
+            iot5.afegirReparacio(reparacio1);*/
+            
+            System.out.println();
+            
+             
+            System.out.println("Eliminam una reparació de la llista de reparacions: iot5.eliminarReparacio(reparacio2);");
+            iot5.eliminarReparacio(reparacio1);
+            
+            /*System.out.println();
+            
+            System.out.println("Si intentam eliminar una reparació que no te asociada aquesta embarcació botara una excepció (NoEliminatException)");
+            iot5.eliminarReparacio(reparacio1);*/
+            
+            System.out.println();
+            
+            System.out.println("Mostrar la informació general d'una embarcació: (iot5.infoGeneral())");
+            System.out.println(iot5.infoGeneral());
+            
+            System.out.println();
+            
+            System.out.println("Mostrar la informació detallada d'una embarcació: (iot5.infoDetallada())");
+            System.out.println(iot5.infoDetallada());
+            
+        } catch (DataException | NoAfegitException | NoEliminatException ex) {
+            System.out.println(ex.getMessage());
+        }
+            
+    }
 
     public static void provesOperacions() {
         try {
@@ -723,9 +771,5 @@ public class Main {
 
     }
 }
-        System.out.println("-> iot1.getNumeroCamarots(): "+iot1.getNumeroCamarots());
-        System.out.println("-> iot1.getPotencia(): "+iot1.getPotencia());
-        System.out.println("-> iot1.getAutonomia(): "+iot1.getAutonomia());
-        System.out.println("-> iot1.isEmbarcacioAuxiliar(): "+iot1.isEmbarcacioAuxiliar());
         
         

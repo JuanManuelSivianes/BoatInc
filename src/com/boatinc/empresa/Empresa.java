@@ -237,7 +237,10 @@ public class Empresa implements Serializable {
         return llistaReparacions;
     }
 
-    public HashMap<Integer, Reparacio> tornaHistoricReparacions(Embarcacio embarcacio) throws NoTrovatException {
+    public HashMap<Integer, Reparacio> tornaHistoricReparacions(int numeroSerie) throws NoTrovatException {
+        Embarcacio embarcacio;
+        embarcacio=tornaEmbarcacio(numeroSerie);
+        
         if (embarcacio.getHistoricReparacions().isEmpty()) {
             throw new NoTrovatException("Aquesta embarcacio no ha sofert cap reparació.");
         }

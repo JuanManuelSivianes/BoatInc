@@ -33,6 +33,7 @@ public class Venda extends Operacio {
         }
         embarcacio.setDisponibilitat(false);
         empresa.afegirOperacions(this);
+        comercial.afegirOperacio(this);
     }
 
     public Comercial getComercial() {

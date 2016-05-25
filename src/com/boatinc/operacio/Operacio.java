@@ -29,7 +29,7 @@ public abstract class Operacio implements Serializable{
         this.embarcacio = embarcacio;
         this.estat = estat;
         this.preu=preu+embarcacio.getPreu();
-        this.tipusOperacio=this.getClass().getName().substring(21);
+        this.tipusOperacio=this.getClass().getSimpleName();
         contador++;
     }
     
@@ -75,6 +75,6 @@ public abstract class Operacio implements Serializable{
 
     @Override
     public String toString() {
-        return "Operacio{" + "identificador=" + identificador + ", client=" + client.getNom() + ", embarcacio=" + embarcacio + ", estat=" + estat + ", preu=" + preu + ", tipusOperacio=" + tipusOperacio + '}';
+        return "Operacio{" + "identificador=" + identificador + ", client=" + client.getNom() +", "+client.getCognom()+ ", embarcacio=" + embarcacio + ", estat=" + estat + ", preu=" + preu + ", tipusOperacio=" + tipusOperacio + '}';
     }
 }
