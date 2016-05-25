@@ -270,7 +270,7 @@ public class Empresa implements Serializable{
         }
         
         for(Entry<Integer,Embarcacio> x: llistaEmbarcacions.entrySet()){
-            if(llistaEmbarcacionsOcupades.contains(x.getValue())==false){
+            if(x.getValue().getProposit()==Proposit.LLOGUER && llistaEmbarcacionsOcupades.contains(x.getValue())==false){
                 llistaEmbarcacionsDisponibles.put(x.getValue().getNumeroSerie(), x.getValue());
             }
         }

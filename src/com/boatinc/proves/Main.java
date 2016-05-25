@@ -49,14 +49,15 @@ public class Main {
 
         mare=(Empresa)recuperaDades("src/com/boatinc/dades/dadesSistema.dat");
         try{
-            System.out.println(mare.getLlistaClients());
-            System.out.println(mare.getLlistaEmpleat());
-            System.out.println(mare.getLlistaPatrons());
-            System.out.println(mare.getLlistaEmbarcacions());
-            System.out.println(mare.tornaModelsVenta());
-            System.out.println(mare.tornaModelsVentaTipus("Iot"));
-            System.out.println(mare.tornaModelsVentaPreu(100, 25000));  
-        }catch(NoTrovatException e){
+//            System.out.println(mare.getLlistaClients());
+//            System.out.println(mare.getLlistaEmpleat());
+//            System.out.println(mare.getLlistaPatrons());
+//            System.out.println(mare.getLlistaEmbarcacions());
+//            System.out.println(mare.tornaModelsVenta());
+//            System.out.println(mare.tornaModelsVentaTipus("Iot"));
+//            System.out.println(mare.tornaModelsVentaPreu(100, 25000));  
+              System.out.println(mare.tornaLloguersDisponibles("20/05/2016", "30/05/2016"));
+        }catch(NoTrovatException | DataException e){
             System.out.println(e.getMessage());
         }
 
